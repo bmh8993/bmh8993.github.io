@@ -25,12 +25,14 @@ module.exports = {
     ],
     author: {
       name: 'Regyu',
-      email: '#',
+      email: 'kuhyun1993@gmail.com',
       telegram: '#',
       twitter: '#',
-      github: '#',
-      rss: '#',
+      github: '/Jo-GyuHyeon',
+      rss: 'rss.xml',
       vk: '#',
+      facebook: 'profile.php?id=100003544964414',
+      tistory: 'regyu.tistory.com/'
     },
   },
   plugins: [
@@ -121,7 +123,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-google-analytics',
-      options: { trackingId: 'UA-73379983-2' },
+      options: { trackingId: 'UA-135100027-1' },
     },
     {
       resolve: 'gatsby-plugin-google-fonts',

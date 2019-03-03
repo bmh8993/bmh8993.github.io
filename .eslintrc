@@ -9,7 +9,9 @@
     "arrow-body-style": [
       "error",
       "as-needed",
-      { "requireReturnForObjectLiteral": true }
+      {
+        "requireReturnForObjectLiteral": true
+      }
     ],
     "arrow-parens": ["error", "as-needed"],
     "comma-dangle": ["error", "always-multiline"],

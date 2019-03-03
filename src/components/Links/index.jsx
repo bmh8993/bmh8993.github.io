@@ -6,10 +6,9 @@ class Links extends React.Component {
   render() {
     const author = this.props.data
     const links = {
-      telegram: author.telegram,
-      twitter: author.twitter,
+      facebook: author.facebook,
       github: author.github,
-      vk: author.vk,
+      tistory: author.tistory,
       rss: author.rss,
       email: author.email,
     }
@@ -18,12 +17,17 @@ class Links extends React.Component {
       <div className="links">
         <ul className="links__list">
           <li className="links__list-item">
+            <a href={`mailto:${links.email}`}>
+              <i className="icon-mail" />
+            </a>
+          </li>
+          <li className="links__list-item">
             <a
-              href={`https://www.twitter.com/${links.twitter}`}
+              href={`https://${links.tistory}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="icon-twitter" />
+              <i className="icon-home" />
             </a>
           </li>
           <li className="links__list-item">
@@ -35,29 +39,18 @@ class Links extends React.Component {
               <i className="icon-github" />
             </a>
           </li>
+
+        </ul>
+        <ul className="links__list">
           <li className="links__list-item">
             <a
-              href={`https://www.vk.com/${links.vk}`}
+              href={`https://www.facebook.com/${links.facebook}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="icon-vkontakte" />
+              <i className="icon-facebook" />
             </a>
           </li>
-        </ul>
-        <ul className="links__list">
-          <li className="links__list-item">
-            <a href={`mailto:${links.email}`}>
-              <i className="icon-mail" />
-            </a>
-          </li>
-          <li className="links__list-item">
-            <a href={`telegram:${links.telegram}`}>
-              <i className="icon-paper-plane" />
-            </a>
-          </li>
-        </ul>
-        <ul className="links__list">
           <li className="links__list-item">
             <a href={links.rss}>
               <i className="icon-rss" />
