@@ -12,6 +12,7 @@ class Layout extends React.Component {
         <Helmet defaultTitle="Blog by John Doe">
           <link rel="shortcut icon" href={favicon} />
           <meta name="google-site-verification" content="t_49cP6QwzmvUiZaME8a6LXRipkHQGiYSoruZ_PSlEc" />
+          <meta name="naver-site-verification" content="61e42118f4c8c878479a02a76a96cf21191ee4bc" />
         </Helmet>{' '}
         {children}{' '}
       </div>
