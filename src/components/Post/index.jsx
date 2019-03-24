@@ -5,6 +5,9 @@ import './style.scss'
 
 class Post extends React.Component {
   render() {
+    const { fileAbsolutePath } = this.props.data.node
+    const postPath = fileAbsolutePath.match(/pages\/[\w|\W]{1,}(?=index.md)/)
+    const thumbail = require('../../' + postPath + 'thumbnail.jpg');
     const {
       title,
       date,
@@ -34,6 +37,9 @@ class Post extends React.Component {
             {title}
           </Link>
         </h2>
+
+        <img src={thumbail} />
+
         <p className="post__description">{description}</p>
         <Link className="post__readmore" to={slug}>
           Read

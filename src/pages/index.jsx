@@ -43,6 +43,10 @@ export const pageQuery = graphql`
         menu {
           label
           path
+          sub_menu{
+            label
+            path
+          }
         }
         author {
           name
@@ -64,6 +68,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          fileAbsolutePath
           fields {
             slug
             categorySlug

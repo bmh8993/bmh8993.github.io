@@ -11,16 +11,46 @@ module.exports = {
     disqusShortname: 'regyu',
     menu: [
       {
-        label: 'Articles',
-        path: '/',
+        label: 'All',
+        path: '/'
       },
       {
         label: 'About me',
         path: '/about/',
       },
       {
-        label: 'Contact me',
-        path: '/contact/',
+        label: 'CS',
+        path: '/cs/',
+        sub_menu: [
+          {
+            label: 'algorithm',
+            path: '/algorithm/',
+          },
+          {
+            label: 'data structure',
+            path: '/data structure/',
+          },
+          {
+            label: 'network',
+            path: '/network/',
+          },
+          {
+            label: 'operate system',
+            path: '/operate system/',
+          },
+          {
+            label: 'system Programming',
+            path: '/system Programming/',
+          },
+        ]
+      },
+      {
+        label: 'Categories',
+        path: '/categories',
+      },
+      {
+        label: 'Tags',
+        path: '/tags',
       },
     ],
     author: {
@@ -52,6 +82,7 @@ module.exports = {
               siteMetadata {
                 site_url: url
                 title
+                thumbnail
                 description: subtitle
               }
             }

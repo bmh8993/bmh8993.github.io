@@ -37,6 +37,10 @@ export const pageQuery = graphql`
         menu {
           label
           path
+          sub_menu{
+            label
+            path
+          }
         }
         author {
           name
@@ -56,6 +60,27 @@ export const pageQuery = graphql`
         title
         date
         description
+      }
+    }
+    allMarkdownRemark(
+      limit: 1000
+      filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
+      edges {
+        node {
+          fileAbsolutePath
+          fields {
+            slug
+            categorySlug
+          }
+          frontmatter {
+            title
+            date
+            category
+            description
+          }
+        }
       }
     }
   }

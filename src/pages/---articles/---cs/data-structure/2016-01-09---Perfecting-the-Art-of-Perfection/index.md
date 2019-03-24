@@ -4,7 +4,7 @@ date: "2016-09-01T23:46:37.121Z"
 layout: post
 draft: false
 path: "/posts/perfecting-the-art-of-perfection/"
-category: "Design Inspiration"
+category: "data structure"
 tags:
   - "Handwriting"
   - "Learning to write"

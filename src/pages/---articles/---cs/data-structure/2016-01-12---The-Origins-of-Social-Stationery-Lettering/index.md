@@ -4,7 +4,7 @@ date: "2016-12-01T22:40:32.169Z"
 layout: post
 draft: false
 path: "/posts/the-origins-of-social-stationery-lettering"
-category: "Design Culture"
+category: "data structure"
 tags:
   - "Typefaces"
   - "Lettering"
