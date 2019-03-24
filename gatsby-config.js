@@ -82,7 +82,6 @@ module.exports = {
               siteMetadata {
                 site_url: url
                 title
-                thumbnail
                 description: subtitle
               }
             }
