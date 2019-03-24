@@ -35,10 +35,9 @@ class Post extends React.Component {
         <h2 className="post__title">
           <Link className="post__title-link" to={slug}>
             {title}
+            <img src={thumbail} />
           </Link>
         </h2>
-
-        <img src={thumbail} />
 
         <p className="post__description">{description}</p>
         <Link className="post__readmore" to={slug}>

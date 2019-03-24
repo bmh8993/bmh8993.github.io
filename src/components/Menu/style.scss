@@ -15,10 +15,8 @@
                 color: $typographic-base-font-color;
                 font-weight: 400;
                 border: 0;
-                &:hover,
-                &:focus {
-                    color: $color-primary;
-                    border-bottom: 1px solid $color-primary;
+                &:visited{
+                  color: inherit;
                 }
                 &--active {
                     color: $color-base;
