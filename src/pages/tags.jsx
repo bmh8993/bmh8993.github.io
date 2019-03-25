@@ -58,7 +58,7 @@ class TagsRoute extends React.Component {
                       {tags.map(tag => (
                         <li key={tag.fieldValue} className="tags__list-item">
                           <Link
-                            to={`/tags/${kebabCase(tag.fieldValue)}/`}
+                            to={`/tags/#${kebabCase(tag.fieldValue)}`}
                             className="tags__list-item-link"
                           >
                             #{tag.fieldValue} ({tag.totalCount})
@@ -70,7 +70,7 @@ class TagsRoute extends React.Component {
                   <div className="tag_titles">
                     <ul className="tag_titles__list">
                       {tags.map(tag => (
-                        <li key={`title_${tag.fieldValue}`} className="tag_titles__list-item">
+                        <li key={`title_${tag.fieldValue}`} id={kebabCase(tag.fieldValue)} className="tag_titles__list-item">
                           {this.getTitleListByTag(posts, tag.fieldValue)}
                         </li>
                       ))}
