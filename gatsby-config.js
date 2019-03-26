@@ -4,7 +4,7 @@ const pxtorem = require('postcss-pxtorem')
 module.exports = {
   siteMetadata: {
     url: 'https://www.regyu.dev/',
-    title: 'Blog by Regyu',
+    title: 'Regyu Dev log',
     subtitle:
       'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
     copyright: '© All rights reserved.',
@@ -43,10 +43,6 @@ module.exports = {
             path: '/system Programming/',
           },
         ]
-      },
-      {
-        label: 'Categories',
-        path: '/categories',
       },
       {
         label: 'Tags',
