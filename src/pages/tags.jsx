@@ -2,8 +2,10 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import kebabCase from 'lodash/kebabCase'
+import throttle from 'lodash/throttle';
 import Layout from '../components/Layout'
 import Sidebar from '../components/Sidebar'
+import HideMenuOnScroll from '../components/HideMenuOnScroll';
 
 class TagsRoute extends React.Component {
 
@@ -42,7 +44,11 @@ class TagsRoute extends React.Component {
     const { title } = this.props.data.site.siteMetadata
     const tags = this.props.data.allMarkdownRemark.group
     const posts = this.props.data.allMarkdownRemark.edges
-
+    const top_scroll_anchor = (
+      <Link to="tags/#">
+        TOP
+      </Link>
+    )
     return (
       <Layout>
         <div>
@@ -51,6 +57,9 @@ class TagsRoute extends React.Component {
           <div className="content">
             <div className="content__inner">
               <div className="page">
+                <HideMenuOnScroll>
+                  {top_scroll_anchor}
+                </HideMenuOnScroll>
                 <h1 className="page__title">Tags</h1>
                 <div className="page__body">
                   <div className="tags">
