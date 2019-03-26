@@ -14,7 +14,6 @@ class PostTemplateDetails extends React.Component {
   componentDidMount() {
     this.registerEvent();
     this.setPostHeaderId();
-    this.getHeaders();
   }
 
   componentWillUnmount() {
@@ -23,14 +22,19 @@ class PostTemplateDetails extends React.Component {
 
   setPostHeaderId = () => {
     const headers = document.body.querySelectorAll('.post-single__body > h1, h2, h3, h4, h5, h6')
+    if (!headers) {
+      return
+    }
     headers.forEach(header => {
       const id = kebabCase(header.innerText)
       header.setAttribute('id', id)
     })
+    this.getHeaders()
+    this.setActiveHeader(0)
   }
 
   getHeaders = () => {
-    const toc = document.body.querySelectorAll('.post-single__table_of_contents > ul > li')
+    const toc = document.body.querySelectorAll('.post-single__table_of_contents-list-item')
     const headers = document.body.querySelectorAll('.post-single__body > h1, h2, h3, h4, h5, h6')
     this.tocHeader = toc;
     this.postHeader = headers;
@@ -40,14 +44,23 @@ class PostTemplateDetails extends React.Component {
     const scrollTop = this.getScrollTop();
     Array.from(this.postHeader).forEach((header, index) => {
       if (scrollTop >= header.offsetTop) {
-        const prev_active_header = document.body.querySelector('.active')
-        if (prev_active_header) {
-          prev_active_header.removeAttribute('class')
-        }
-        this.tocHeader[index].setAttribute('class', 'active')
+        this.setActiveHeader(index)
       }
     })
+    if (scrollTop === 0) {
+      this.setActiveHeader(0)
+    }
   }, 250);
+
+  setActiveHeader = (index) => {
+    const prev_active_header = document.body.querySelector('.active')
+    if (prev_active_header) {
+      prev_active_header.classList.remove('active')
+    }
+    if (this.tocHeader) {
+      this.tocHeader[index].classList.add('active')
+    }
+  }
 
   getScrollTop = () => {
     if (!document.body) return 0;
@@ -69,7 +82,8 @@ class PostTemplateDetails extends React.Component {
   render() {
     const { subtitle, author } = this.props.data.site.siteMetadata
     const post = this.props.data.markdownRemark
-    const { tableOfContents } = post
+    const path = post.frontmatter.path
+    // const { tableOfContents } = post
     const tags = post.fields.tagSlugs
 
     const homeBlock = (
@@ -78,6 +92,19 @@ class PostTemplateDetails extends React.Component {
           All Articles
         </Link>
       </div>
+    )
+
+    const tableOfContents = (
+      <ul className="post-single__table_of_contents-list">
+        {post &&
+          post.headings.map(header => (
+            <li className="post-single__table_of_contents-list-item" key={header.value} style={{ paddingLeft: `${header.depth - 1}rem` }}>
+              <Link to={`${path}#${kebabCase(header.value)}`} className="post-single__table_of_contents-list-item-link">
+                {header.value}
+              </Link>
+            </li>
+          ))}
+      </ul>
     )
 
     const tagsBlock = (
@@ -107,7 +134,9 @@ class PostTemplateDetails extends React.Component {
     return (
       <div>
         {homeBlock}
-        <div className="post-single__table_of_contents" dangerouslySetInnerHTML={{ __html: tableOfContents }} />
+        <div className="post-single__table_of_contents" >
+          {tableOfContents}
+        </div>
 
         <div className="post-single">
           <div className="post-single__inner">
