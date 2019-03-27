@@ -1,0 +1,10 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.searchbar {
+  width: 100%;
+  &__inner {
+    position: relative;
+    padding: 25px 20px 0;
+  }
+}
