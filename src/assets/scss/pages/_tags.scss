@@ -1,58 +1,86 @@
+$total-items: 1000;
+
 /** 
  * Tags
  */
 
- .tags {
+.tags {
   border-radius: 8px;
-  border: solid 1px #FAFAFA;
+  border: solid 1px #fafafa;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    &__list {
-      display: flex;
-      flex-wrap: wrap;
-      list-style: none;
-        &-item {
-          margin: 5px;
-          background-color: #FAFAFA;
-            &-link {
-                color: #a6abb2;
-                &:hover{
-                  color: #666;
-                }
-                &:focus {
-                    color: black;
-                }
-            }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    &-item {
+      margin: 5px;
+      background-color: #fafafa;
+      &-link {
+        color: #a6abb2;
+        &:hover {
+          color: #666;
         }
+        &:focus {
+          color: black;
+        }
+      }
     }
+  }
 }
 
 .tag_titles {
   margin: 100px auto;
-    &__list {
-      padding: 0px;
-      list-style: none;
-        &-item {
-          margin: 30px auto;
-          border-radius: 8px;
-          border: solid 1px #FAFAFA;
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          background-color: #FAFAFA;
-            &-title {
-              text-align: center;
-              margin: 40px auto;
-            }
-            &-content {
-              &-link {
-                color: #a6abb2;
-                // color: $color-base;
-                &:hover{
-                  color: #666;
-                }
-                &:focus {
-                    color: black;
-                }
-               }
-            }
+  &__list {
+    padding: 0px;
+    list-style: none;
+    &-item {
+      margin: 30px auto;
+      border-radius: 8px;
+      border: solid 1px #fafafa;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      background-color: #fafafa;
+      animation: fadeIn 0.5s linear;
+      animation-fill-mode: both;
+      &-title {
+        text-align: center;
+        margin: 40px auto;
+      }
+      &-content {
+        &-link {
+          color: #a6abb2;
+          // color: $color-base;
+          &:hover {
+            color: #666;
+          }
+          &:focus {
+            color: black;
+          }
         }
+      }
     }
+  }
+}
+
+// Set delay per List Item
+@for $i from 1 through $total-items {
+  li:nth-child(#{$i}) {
+    animation-delay: 0.15s * $i;
+  }
+}
+
+// Keyframe animation
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    bottom: 10px;
+    transform: translateY(-30px);
+  }
+  75% {
+    opacity: 0.5;
+    bottom: 0px;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 1;
+  }
 }
