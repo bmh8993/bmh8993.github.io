@@ -82,8 +82,8 @@ class PostTemplateDetails extends React.Component {
   render() {
     const { subtitle, author } = this.props.data.site.siteMetadata
     const post = this.props.data.markdownRemark
+    const category = this.props.data.markdownRemark.frontmatter.category
     const path = post.frontmatter.path
-    // const { tableOfContents } = post
     const tags = post.fields.tagSlugs
 
     const homeBlock = (
@@ -91,6 +91,14 @@ class PostTemplateDetails extends React.Component {
         <Link className="post-single__home-button" to="/">
           All Articles
         </Link>
+      </div>
+    )
+
+    const backBlock = (
+      <div>
+        <button className="post-single__back-button" onClick={() => window.history.back()}>
+          Back
+        </button>
       </div>
     )
 
@@ -133,7 +141,8 @@ class PostTemplateDetails extends React.Component {
 
     return (
       <div>
-        {homeBlock}
+        {/* homeBlock */}
+        {backBlock}
         <div className="post-single__table_of_contents" >
           {tableOfContents}
         </div>
@@ -141,6 +150,17 @@ class PostTemplateDetails extends React.Component {
         <div className="post-single">
           <div className="post-single__inner">
             <h1 className="post-single__title">{post.frontmatter.title}</h1>
+
+            <div className="post-single__meta">
+              <Link to={`/categories/${category}/`} className="post-single__meta-link">
+                {category}
+              </Link>
+              <span>·</span>
+              <em>
+                {moment(post.frontmatter.date).format('YYYY.MM.DD hh:ss')}
+              </em>
+            </div>
+
             <div
               className="post-single__body"
               /* eslint-disable-next-line react/no-danger */
