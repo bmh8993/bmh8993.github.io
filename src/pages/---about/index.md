@@ -4,10 +4,16 @@ layout: page
 path: "/about"
 ---
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+## 조규현(Regyu)
 
-![Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.](./1.jpg)
+현재 웹 개발을 시작 하고 있으며, 새로운 것을 배우는것을 좋아하며, 프론트엔드와 백엔드 둘다 잘하고 싶은 욕심이 있습니다.  <u>**또렷한 기억력보다 흐릿한 잉크가 오래 간다.**</u> 라는 중국 속담을 보고 배운것을 정리해야 겠다는 생각이 들었습니다.
 
-*Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.*
+정리한 내용 중 잘못된 내용이 있을 경우 알려주시면 감사하겠습니다.
 
-Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+> Technical Skills Summary
+* Frontend: React  
+* Backend:  
+  Node.js – Express, Sequelize  
+  Java – Spring  
+  Database:  PostgreSQL, MySQL  
+  ETC: aws, graphql, docker
