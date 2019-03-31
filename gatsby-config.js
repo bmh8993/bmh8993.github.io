@@ -6,7 +6,7 @@ module.exports = {
     url: 'https://www.regyu.dev/',
     title: 'Regyu Dev log',
     subtitle:
-      'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+      '리규의 흐릿한 잉크 남기기',
     copyright: '© All rights reserved.',
     disqusShortname: 'regyu',
     menu: [
@@ -18,7 +18,7 @@ module.exports = {
         label: 'About me',
         path: '/about/',
       },
-      {
+      /* {
         label: 'CS',
         path: '/cs/',
         sub_menu: [
@@ -41,6 +41,16 @@ module.exports = {
           {
             label: 'system Programming',
             path: '/system Programming/',
+          },
+        ]
+      }, */
+      {
+        label: 'ETC',
+        path: '/etc/',
+        sub_menu: [
+          {
+            label: 'blog',
+            path: '/blog/',
           },
         ]
       },

@@ -53,13 +53,16 @@ class PostTemplateDetails extends React.Component {
   }, 250);
 
   setActiveHeader = (index) => {
+    if (!this.tocHeader.length) {
+      return
+    }
+
     const prev_active_header = document.body.querySelector('.active')
     if (prev_active_header) {
-      prev_active_header.classList.remove('active')
+      prev_active_header.classList.remove('active');
     }
-    if (this.tocHeader) {
-      this.tocHeader[index].classList.add('active')
-    }
+
+    this.tocHeader[index].classList.add('active')
   }
 
   getScrollTop = () => {
