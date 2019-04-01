@@ -26,7 +26,7 @@ class PostTemplateDetails extends React.Component {
       return
     }
     headers.forEach(header => {
-      const id = kebabCase(header.innerText)
+      const id = encodeURI(kebabCase(header.innerText))
       header.setAttribute('id', id)
     })
     this.getHeaders()
@@ -110,7 +110,7 @@ class PostTemplateDetails extends React.Component {
         {post &&
           post.headings.map(header => (
             <li className="post-single__table_of_contents-list-item" key={header.value} style={{ paddingLeft: `${header.depth - 1}rem` }}>
-              <Link to={`${path}#${kebabCase(header.value)}`} className="post-single__table_of_contents-list-item-link">
+              <Link to={`${path}#${encodeURI(kebabCase(header.value))}`} className="post-single__table_of_contents-list-item-link">
                 {header.value}
               </Link>
             </li>

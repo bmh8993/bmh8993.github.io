@@ -6,8 +6,6 @@ import './style.scss'
 class Post extends React.Component {
   render() {
     const { fileAbsolutePath } = this.props.data.node
-    console.log(fileAbsolutePath)
-
     const postPath = fileAbsolutePath.match(/pages\/[\w|\W]{1,}(?=index.md)/)
     const thumbail = postPath && require('../../' + postPath + 'thumbnail.jpg');
     const {
