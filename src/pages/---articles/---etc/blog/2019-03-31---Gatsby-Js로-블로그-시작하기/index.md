@@ -13,25 +13,24 @@ tags:
   - "Google Search console"
   - "Google Analytics"
 description: "공부한 내용을 정리해서 지속적으로 공부의 동기를 가지기 위해 블로그가 필요하다고 생각했고, Gatsby js + Netlify 를 이용하여 블로그를 시작하기로 했다. "
+
 ---
 
 ## Gatsby JS 를 선정한 이유
 
 > 결론부터 말하면 Markdwon 을 지원하는 블로그가 필요했다.
 
-공부한 내용을 정리해서 지속적으로 공부의 동기를 가지기 위해 블로그가 필요하다고 생각했고,Tistory 초대장을 받아 블로그 개설을 한 경험이 있었다. 
+공부한 내용을 정리해서 지속적으로 공부의 동기를 가지기 위해 블로그가 필요하다고 생각했고, Tistory 초대장을 받아 블로그 개설을 한 경험이 있었다. 
 
 Tistory 블로그는 여러 개발자 분들이 많이 이용하기도 하였고, 스킨 custom을 할 수 있는 장점이 있었다. 
 
-그당시 공식적?으로 Markdown이 지원되지 않아 스킨 편집으로 markdown.css  파일을 올려 customa 으로 사용해야 됬다.
+그당시 공식적?으로 Markdown이 지원되지 않아 스킨 편집으로 markdown.css  파일을 올려 custom 으로 사용해야 됬다.
 
 다른 방법이 있겠지만, 게시물을 올리기 위해서 번거러움이 존재했다.(..핑계)
 
 [티스토리(Tistory) 마크다운(Markdown) 적용](https://regyu.tistory.com/2)
 
-
-
-### Gatsby.js로 만든 블로그 장점
+### Gatsby.js 로 만든 블로그 장점
 
 > 기존의 블로그의 단점들이 장점으로 작용되어서 선정되었다.
 
@@ -52,7 +51,7 @@ Tistory 블로그는 여러 개발자 분들이 많이 이용하기도 하였고
 
 > Gatsby.js 홈페이지의 starters에서 테마들을 고를 수 있다.
 
-[Gatsby 블로그 테마](https://www.gatsbyjs.org/starters/?v=2)
+[Library](https://www.gatsbyjs.org/starters/?v=2)
 
 ![](Untitled-86ded4fd-38d7-4ee5-9fd2-5748e556acc4.png)
 
@@ -108,8 +107,6 @@ Tistory 블로그는 여러 개발자 분들이 많이 이용하기도 하였고
 
     ![](Untitled-f44e6678-9fc2-4530-b164-fd822e321ff7.png)
 
-    ![](Untitled-2862040b-5c51-4864-bb87-a4acdbc1efc7.png)
-
 6. Domain setting
 
     ![](Untitled-8f5043b3-1d14-47ba-9a52-dfb6e4ec5896.png)
@@ -160,7 +157,7 @@ gatsby-config.js ( 앞으로의 모든 설정은 여기서 할 것이다.)
 
 ## Google Analytics
 
-> 티스토리 관리자 페이지 처럼 블로그의 방문자 수, 인기 글을 확인 할 수 있다. - 무료
+> 티스토리 관리자 페이지 처럼 블로그의 방문자 수, 인기 글을 확인 할 수 있다. - **무료**
 
 1. [Google Analytics]([https://analytics.google.com](https://analytics.google.com/)) 로그인
 2. 설정 → 속성 추가 → 추적 코드 
@@ -178,7 +175,7 @@ gatsby-config.js ( 앞으로의 모든 설정은 여기서 할 것이다.)
           options: { trackingId: 'YOUR_TRACKINGID' },
         },
 
-## Google 웹사이트 등록 (Search Console)
+## Google 웹마스터 등록 (Search Console)
 
 > 구글 검색 엔진에 검색되기 위해서 필요하다.
 
@@ -193,6 +190,16 @@ gatsby-config.js ( 앞으로의 모든 설정은 여기서 할 것이다.)
 
     - yourProject→src→components→Layout→index.jsx 의 Helmet태그 안에 입력
     - 각 태마 마다 경로는 다를 수 있지만 대부분 Layout을 담당하는 컴포넌트에 meta 태그를 넣으면 될 것 같다.
+
+    ### Sitemaps & Rss 등록
+
+    > 구글이 크롤링을 잘 하기 위해? Sitemaps과 Rss를 등록 해야 한다.
+
+    Gatsby 테마의 특징을 보면 대부분 sitemaps 와 rss 플러그인을 미리 잘 해두었기 때문에 따로 설정할 필요가 없다. 
+
+    (만약 gatsby-config.js 에서 sitemaps 와 rss에 관련된 플러그인이 적용되지 않았다면 공식문서를 보고 적용해야 한다.)
+
+    ![](Untitled-cc813416-f5ec-4a03-b427-ca74b74ecd29.png)
 
 ---
 
