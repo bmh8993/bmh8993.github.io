@@ -71,6 +71,16 @@ Tistory 블로그는 여러 개발자 분들이 많이 이용하기도 하였고
     npm i -g gatsby-cli
     gatsby new YOUR_PROJECT_NAME https://github.com/GatsbyCentral/gatsby-v2-starter-lumen
 
+### 블로그 실행
+
+    npm run develop
+
+    OR
+
+    gatsby develop
+
+  [http://localhost:8000/](http://localhost:8000/) 블로그 페이지로 접속 할 수 있습니다.
+
 ## 배포
 
 > outsider 님의 netlify(네트리파이?) 정리 글을 보고 netilfy를 이용하였다.
