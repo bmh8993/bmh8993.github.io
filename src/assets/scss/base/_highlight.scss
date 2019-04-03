@@ -6,7 +6,8 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #e4b18e;
+  // color: #e4b18e;
+  color: #eb5758;
   border-radius: 0.4375rem;
   // color: black;
   background: none;
@@ -62,7 +63,8 @@ pre[class*="language-"] {
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   // background: #f5f2f0;
-  background: black;
+  // background: black;
+  background: #ededeb;
 }
 
 /* Inline code */

@@ -115,7 +115,7 @@
       }
     }
   }
-  &__back-button {
+  &__home-button {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -226,7 +226,7 @@
         @include margin-bottom(1.125);
       }
     }
-    &__back-button {
+    &__home-button {
       display: block;
       position: fixed;
       max-width: auto;

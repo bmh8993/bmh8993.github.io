@@ -92,12 +92,14 @@ hr {
     to bottom,
     transparent 1px,
     transparent 11px,
-    $color-base 11px,
-    $color-base 15px,
+    // $color-base 11px,
+      // $color-base 15px,
+      #e6e7e8 11px,
+    #e6e7e8 15px,
     transparent 15px,
     transparent 26px
   );
-  width: 100px;
+  // width: 100px;
 }
 
 a {

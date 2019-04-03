@@ -8,62 +8,68 @@ import './style.scss'
 
 class PostTemplateDetails extends React.Component {
 
-  tocHeader = [];
-  postHeader = [];
+  HeaderManager = {
+    tocHeader: [],
+    postHeader: [],
+    setPostHeaderId() {
+      const headers = document.body.querySelectorAll('.post-single__body > h1, h2, h3, h4, h5, h6')
+      if (!headers) {
+        return
+      }
+      headers.forEach(header => {
+        const id = encodeURI(kebabCase(header.innerText))
+        header.setAttribute('id', id)
+      })
+      this._getHeaders()
+      this.setActiveHeader(0)
+    },
+
+    _getHeaders() {
+      const toc = document.body.querySelectorAll('.post-single__table_of_contents-list-item')
+      const headers = document.body.querySelectorAll('.post-single__body > h1, h2, h3, h4, h5, h6')
+      this.tocHeader = toc;
+      this.postHeader = headers;
+    },
+    setActiveHeader(index) {
+      if (!this.tocHeader.length) {
+        return
+      }
+
+      const prev_active_header = document.body.querySelector('.active')
+      if (prev_active_header) {
+        prev_active_header.classList.remove('active');
+      }
+
+      this.tocHeader[index].classList.add('active')
+    }
+  }
+
 
   componentDidMount() {
     this.registerEvent();
-    this.setPostHeaderId();
+    this.HeaderManager.setPostHeaderId();
   }
 
   componentWillUnmount() {
     this.unregisterEvent();
   }
 
-  setPostHeaderId = () => {
-    const headers = document.body.querySelectorAll('.post-single__body > h1, h2, h3, h4, h5, h6')
-    if (!headers) {
-      return
-    }
-    headers.forEach(header => {
-      const id = encodeURI(kebabCase(header.innerText))
-      header.setAttribute('id', id)
-    })
-    this.getHeaders()
-    this.setActiveHeader(0)
-  }
 
-  getHeaders = () => {
-    const toc = document.body.querySelectorAll('.post-single__table_of_contents-list-item')
-    const headers = document.body.querySelectorAll('.post-single__body > h1, h2, h3, h4, h5, h6')
-    this.tocHeader = toc;
-    this.postHeader = headers;
-  }
+
 
   onScroll = throttle(() => {
     const scrollTop = this.getScrollTop();
-    Array.from(this.postHeader).forEach((header, index) => {
+    Array.from(this.HeaderManager.postHeader).forEach((header, index) => {
       if (scrollTop >= header.offsetTop) {
-        this.setActiveHeader(index)
+        this.HeaderManager.setActiveHeader(index)
       }
     })
     if (scrollTop === 0) {
-      this.setActiveHeader(0)
+      this.HeaderManager.setActiveHeader(0)
     }
   }, 250);
 
-  setActiveHeader = (index) => {
-    if (!this.tocHeader.length) {
-      return
-    }
 
-    const prev_active_header = document.body.querySelector('.active')
-    if (prev_active_header) {
-      prev_active_header.classList.remove('active');
-    }
-
-    this.tocHeader[index].classList.add('active')
-  }
 
   getScrollTop = () => {
     if (!document.body) return 0;
@@ -92,7 +98,7 @@ class PostTemplateDetails extends React.Component {
     const homeBlock = (
       <div>
         <Link className="post-single__home-button" to="/">
-          All Articles
+          Home
         </Link>
       </div>
     )
@@ -144,8 +150,8 @@ class PostTemplateDetails extends React.Component {
 
     return (
       <div>
-        {/* homeBlock */}
-        {backBlock}
+        {homeBlock}
+        {/* backBlock */}
         <div className="post-single__table_of_contents" >
           {tableOfContents}
         </div>
