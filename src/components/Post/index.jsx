@@ -7,7 +7,14 @@ class Post extends React.Component {
   render() {
     const { fileAbsolutePath } = this.props.data.node
     const postPath = fileAbsolutePath.match(/pages\/[\w|\W]{1,}(?=index.md)/)
-    const thumbail = postPath && require('../../' + postPath + 'thumbnail.jpg');
+    let thumbail
+
+    try {
+      thumbail = postPath && require('../../' + postPath + 'thumbnail.jpg');
+    } catch{
+      thumbail = ''
+    }
+
     const {
       title,
       date,
