@@ -4,6 +4,7 @@ const pxtorem = require('postcss-pxtorem')
 module.exports = {
   siteMetadata: {
     url: 'https://www.regyu.dev/',
+    siteUrl: 'https://www.regyu.dev/',
     title: 'Regyu Dev log',
     subtitle:
       '리규의 흐릿한 잉크 남기기',
@@ -207,15 +208,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        query: `{
-          site {
-            siteMetadata {
-              url
-            }
-          }
-        }`,
-        policy: [{ userAgent: '*', allow: '/' }],
-        output: '/robots.txt',
+        output: '/sitemap.xml',
       }
     },
     'gatsby-plugin-offline',
