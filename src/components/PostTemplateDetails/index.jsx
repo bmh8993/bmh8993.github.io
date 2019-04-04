@@ -44,7 +44,6 @@ class PostTemplateDetails extends React.Component {
     }
   }
 
-
   componentDidMount() {
     this.registerEvent();
     this.HeaderManager.setPostHeaderId();
@@ -53,9 +52,6 @@ class PostTemplateDetails extends React.Component {
   componentWillUnmount() {
     this.unregisterEvent();
   }
-
-
-
 
   onScroll = throttle(() => {
     const scrollTop = this.getScrollTop();
@@ -68,8 +64,6 @@ class PostTemplateDetails extends React.Component {
       this.HeaderManager.setActiveHeader(0)
     }
   }, 250);
-
-
 
   getScrollTop = () => {
     if (!document.body) return 0;
