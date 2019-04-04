@@ -208,7 +208,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        output: '/sitemap.xml',
+        output: '/robots.txt',
       }
     },
     'gatsby-plugin-offline',
