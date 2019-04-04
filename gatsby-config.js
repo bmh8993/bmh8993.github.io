@@ -204,6 +204,20 @@ module.exports = {
           }),
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        query: `{
+          site: MyCustomDataSource {
+            siteMetadata {
+              siteUrl
+            }
+          }
+        }`,
+        policy: [{ userAgent: '*', allow: '/' }],
+        output: '/robots.txt',
+      }
+    },
     'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
