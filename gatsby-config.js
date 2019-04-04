@@ -208,9 +208,9 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         query: `{
-          site: MyCustomDataSource {
+          site {
             siteMetadata {
-              siteUrl
+              url
             }
           }
         }`,
