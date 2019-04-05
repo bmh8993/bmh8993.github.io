@@ -131,6 +131,10 @@ p {
   @include margin-bottom(1);
 }
 
+video {
+  display: inherit;
+}
+
 blockquote {
   margin: 0px;
   // padding: 0;
