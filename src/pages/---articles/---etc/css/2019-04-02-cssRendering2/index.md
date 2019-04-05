@@ -13,6 +13,11 @@ description: "Code spitz에서 강의한 Css Rendering 2 Morden Box내용을 정
 
 # Morden Box
 
+[코드스피츠](https://www.youtube.com/channel/UCKXBpFPbho1tp-Ntlfc25kA)
+채널에서 보고 정리한 글입니다.
+
+---
+
 > Geometry 영향을 끼치지 않는다.
 
 - margin

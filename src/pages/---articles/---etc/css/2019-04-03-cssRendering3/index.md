@@ -7,13 +7,17 @@ path: "/etc/Css Rendering 3/"
 category: "css"
 tags:
 - "CSSOM"
-- "stitched"
 description: "Code spitz에서 강의한 Css Rendering 3 CSSOM (css 객체 모델)내용을 정리한 글입니다. CSSOM 을 이용하여 DOM 을 조작하지 않고도 성능저하 없이 화면을 조정 할 수 있다는 것을 알게 되었습니다."
 ---
 
 ## CSSOM & VENDOR PREFIX
 
-> CSS 객체모델 & 브라우저 접두어
+> CSS 객체모델 & 브라우저 접두어   
+
+[코드스피츠](https://www.youtube.com/channel/UCKXBpFPbho1tp-Ntlfc25kA)
+채널에서 보고 정리한 글입니다.
+
+---
 
 ## Css object model
 
