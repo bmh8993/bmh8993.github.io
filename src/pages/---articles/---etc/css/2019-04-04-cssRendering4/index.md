@@ -151,12 +151,10 @@ description: "Code spitz에서 강의한 Css Rendering 4 Transform 내용을 정
           </body>
         </html>
 
-<div>
   <video controls autoplay loop>
       <source src="./transform-style.mov" type="video/mp4">
         Your browser does not support the video tag.
   </video>
-</div>
 
 ### Transform 3D 실습
 
@@ -192,7 +190,7 @@ face , splite,  texture 의 덩어리는 mash(입체),Atlas
           .ani {
             animation: spin 4s linear infinite;
           }
-          .drum {
+          .face {
             background: url('https://keithclark.co.uk/labs/css-fps/drum2.png');
           }
         </style>
@@ -265,13 +263,13 @@ face , splite,  texture 의 덩어리는 mash(입체),Atlas
                 sideLen * c,
                 0
               );
-              face.class = 'drum';
+              face.class = 'face';
               mesh.add(face);
             }
             const _top = new Face(100, 100, 0, -98, 0, Math.PI / 2, 0, 0, 0, 100);
             const _bottom = new Face(100, 100, 0, 98, 0, -Math.PI / 2, 0, 0, 0, 100);
-            _top.class = 'drum';
-            _bottom.class = 'drum';
+            _top.class = 'face';
+            _bottom.class = 'face';
             mesh.add(_top);
             mesh.add(_bottom);
             mesh.class = 'ani';
@@ -281,7 +279,7 @@ face , splite,  texture 의 덩어리는 mash(입체),Atlas
       </html>
 
   <video controls autoplay loop>
-      <source src="./drum.mov" type="video/mp4">
+      <source src="./face.mov" type="video/mp4">
         Your browser does not support the video tag.
   </video>
 
@@ -386,3 +384,215 @@ Velopert 님의 Sass를 참고 하면 좋을 것 같다.
                 @include face($w, $height, $x, 0, $z, 0, $ry, 0, -$sideLen * $i, 0);
               }
             }
+
+## Practice
+
+Q. 주어진 큐브맵을 이용해 다음과 같은 화면을 구성하여 Y축으로 회전시키시오
+
+[http://paulbourke.net/miscellaneous/cubemaps/cube.jpg](http://paulbourke.net/miscellaneous/cubemaps/cube.jpg)
+
+![](Untitled-10081dcd-bf0a-4b74-be72-f5bb7ba91ad0.png)
+
+  <video controls autoplay loop>
+      <source src="./practice.mov" type="video/mp4">
+        Your browser does not support the video tag.
+  </video>
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <style id="style">
+    @keyframes spin {
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      perspective: 600px;
+      background: #404040;
+      overflow: hidden;
+    }
+    .ani {
+      animation: spin 20s linear infinite;
+    }
+    .face {
+      background: url('http://paulbourke.net/miscellaneous/cubemaps/cube.jpg');
+      backface-visibility: hidden;
+    }
+  </style>
+
+  <body>
+    <script>
+      const El = class {
+        constructor() {
+          this.el = document.createElement('div');
+        }
+        set class(v) {
+          this.el.className = v;
+        }
+      };
+
+      const Face = class extends El {
+        constructor(w, h, x, y, z, rx, ry, rz, tx, ty) {
+          //tx, ty, tz 는 texture의 x,y,z 좌표 === 한 면(face)
+          //rx, ry, rz 는 rotation의 x,y,z
+          //w,h 너비, 높이
+          super();
+          this.el.style.cssText = `
+            position: absolute;
+            width:${w}px;
+            height:${h}px;
+            margin:-${50}px 0 0 -${500}px;
+            transform:translate3d(${x}px,${y}px,${z}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg);
+            background-position:-${tx}px ${ty}px;
+            
+          `;
+        }
+      };
+
+      const Mesh = class extends El {
+        constructor(l, t) {
+          super();
+          this.el.style.cssText = `
+          position:absolute;
+            left:${l};
+            right:${t};
+            transform-style: preserve-3d;
+          `;
+        }
+        add(face) {
+          this.el.appendChild(face.el);
+          return face;
+        }
+      };
+
+      const mesh = new Mesh('50%', '50%');
+
+      const r = 1000,
+        height = 1000,
+        sides = 4;
+      const sideAngle = (Math.PI / sides) * 2;
+      const sideLen = r * Math.tan(Math.PI / sides);
+
+      let deg = 90;
+      for (let c = 0; c < sides; c++) {
+        const x = ((Math.cos(sideAngle * c) * r) / 2) * -1;
+        const z = ((Math.sin(sideAngle * c) * r) / 2) * -1;
+        // const ry = (180 / Math.PI) * parseInt(Math.atan2(x, z));
+        const ry = deg;
+        deg -= 90;
+        const face = new Face(
+          sideLen,
+          height,
+          x,
+          0,
+          z,
+          0,
+          ry,
+          0,
+          sideLen * c,
+          -1000
+        );
+        face.class = 'face';
+        mesh.add(face);
+      }
+      const _top = new Face(1000, 1000, 0, -500, 0, -90, 0, 0, 1000, 0);
+      const _bottom = new Face(1000, 1000, 0, 500, 0, 90, 0, 0, 1000, -2000);
+      _top.class = 'face';
+      _bottom.class = 'face';
+      mesh.add(_top);
+      mesh.add(_bottom);
+      mesh.class = 'ani';
+      document.body.appendChild(mesh.el);
+    </script>
+
+  </body>
+</html>
+```
+
+혹은 css 버전
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <style id="style">
+    @keyframes spin {
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      perspective: 600px;
+      background: #404040;
+      overflow: hidden;
+    }
+    .env {
+      animation: spin 20s linear infinite;
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      transform-style: preserve-3d;
+    }
+    .env > div {
+      background: url('http://paulbourke.net/miscellaneous/cubemaps/cube.jpg');
+      position: absolute;
+      margin: -50px 0 0 -500px;
+      width: 1000px;
+      height: 1000px;
+
+      backface-visibility: hidden;
+    }
+  </style>
+
+  <body>
+    <div class="env">
+      <div
+        class="left"
+        style="transform:translate3d(-500px,0,0)  rotateY(90deg) ;background-position:0 -1000px;"
+      ></div>
+      <div
+        class="back"
+        style="transform:translate3d(0,0,-500px) ;background-position:-1000px -1000px;"
+      ></div>
+      <div
+        class="right"
+        style="transform:translate3d(500px,0,0)  rotateY(-90deg) ;background-position:-2000px -1000px;"
+      ></div>
+      <div
+        class="front"
+        style="transform:translate3d(0,0,500px)  rotateY(180deg) ; background-position:-3000px -1000px;"
+      ></div>
+      <div
+        class="top"
+        style="transform:translate3d(0,-500px,0) rotateX(-90deg) ;background-position:-1000px 0"
+      ></div>
+      <div
+        class="botton"
+        style="transform:translate3d(0,500px,0) rotateX(90deg) ;background-position:-1000px -2000px"
+      ></div>
+    </div>
+  </body>
+</html>
+```
