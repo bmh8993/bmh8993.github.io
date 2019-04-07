@@ -282,3 +282,48 @@ Caret Position & Offset
 ## Position:absolute VS Float = Position:absolute
 
 - Float 는 normal flow 일때만 : (static , relative) new BFC  를 만들어야 하기 때문에
+
+## Practice
+
+    Q. <div><div>★</div></div> 태그로 다음의 실드를 구현하시오
+
+![](Untitled-d95582d8-2a01-46e1-9ed7-d7c9a5dd531e.png)
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <style>
+          div {
+            display: inline-block;
+            border-radius: 50%;
+          }
+        </style>
+      </head>
+    
+      <body>
+        <div style="margin: 30%; box-shadow:0 0 10px 30px rgb(150, 80, 80);">
+          <div
+            style="
+            width: 150px;
+            height: 150px;
+            font-size: 100px;   
+            text-align: center;
+            line-height: 160px;
+            vertical-align: middle;
+            background: blue;
+            color: white;
+            border: 20px solid white;
+            box-shadow:0 0 0 20px red, inset 0 0 0 20px red;
+          "
+          >
+            ★
+          </div>
+        </div>
+      </body>
+    </html>
+
+border 와 box-shadow inset 을 이용하여 해결하였다.
+
+![](Untitled-34509fc1-02ee-4569-a6d5-bb56b4cc901e.png)
