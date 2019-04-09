@@ -57,6 +57,10 @@ module.exports = {
             label: 'css',
             path: '/css/',
           },
+          {
+            label: 'js',
+            path: '/js/',
+          },
         ]
       },
       {
