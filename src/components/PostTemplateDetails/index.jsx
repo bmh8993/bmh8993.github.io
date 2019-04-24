@@ -44,9 +44,41 @@ class PostTemplateDetails extends React.Component {
     }
   }
 
+  CopyMaker = {
+    makeCopyButton() {
+      const code_blocks = document.body.querySelectorAll('.gatsby-highlight > .language-text');
+      code_blocks.forEach(code_block => {
+        const button = document.createElement('button');
+        button.innerHTML = 'copy';
+        button.className = "copy-button";
+        button.onclick = this._cpoy;
+        code_block.insertAdjacentElement('afterbegin', button)
+      })
+    },
+    _cpoy: (e) => {
+      const target = e.target.nextSibling;
+      let range, select;
+
+      if (document.createRange) {
+        range = document.createRange();
+        range.selectNode(target)
+        select = window.getSelection();
+        select.removeAllRanges();
+        select.addRange(range);
+        document.execCommand('copy');
+      } else {
+        range = document.body.createTextRange();
+        range.moveToElementText(target);
+        range.select();
+        document.execCommand('copy');
+      }
+    }
+  }
+
   componentDidMount() {
     this.registerEvent();
     this.HeaderManager.setPostHeaderId();
+    this.CopyMaker.makeCopyButton();
   }
 
   componentWillUnmount() {
