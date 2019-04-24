@@ -1,5 +1,5 @@
 ---
-title: "ES6 Basic"
+title: "ES6 Basic 1"
 date: "2019-04-09T06:45:35.750Z"
 layout: post
 draft: false
