@@ -12,8 +12,11 @@ description: "Code spitz에서 강의한 ES6 기초, 흐름제어에 대해 기�
 ---
 
 ## flow control statement
+[코드스피츠](https://www.youtube.com/channel/UCKXBpFPbho1tp-Ntlfc25kA)
 
-흐름제어에 대해 보다 자세히 알아봅니다.
+채널에서 보고 정리한 글입니다.
+
+---
 
 ## record, completion record
 
