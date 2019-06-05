@@ -3,7 +3,7 @@ title: "Css Rendering 2"
 date: "2019-04-02T06:24:35.750Z"
 layout: post
 draft: false
-path: "/etc/Css Rendering 2/"
+path: "/etc/css-rendering-2/"
 category: "css"
 tags:
 - "Morden Box"

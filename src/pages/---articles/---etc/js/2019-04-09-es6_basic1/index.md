@@ -3,7 +3,7 @@ title: "ES6 Basic 1"
 date: "2019-04-09T06:45:35.750Z"
 layout: post
 draft: false
-path: "/etc/ES6 Basic 1/"
+path: "/etc/es6-basic-1/"
 category: "js"
 tags:
 - "Memoery"

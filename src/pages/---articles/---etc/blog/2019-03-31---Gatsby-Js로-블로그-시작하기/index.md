@@ -3,7 +3,7 @@ title: "Gatsby Js 로 블로그 시작하기"
 date: "2019-03-31T14:06:35.750Z"
 layout: post
 draft: false
-path: "/etc/Gatsby Js 로 블로그 시작하기/"
+path: "/etc/start-gatsby-for-blog/"
 category: "blog"
 tags:
   - "Gatsby"

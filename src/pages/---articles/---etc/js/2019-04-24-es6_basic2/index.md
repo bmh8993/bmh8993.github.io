@@ -3,7 +3,7 @@ title: "ES6 Basic 2"
 date: "2019-04-24T05:45:35.750Z"
 layout: post
 draft: false
-path: "/etc/ES6 Basic 2/"
+path: "/etc/es6-basic-2/"
 category: "js"
 tags:
 - "식, 문"

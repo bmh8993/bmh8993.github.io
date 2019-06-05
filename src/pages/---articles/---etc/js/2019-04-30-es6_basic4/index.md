@@ -3,7 +3,7 @@ title: "ES6 Basic 4"
 date: "2019-04-30T05:45:35.750Z"
 layout: post
 draft: false
-path: "/etc/ES6 Basic 4/"
+path: "/etc/es6-basic-4/"
 category: "js"
 tags:
 - "커링"

@@ -3,7 +3,7 @@ title: "Css Rendering 1"
 date: "2019-04-01T05:06:35.750Z"
 layout: post
 draft: false
-path: "/etc/Css Rendering 1/"
+path: "/etc/css-rendering-1/"
 category: "css"
 tags:
   - "Graphics System"

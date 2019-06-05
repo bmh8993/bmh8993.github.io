@@ -3,7 +3,7 @@ title: "Css Rendering 4"
 date: "2019-04-04T11:28:35.750Z"
 layout: post
 draft: false
-path: "/etc/Css Rendering 4/"
+path: "/etc/css-rendering-4/"
 category: "css"
 tags:
 - "Post Process"

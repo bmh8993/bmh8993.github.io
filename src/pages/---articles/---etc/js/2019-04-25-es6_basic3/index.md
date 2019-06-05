@@ -3,7 +3,7 @@ title: "ES6 Basic 3"
 date: "2019-04-25T05:45:35.750Z"
 layout: post
 draft: false
-path: "/etc/ES6 Basic 3/"
+path: "/etc/es6-basic-3/"
 category: "js"
 tags:
 - "Iterator"

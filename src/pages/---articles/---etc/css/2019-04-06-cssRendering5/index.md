@@ -3,7 +3,7 @@ title: "Css Rendering 5"
 date: "2019-04-06T16:22:35.750Z"
 layout: post
 draft: false
-path: "/etc/Css Rendering 5/"
+path: "/etc/css-rendering-5/"
 category: "css"
 tags:
 - "Semantic web"

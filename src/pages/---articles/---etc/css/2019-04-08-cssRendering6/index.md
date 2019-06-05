@@ -3,7 +3,7 @@ title: "Css Rendering 6"
 date: "2019-04-08T06:45:35.750Z"
 layout: post
 draft: false
-path: "/etc/Css Rendering 6/"
+path: "/etc/css-rendering-6/"
 category: "css"
 tags:
 - "Display Model"

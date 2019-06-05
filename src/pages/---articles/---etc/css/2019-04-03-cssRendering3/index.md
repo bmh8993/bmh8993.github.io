@@ -3,7 +3,7 @@ title: "Css Rendering 3"
 date: "2019-04-03T08:16:35.750Z"
 layout: post
 draft: false
-path: "/etc/Css Rendering 3/"
+path: "/etc/css-rendering-3/"
 category: "css"
 tags:
 - "CSSOM"
