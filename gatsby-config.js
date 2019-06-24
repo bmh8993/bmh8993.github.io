@@ -76,7 +76,7 @@ module.exports = {
       github: '/Jo-GyuHyeon',
       rss: 'rss.xml',
       vk: '#',
-      facebook: 'profile.php?id=100003544964414',
+      facebook: 'regyujo',
       tistory: 'regyu.tistory.com/'
     },
   },
