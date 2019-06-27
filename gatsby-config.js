@@ -54,6 +54,10 @@ module.exports = {
             path: '/blog/',
           },
           {
+            label: 'java',
+            path: '/java/',
+          },
+          {
             label: 'css',
             path: '/css/',
           },
