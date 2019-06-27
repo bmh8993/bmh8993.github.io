@@ -35,8 +35,13 @@ description: "[unTIL the end] Java 객체를 정렬 하기위한 인터페이스
 
 ## 객체의 정렬의 기준을 정하는 두가지 인터페이스
 
-1. Comparable : 클래스 객체에 정렬 기준을 부과 할 때 사용하는 인터페이스
-2. Comparator: 클래스 객체, 컬렉션의 정렬 기준을 부과 해주기 위한 기능적 인터페이스
+1. Comparable : 클래스 객체에 정렬 기준을 부과 할 때 사용하는 인터페이스 
+    - 정렬 기준: 클래스 객체 내부에 명시
+    - ex) sort(list< Student>)
+       - class Student implements Comparable< Student>
+2. Comparator: (클래스 객체)컬렉션을 정렬할때 기준을 부과 해주기 위한 기능적 인터페이스
+    - 정렬 기준: 메서드 사용시 메서드 인자로 명시
+
     - Comparable 로 객체가 가지고 있는 정렬 기준이 아닌 새로운 기준을 부과 할때 사용
         - 객체에 Comparable가 없어도 사용 가능(sort() 에서 정렬 기준을 명시할때)
     - ex) sort(list, CustomSort)
@@ -55,7 +60,6 @@ description: "[unTIL the end] Java 객체를 정렬 하기위한 인터페이스
         class Student implements Comparable<Student> {
             private int id;
             private int score = 0;
-            private int[] answerPatternArray;
         
             @Override
             public int compareTo(Student student) {
