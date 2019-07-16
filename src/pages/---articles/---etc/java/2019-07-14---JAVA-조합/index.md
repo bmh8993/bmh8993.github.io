@@ -159,7 +159,7 @@ description: "[unTIL the end] Java 배열 중 선택 갯수를 지정하여 조�
 
 - `int[] nums` 가 아닌 `String[] name` 와 같이 제네릭타입을 지정하여 여러 타입의 Array 의 조합을 만들수 있게 Pciker 클래스를 작성하였습니다.
 - 조합을 만드는 클래스를 만들어 보았으니 다음은 순열을 만들어 주는 클래스를 만들어 보겠습니다. (조합과 매우 유사합니다.)
-- `List<Set<T>> getSelectedCombinationList(int selecteCount)` 의 반환타입이 `List<Set<T>>` Set in List 인데 반환 타입은 원하는 대로 변경을 해도 괜찮을 것 같다. List in List 를 피하기 위해 Set<T> 로 하였지만 array in List 형식으로 해도 괜찮을 것 같다는 생각을 했다. ex) List<int[]>
+- `List<Set<T>> getSelectedCombinationList(int selecteCount)` 의 반환타입이 `List<Set<T>>` Set in List 인데 반환 타입은 원하는 대로 변경을 해도 괜찮을 것 같다. List in List 를 피하기 위해 Set<T> 로 하였지만 array in List 형식으로 해도 괜찮을 것 같다는 생각을 했다. ex) List<Integer[]>
 
 
 ---
