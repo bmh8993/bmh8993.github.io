@@ -66,17 +66,39 @@ description: "[unTIL the end] Java 배열 중 선택 갯수를 지정하여 조�
         //ex) [[1, 2], [1, 3], [2, 3]]
 
 - getSelectedCombinationList()
+
+          List<Set<T>> getSelectedCombinationList(selecteCount) {
+              Stack<T> selectedNumber = new Stack<>();
+              doCombination(array.length, selecteCount, 0, selectedNumber);
+              return selectedCombinationList;
+          }
     - 조합 리스트를 반환하는 메소드
     - `int selecteCount` 를 입력 받아 몇 개 선택할지 인자로 받는다.
     - doCombination() 를 실행하여 조합을 만든다.
 
-        List<Set<T>> getSelectedCombinationList(selecteCount) {
-            Stack<T> selectedNumber = new Stack<>();
-            doCombination(array.length, selecteCount, 0, selectedNumber);
-            return selectedCombinationList;
-        }
 
 - doCombination()
+
+        private void doCombination(int totalCount, int selecteCount, int index, Stack<T> selectedNumber) {
+            Stack<T> stackOfSelectValue = new Stack<>();
+            stackOfSelectValue.addAll(selectedNumber);
+        
+            if (selecteCount == 0) {
+                addSelectedValueList(selectedNumber);
+            } else if (totalCount == selecteCount) {
+                for (int i = 0; i < totalCount; i++) {
+                    selectedNumber.add(array[index + i]);
+                }
+                addSelectedValueList(selectedNumber);
+            } else {
+                stackOfSelectValue.add(array[index]);
+                doCombination(totalCount - 1, selecteCount - 1, index + 1, stackOfSelectValue);
+        
+                stackOfSelectValue.pop();
+                doCombination(totalCount - 1, selecteCount, index + 1, stackOfSelectValue);
+            }
+        }
+
     - 재귀 함수
     - `if (selecteCount == 0)` 더이상 뽑을 수가 없는 경우
     - `else if (totalCount == selecteCount)` 모두 선택할 경우
@@ -86,25 +108,6 @@ description: "[unTIL the end] Java 배열 중 선택 갯수를 지정하여 조�
 
         ![](Untitled-23491a6c-d4cf-4be3-8c03-ffb44db7c9a9.png)
 
-            private void doCombination(int totalCount, int selecteCount, int index, Stack<T> selectedNumber) {
-                Stack<T> stackOfSelectValue = new Stack<>();
-                stackOfSelectValue.addAll(selectedNumber);
-            
-                if (selecteCount == 0) {
-                    addSelectedValueList(selectedNumber);
-                } else if (totalCount == selecteCount) {
-                    for (int i = 0; i < totalCount; i++) {
-                        selectedNumber.add(array[index + i]);
-                    }
-                    addSelectedValueList(selectedNumber);
-                } else {
-                    stackOfSelectValue.add(array[index]);
-                    doCombination(totalCount - 1, selecteCount - 1, index + 1, stackOfSelectValue);
-            
-                    stackOfSelectValue.pop();
-                    doCombination(totalCount - 1, selecteCount, index + 1, stackOfSelectValue);
-                }
-            }
 
 ### 전체 소스코드
 
