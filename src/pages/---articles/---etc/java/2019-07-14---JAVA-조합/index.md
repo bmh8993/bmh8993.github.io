@@ -42,6 +42,7 @@ description: "[unTIL the end] Java 배열 중 선택 갯수를 지정하여 조�
     [[1,2],[1,3],[2,1],[2,3],[3,1],[3,2]] 가 될것이다.(하지만 조합은 순서x 중복x )
 
 ![](Untitled-23491a6c-d4cf-4be3-8c03-ffb44db7c9a9.png)
+> 선택된 숫자는 Stack에 넣는 것 처럼 생각하면 이해하기가 쉽다고 생각한다.
 
 ## 조합 점화식
 
@@ -107,7 +108,7 @@ description: "[unTIL the end] Java 배열 중 선택 갯수를 지정하여 조�
         2. 선택하지 않을 경우
 
         ![](Untitled-23491a6c-d4cf-4be3-8c03-ffb44db7c9a9.png)
-
+        > 개인적으로 선택된 숫자는 Stack에 넣는 것이 동작 방식을 이해하기 쉬웠다. 굳이 stack을 사용할 필요는 없었다. array나 list 나 set 도 가능하기도 하다.
 
 ### 전체 소스코드
 
