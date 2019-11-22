@@ -61,12 +61,12 @@ $total-items: 1000;
   }
 }
 
-// Set delay per List Item
-@for $i from 1 through $total-items {
-  li:nth-child(#{$i}) {
-    animation-delay: 0.15s * $i;
-  }
-}
+// // Set delay per List Item
+// @for $i from 1 through $total-items {
+//   li:nth-child(#{$i}) {
+//     animation-delay: 0.15s * $i;
+//   }
+// }
 
 // Keyframe animation
 @-webkit-keyframes fadeIn {
