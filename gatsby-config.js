@@ -19,32 +19,32 @@ module.exports = {
         label: 'About me',
         path: '/about/',
       },
-      /* {
+      {
         label: 'CS',
         path: '/cs/',
         sub_menu: [
-          {
-            label: 'algorithm',
-            path: '/algorithm/',
-          },
+          // {
+          //   label: 'algorithm',
+          //   path: '/algorithm/',
+          // },
           {
             label: 'data structure',
-            path: '/data structure/',
+            path: '/datastructure/',
           },
-          {
-            label: 'network',
-            path: '/network/',
-          },
-          {
-            label: 'operate system',
-            path: '/operate system/',
-          },
-          {
-            label: 'system Programming',
-            path: '/system Programming/',
-          },
+          // {
+          //   label: 'network',
+          //   path: '/network/',
+          // },
+          // {
+          //   label: 'operate system',
+          //   path: '/operate system/',
+          // },
+          // {
+          //   label: 'system Programming',
+          //   path: '/system Programming/',
+          // },
         ]
-      }, */
+      },
       {
         label: 'ETC',
         path: '/etc/',
