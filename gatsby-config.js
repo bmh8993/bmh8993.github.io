@@ -59,7 +59,7 @@ module.exports = {
           },
           {
             label: 'design pattern',
-            path: '/designpattern/',
+            path: '/design-pattern/',
           },
           {
             label: 'java',
