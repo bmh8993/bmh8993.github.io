@@ -29,7 +29,7 @@ module.exports = {
           // },
           {
             label: 'data structure',
-            path: '/datastructure/',
+            path: '/data-structure/',
           },
           // {
           //   label: 'network',
@@ -54,12 +54,16 @@ module.exports = {
             path: '/blog/',
           },
           {
-            label: 'java',
-            path: '/java/',
-          },
-          {
             label: 'css',
             path: '/css/',
+          },
+          {
+            label: 'design pattern',
+            path: '/designpattern/',
+          },
+          {
+            label: 'java',
+            path: '/java/',
           },
           {
             label: 'js',

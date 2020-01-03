@@ -3,8 +3,8 @@ title: "Trie 트라이"
 date: "2019-11-14T05:06:35.750Z"
 layout: post
 draft: false
-path: "/cs/datastructure/"
-category: "datastructure"
+path: "/cs/data-structure/"
+category: "data-structure"
 tags:
   - "문자열 탐색"
 description: "코딩 테스트 연습을 하면서 알게 된 Trie (트라이) 라는 자료 구조에 대헤 정리 한다."
