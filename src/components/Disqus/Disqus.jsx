@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import ReactDisqusComments from 'react-disqus-comments'
 
 class Disqus extends Component {
@@ -31,7 +32,7 @@ class Disqus extends Component {
         identifier={post.title}
         title={post.title}
         url={url}
-        category_id={post.category_id}
+        category_id={"8"}
         onNewComment={this.notifyAboutComment}
       />
     )

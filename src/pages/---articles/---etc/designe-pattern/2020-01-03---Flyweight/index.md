@@ -3,8 +3,7 @@ title: "Flyweight 패턴"
 date: "2020-01-03T05:06:35.750Z"
 layout: post
 draft: false
-path: "/design-pattern/flyweight
-/"
+path: "/design-pattern/flyweight/"
 category: "design-pattern"
 tags:
   - "Flyweight"
