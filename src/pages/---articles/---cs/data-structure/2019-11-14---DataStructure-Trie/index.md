@@ -3,7 +3,7 @@ title: "Trie 트라이"
 date: "2019-11-14T05:06:35.750Z"
 layout: post
 draft: false
-path: "/cs/data-structure/"
+path: "/cs/data-structure/trie"
 category: "data-structure"
 tags:
   - "문자열 탐색"

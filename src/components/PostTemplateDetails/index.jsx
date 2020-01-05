@@ -1,10 +1,11 @@
+import './style.scss'
+
+import Disqus from '../Disqus'
+import { Link } from 'gatsby'
 import React from 'react'
 import kebabCase from 'lodash/kebabCase'
-import throttle from 'lodash/throttle';
-import { Link } from 'gatsby'
 import moment from 'moment'
-import Disqus from '../Disqus/Disqus'
-import './style.scss'
+import throttle from 'lodash/throttle';
 
 class PostTemplateDetails extends React.Component {
 

@@ -219,6 +219,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `regyu`
+      }
+    },
+    {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         output: '/robots.txt',
