@@ -18,7 +18,7 @@ class PostTemplateDetails extends React.Component {
         return
       }
       headers.forEach(header => {
-        const id = encodeURI(kebabCase(header.innerText))
+        const id = kebabCase(header.innerText)
         header.setAttribute('id', id)
       })
       this._getHeaders()
@@ -32,9 +32,8 @@ class PostTemplateDetails extends React.Component {
       this.postHeader = headers;
     },
     setActiveHeader(index) {
-      if (!this.tocHeader.length) {
-        return
-      }
+      if (index < 0) return
+      if (!this.tocHeader.length) return
 
       const prev_active_header = document.body.querySelector('.active')
       if (prev_active_header) {
@@ -88,13 +87,22 @@ class PostTemplateDetails extends React.Component {
 
   onScroll = throttle(() => {
     const scrollTop = this.getScrollTop();
-    Array.from(this.HeaderManager.postHeader).forEach((header, index) => {
-      if (scrollTop >= header.offsetTop) {
+    const { postHeader } = this.HeaderManager
+    Array.from(postHeader).some((header, index) => {
+      const hasScrolledActiveHeader = scrollTop >= header.offsetTop
+
+      if (hasScrolledActiveHeader) {
         this.HeaderManager.setActiveHeader(index)
-      }
+      } else return true
     })
+
+    const hasScrolledBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight
+    const lastPostHeader = postHeader.length - 1
+
     if (scrollTop === 0) {
       this.HeaderManager.setActiveHeader(0)
+    } else if (hasScrolledBottom) {
+      this.HeaderManager.setActiveHeader(lastPostHeader)
     }
   }, 250);
 
