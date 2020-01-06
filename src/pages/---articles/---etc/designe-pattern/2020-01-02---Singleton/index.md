@@ -57,7 +57,7 @@ description: "객체가 너무 많아지면 컴퓨터 자원을 과도하게 사
         }
     }
 
-### Test code 사용 예시
+ Test code 사용 예시
 
     public class TestPattern1 {
     
@@ -116,7 +116,7 @@ description: "객체가 너무 많아지면 컴퓨터 자원을 과도하게 사
             }
         }
 
-### Test code 사용 예시
+ Test code 사용 예시
 
 - for 문으로 생성된 객체는 거의 동시에 실행한 효과와 같다. 그렇기 때문에 sigleton 객체는 null로 인식하여 전부 인스턴스를 생성한다.
 - 생성 순서는 랜덤으로 메모리에 로드되는 순서대로 생성된다.
@@ -227,7 +227,7 @@ description: "객체가 너무 많아지면 컴퓨터 자원을 과도하게 사
     
         public synchronized void log(String str) {
             try {
-     **           bw.write(LocalDateTime.now() + " : " + str + "\n");
+                bw.write(LocalDateTime.now() + " : " + str + "\n");
                 bw.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -245,7 +245,7 @@ description: "객체가 너무 많아지면 컴퓨터 자원을 과도하게 사
         }
     }
 
-### Test code 사용 예시
+ Test code 사용 예시
 
     public class TestPattern1 {
         public static void main(String[] args) {

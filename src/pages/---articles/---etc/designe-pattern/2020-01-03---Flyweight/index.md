@@ -179,7 +179,7 @@ str1 과 str2는 각자 새로운 객체를 생성 하였기 때문에 서로 �
         }
     }
 
-### Test code 사용 예시
+ Test code 사용 예시
 
     public class TestPattern {
         public static void main(String[] args) {
