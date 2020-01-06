@@ -89,7 +89,7 @@ class PostTemplateDetails extends React.Component {
     const scrollTop = this.getScrollTop();
     const { postHeader } = this.HeaderManager
     Array.from(postHeader).some((header, index) => {
-      const hasScrolledActiveHeader = scrollTop >= header.offsetTop
+      const hasScrolledActiveHeader = scrollTop >= header.offsetTop - 10
 
       if (hasScrolledActiveHeader) {
         this.HeaderManager.setActiveHeader(index)
