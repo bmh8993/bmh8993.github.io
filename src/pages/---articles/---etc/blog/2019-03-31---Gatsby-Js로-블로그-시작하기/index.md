@@ -152,6 +152,22 @@ Tistory 블로그는 여러 개발자 분들이 많이 이용하기도 하였고
 
 6. Gatsby 블로그 프로젝트연동
 
+**추가 수정!!**
+
+프로젝트의 'react-disqus-comments'  라이브러리는 뭔가 정상적으로 작동하지 않는다.
+
+(댓글은 달리지만 각 페이지마다 댓글이 달리는 것이 아니라 전체 페이지에 모든 댓글이 다 달린다...)
+
+    npm uninstall react-disqus-comments
+
+
+
+'gatsby-plugin-disqus'  플러그인을 사용하자!!
+
+[](https://www.gatsbyjs.org/packages/gatsby-plugin-disqus/)
+
+    npm install -S gatsby-plugin-disqus
+
 gatsby-config.js ( 앞으로의 모든 설정은 여기서 할 것이다.)
 
     module.exports = {
@@ -161,10 +177,65 @@ gatsby-config.js ( 앞으로의 모든 설정은 여기서 할 것이다.)
         subtitle:
           '리규의 흐릿한 잉크 남기기',
         copyright: '© All rights reserved.',
-        disqusShortname: 'your disqusShortname' // 이부분 수정
-    	}
+        disqusShortname: 'your-disqus-shortname' // 이부분 수정
+      },
+      plugins: [
+        {
+          resolve: `gatsby-plugin-disqus`,
+          options: {
+            shortname: `your-disqus-shortname` // 이부분 수정
+          }
+        },
+      ]
     }
 
+src/templates/post-template.jsx
+
+pageQuery 변수에 'slug' 필드 추가
+
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      id
+      html
+      fields {
+        tagSlugs
+    // 추가
+        slug
+    // ...
+      }
+    }
+
+src/Disqus/Disqus.jsx
+
+코드 변경
+
+    import React, { Component } from 'react'
+    
+    import { Disqus } from 'gatsby-plugin-disqus'
+    
+    class DisqusDetails extends Component {
+    
+      render() {
+        const { postNode, siteMetadata } = this.props
+        if (!siteMetadata.disqusShortname) {
+          return null
+        }
+        const post = postNode.frontmatter
+        const url = siteMetadata.url + postNode.fields.slug
+    
+        let disqusConfig = {
+          url: url,
+          identifier: postNode.id,
+          title: post.title,
+        }
+    
+        return (
+          <Disqus config={disqusConfig} ></Disqus>
+        )
+      }
+    }
+    
+    export default DisqusDetails
+    
 ## Google Analytics
 
 > 티스토리 관리자 페이지 처럼 블로그의 방문자 수, 인기 글을 확인 할 수 있다. - **무료**
