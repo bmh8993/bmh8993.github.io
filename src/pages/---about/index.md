@@ -4,16 +4,11 @@ layout: page
 path: "/about"
 ---
 
-## 조규현(Regyu)
+#  배민혁
 
-현재 웹 개발을 시작 하고 있으며, 새로운 것을 배우는것을 좋아하며, 프론트엔드와 백엔드 둘다 잘하고 싶은 욕심이 있습니다.  <u>**또렷한 기억력보다 흐릿한 잉크가 오래 간다.**</u> 라는 중국 속담을 보고 배운것을 정리해야 겠다는 생각이 들었습니다.
+### I enjoy my life as a developer!
 
-정리한 내용 중 잘못된 내용이 있을 경우 알려주시면 감사하겠습니다.
+개발자로서의 삶이 즐겁습니다. 개발과 관련된 기술은 더 나음을 추구합니다. 더 나음을 위해서 새로운 것을 만들기도 하고,
+함께 발전시켜나가기도 합니다. 그리고 공유합니다. 이런 개발 문화가 즐거울 뿐입니다.
 
-> Technical Skills Summary
-* Frontend: React  
-* Backend:  
-  Node.js – Express, Sequelize  
-  Java – Spring  
-  Database:  PostgreSQL, MySQL  
-  ETC: aws, graphql, docker
+실력향상과 공유 문화에 힘쓰기 위해 블로그를 운영하고 있습니다.
