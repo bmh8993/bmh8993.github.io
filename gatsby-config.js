@@ -8,7 +8,7 @@ module.exports = {
     title: 'Blog by 인간지능',
     subtitle: '깔끔한 프로그래밍',
     copyright: '© All rights reserved.',
-    disqusShortname: 'bmh8993-github-io-3',
+    disqusShortname: 'bmh8993-github-io',
     menu: [
       {
         label: 'All',
