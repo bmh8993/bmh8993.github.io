@@ -9,11 +9,6 @@
   &:last-child {
     @include margin-bottom(0.5);
   }
-  &__thumbnail {
-    border-radius: 8px 8px 0px 0px;
-    display: flex;
-    justify-content: center;
-  }
   &__content {
     padding: 20px;
     &__title {

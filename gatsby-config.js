@@ -3,17 +3,16 @@ const pxtorem = require('postcss-pxtorem')
 
 module.exports = {
   siteMetadata: {
-    url: 'https://www.regyu.dev/',
-    siteUrl: 'https://www.regyu.dev/',
-    title: 'Regyu Dev log',
-    subtitle:
-      '리규의 흐릿한 잉크 남기기',
+    url: 'https://bmh8993.github.io/',
+    siteUrl: 'https://bmh8993.github.io/',
+    title: 'Blog by 인간지능',
+    subtitle: '깔끔한 프로그래밍',
     copyright: '© All rights reserved.',
     disqusShortname: 'regyu',
     menu: [
       {
         label: 'All',
-        path: '/'
+        path: '/',
       },
       {
         label: 'About me',
@@ -43,7 +42,7 @@ module.exports = {
           //   label: 'system Programming',
           //   path: '/system Programming/',
           // },
-        ]
+        ],
       },
       {
         label: 'ETC',
@@ -69,7 +68,7 @@ module.exports = {
             label: 'js',
             path: '/js/',
           },
-        ]
+        ],
       },
       {
         label: 'Tags',
@@ -77,15 +76,15 @@ module.exports = {
       },
     ],
     author: {
-      name: 'Regyu',
-      email: 'kuhyun1993@gmail.com',
+      name: '인간지능',
+      email: 'bmh9175@gmail.com',
       telegram: '#',
       twitter: '#',
-      github: '/Jo-GyuHyeon',
-      rss: 'rss.xml',
+      github: '/bmh8993',
+      rss: '#',
       vk: '#',
-      facebook: 'regyujo',
-      tistory: 'regyu.tistory.com/'
+      facebook: '#',
+      tistory: '#',
     },
   },
   plugins: [
@@ -221,14 +220,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-disqus`,
       options: {
-        shortname: `regyu`
-      }
+        shortname: `regyu`,
+      },
     },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         output: '/robots.txt',
-      }
+      },
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
