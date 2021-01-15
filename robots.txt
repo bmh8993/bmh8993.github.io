@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://bmh8993.github.io/sitemap.xml
+Host: https://bmh8993.github.io
