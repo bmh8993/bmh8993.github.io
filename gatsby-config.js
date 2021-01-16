@@ -32,58 +32,32 @@ module.exports = {
           },
         ],
       },
-      {
-        label: 'CS',
-        path: '/cs/',
-        sub_menu: [
-          // {
-          //   label: 'algorithm',
-          //   path: '/algorithm/',
-          // },
-          {
-            label: 'data structure',
-            path: '/data-structure/',
-          },
-          // {
-          //   label: 'network',
-          //   path: '/network/',
-          // },
-          // {
-          //   label: 'operate system',
-          //   path: '/operate system/',
-          // },
-          // {
-          //   label: 'system Programming',
-          //   path: '/system Programming/',
-          // },
-        ],
-      },
-      {
-        label: 'ETC',
-        path: '/etc/',
-        sub_menu: [
-          {
-            label: 'blog',
-            path: '/blog/',
-          },
-          {
-            label: 'css',
-            path: '/css/',
-          },
-          {
-            label: 'design pattern',
-            path: '/design-pattern/',
-          },
-          {
-            label: 'java',
-            path: '/java/',
-          },
-          {
-            label: 'js',
-            path: '/js/',
-          },
-        ],
-      },
+      // {
+      //   label: 'CS',
+      //   path: '/cs/',
+      //   sub_menu: [
+      //     // {
+      //     //   label: 'algorithm',
+      //     //   path: '/algorithm/',
+      //     // },
+      //     {
+      //       label: 'data structure',
+      //       path: '/data-structure/',
+      //     },
+      //     // {
+      //     //   label: 'network',
+      //     //   path: '/network/',
+      //     // },
+      //     // {
+      //     //   label: 'operate system',
+      //     //   path: '/operate system/',
+      //     // },
+      //     // {
+      //     //   label: 'system Programming',
+      //     //   path: '/system Programming/',
+      //     // },
+      //   ],
+      // },
       {
         label: 'Tags',
         path: '/tags',
