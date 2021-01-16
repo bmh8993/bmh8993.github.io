@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 15 Jan 2021 14:17:32 GMT</lastBuildDate><item><title><![CDATA[Flyweight 패턴]]></title><description><![CDATA[플라이웨이트 패턴은 비용이 큰 자원을 공통으로 사용할 수 있도록 만드는 패턴이다. 1990년에 Paul Calder와 Mark Linton이 WYSIWYG 문서 편집기의 글자모양 정보를 효율적으로 다루기 위해 처음 도입되고 널리 연구되어 졌다.]]></description><link>https://bmh8993.github.io//design-pattern/flyweight/</link><guid isPermaLink="false">https://bmh8993.github.io//design-pattern/flyweight/</guid><pubDate>Fri, 03 Jan 2020 05:06:35 GMT</pubDate><content:encoded>&lt;h1&gt;플라이웨이트 패턴&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 16 Jan 2021 10:39:57 GMT</lastBuildDate><item><title><![CDATA[DRF/#01 DRF란 무엇일까?]]></title><description><![CDATA[DRF에 대해서 간략하게 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/</guid><pubDate>Wed, 18 Mar 2020 13:04:35 GMT</pubDate><content:encoded>&lt;p&gt;DRF에 대해서 간략하게 알아봅시다.&lt;/p&gt;
+&lt;h3&gt;DRF?&lt;/h3&gt;
+&lt;p&gt;공식문서에서 설명하는 DRF입니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;DRF는 Web API를 만들기 위한 강력하고 유연한 툴입니다.&lt;br&gt;
+우리가 DRF를 써야하는 이유가 몇 가지 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web browsable API는 개발자들에게 큰 유용성을 가져다줍니다.&lt;/li&gt;
+&lt;li&gt;Serialization은 ORM과 non-ORM 데이터 소스를 모두 지원합니다.&lt;/li&gt;
+&lt;li&gt;강력한 View도 있지만 일반적인 View를 커스터마이징 해서 사용할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;DRF를 사용하는 많은 유저들이 있기때문에, 문서와 커뮤니티를 제공할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;국제적인 기업들에서 사용하고 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+&lt;p&gt;다른 이는 이렇게 말하기도 합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;DRF는 개발자가 만든 API들을 디버그하기 쉽게 만들어줍니다. DRF의 큰 기능은 &lt;strong&gt;Models를 serializers로 변환하는 것&lt;/strong&gt;입니다. DRF에서 serializers는 복잡한 구조들을 이미 구성해두었습니다.
+serializers는 모델을 전달하고, 그 모델들을 json 객체로 변환하는 것만이 전부가 아닙니다. 클라이언트로부터 백엔드에게 데이터를 전달하기도합니다. 코드를 검증하는 것도 자동으로 할 수 있습니다. 코드를 정리해서 security issues를 해결하기도 합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+&lt;p&gt;많은 사람들이 설명하는 DRF는 무엇일까요?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Django 안에서 RESTful API 서버를 쉽게 구축할 수 있도록 도와주는 오픈소스 라이브러리입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Serializer&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;직렬화(serialisation)는 무엇인가&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;직렬화에 대한 설명은 위의 글을 읽어보길 바랍니다.&lt;br&gt;
+&lt;br&gt;
+파이썬 형식의 코드를 다른 네트워크 환경과 통신을 위해 코드를 직렬화 해야하는데,
+DRF에서 그것을 담당하는 클래스가 바로 &lt;code class=&quot;language-text&quot;&gt;Serializer&lt;/code&gt;입니다. DRF에서 제공하는 Serializer는
+queryset, model instance 등의 복잡한 데이터를 JSON, XML 등의 컨텐트 타입으로 쉽게 변환 가능한
+python datatype으로 변환시켜줍니다.&lt;br&gt;&lt;/p&gt;
+&lt;h4&gt;RESTful API와 Serializer가 DRF를 사용하는 가장 큰 장점이 아닐까 생각합니다.&lt;/h4&gt;</content:encoded></item><item><title><![CDATA[Flyweight 패턴]]></title><description><![CDATA[플라이웨이트 패턴은 비용이 큰 자원을 공통으로 사용할 수 있도록 만드는 패턴이다. 1990년에 Paul Calder와 Mark Linton이 WYSIWYG 문서 편집기의 글자모양 정보를 효율적으로 다루기 위해 처음 도입되고 널리 연구되어 졌다.]]></description><link>https://bmh8993.github.io//design-pattern/flyweight/</link><guid isPermaLink="false">https://bmh8993.github.io//design-pattern/flyweight/</guid><pubDate>Fri, 03 Jan 2020 05:06:35 GMT</pubDate><content:encoded>&lt;h1&gt;플라이웨이트 패턴&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;플라이웨이트 패턴은 비용이 큰 자원을 공통으로 사용할 수 있도록 만드는 패턴이다. 1990년에 Paul Calder와 Mark Linton이 WYSIWYG 문서 편집기의 글자모양 정보를 효율적으로 다루기 위해 처음 도입되고 널리 연구되어 졌다.&lt;/p&gt;
 &lt;/blockquote&gt;
