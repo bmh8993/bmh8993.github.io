@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url> <loc>https://bmh8993.github.io//about</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//python/django/drf-01/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//tags/drf/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//categories/django/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://bmh8993.github.io//cs/network/grpc-01/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://bmh8993.github.io//tags/g-rpc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://bmh8993.github.io//categories/network/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//etc/algorithm/bubble-sort</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//tags/algorithm/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//tags/bubble-sort/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//categories/algorithm/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://bmh8993.github.io//cs/network/grpc-01/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://bmh8993.github.io//tags/g-rpc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://bmh8993.github.io//categories/network/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://bmh8993.github.io//about</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//tags/django/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://bmh8993.github.io//categories/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
