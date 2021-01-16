@@ -19,6 +19,20 @@ module.exports = {
         path: '/about/',
       },
       {
+        label: 'python',
+        path: '/python/',
+        sub_menu: [
+          {
+            label: 'Django',
+            path: '/django/',
+          },
+          {
+            label: 'python',
+            path: '/python/',
+          },
+        ],
+      },
+      {
         label: 'CS',
         path: '/cs/',
         sub_menu: [
