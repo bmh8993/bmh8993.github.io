@@ -45,4 +45,4 @@ DRF에서 그것을 담당하는 클래스가 바로 `Serializer`입니다. DRF�
 queryset, model instance 등의 복잡한 데이터를 JSON, XML 등의 컨텐트 타입으로 쉽게 변환 가능한
 python datatype으로 변환시켜줍니다.<br>
 
-#### RESTful API와 Serializer가 DRF를 사용하는 가장 큰 장점이 아닐까 생각합니다.
+**RESTful API와 Serializer가 DRF를 사용하는 가장 큰 장점이 아닐까 생각합니다.**

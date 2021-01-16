@@ -43,6 +43,16 @@ module.exports = {
         ],
       },
       {
+        label: 'ETC',
+        path: '/etc/',
+        sub_menu: [
+          {
+            label: 'Algorithm',
+            path: '/algorithm/',
+          },
+        ],
+      },
+      {
         label: 'Tags',
         path: '/tags',
       },

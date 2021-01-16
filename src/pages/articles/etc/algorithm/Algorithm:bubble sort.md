@@ -1,6 +1,6 @@
 ---
 title: Algorithm/버블 정렬(bubble sort with python)
-date: 2020-03-18 13:03:95
+date: 2021-01-16 23:27:95
 layout: post
 draft: false
 path: "/etc/algorithm/bubble-sort"
