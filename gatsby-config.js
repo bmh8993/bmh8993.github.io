@@ -32,32 +32,16 @@ module.exports = {
           },
         ],
       },
-      // {
-      //   label: 'CS',
-      //   path: '/cs/',
-      //   sub_menu: [
-      //     // {
-      //     //   label: 'algorithm',
-      //     //   path: '/algorithm/',
-      //     // },
-      //     {
-      //       label: 'data structure',
-      //       path: '/data-structure/',
-      //     },
-      //     // {
-      //     //   label: 'network',
-      //     //   path: '/network/',
-      //     // },
-      //     // {
-      //     //   label: 'operate system',
-      //     //   path: '/operate system/',
-      //     // },
-      //     // {
-      //     //   label: 'system Programming',
-      //     //   path: '/system Programming/',
-      //     // },
-      //   ],
-      // },
+      {
+        label: 'CS',
+        path: '/cs/',
+        sub_menu: [
+          {
+            label: 'network',
+            path: '/network/',
+          },
+        ],
+      },
       {
         label: 'Tags',
         path: '/tags',
@@ -208,7 +192,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-disqus`,
       options: {
-        shortname: `regyu`,
+        shortname: `bmh8993-github-io`,
       },
     },
     {

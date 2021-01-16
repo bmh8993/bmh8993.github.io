@@ -13,7 +13,7 @@
     "format": "prettier --write './*.js' 'src/**/*.js' 'src/**/*.jsx'",
     "deploy": "yarn run clean && gatsby build && gh-pages -d public -b master"
   },
-  "repository": "git+https://github.com/Jo-GyuHyeon/regyu_log.git",
+  "repository": "git+https://github.com/alxshelepenok/gatsby-starter-lumen.git",
   "keywords": [
     "gatsby",
     "blog",
@@ -21,7 +21,7 @@
     "theme",
     "starter"
   ],
-  "author": "Regyu <kuhyun1993@gmail.com>",
+  "author": "Alexander Shelepenok <alxshelepenok@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1",
