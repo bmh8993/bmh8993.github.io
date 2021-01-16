@@ -1,4 +1,108 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 16 Jan 2021 12:20:26 GMT</lastBuildDate><item><title><![CDATA[DRF/#01 DRF란 무엇인가?]]></title><description><![CDATA[DRF에 대해서 간략하게 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/drf-01/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/drf-01/</guid><pubDate>Wed, 18 Mar 2020 13:04:35 GMT</pubDate><content:encoded>&lt;p&gt;DRF에 대해서 간략하게 알아봅시다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 16 Jan 2021 13:20:31 GMT</lastBuildDate><item><title><![CDATA[gRPC/gRPC가 등장하기까지(REST & RPC)]]></title><description><![CDATA[gRPC의 등장배경을 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/network/grpc-01/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/network/grpc-01/</guid><pubDate>Mon, 16 Nov 2020 13:04:35 GMT</pubDate><content:encoded>&lt;p&gt;gRPC를 공부하려고 많은 글들을 찾아보다가 네이버 클라우드 플랫폼 블로그에서 좋은 글을 찾아 하나씩 써내려가면서 정독해보겠습니다.좋은 글 감사합니다.&lt;/p&gt;
+&lt;h1&gt;gRPC의 등장배경&lt;/h1&gt;
+&lt;h2&gt;1. 아키텍처의 변화&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Monolithic &gt;&gt;&gt; Microservice&lt;/strong&gt;&lt;/em&gt;
+1970년대 IBM에서 개인용컴퓨터를 생산한 이후 PC라는 개념이 생겼고 하나의 메인 프레임 워크에서 동작하는 &lt;code class=&quot;language-text&quot;&gt;Monolithic구조&lt;/code&gt;로 설계되었습니다.
+시간이 흐르고 기술이 발전하면서 우리가 익히 알고있는 &lt;code class=&quot;language-text&quot;&gt;Server-Client&lt;/code&gt;의 구조를 가지게 되었고, 하나의 메인 프레임워크에서 프로그램이 동작하는 Monolithic 구조에서는 크게 중요하지 않았던 네트워크의 개념이 정리되기 시작합니다.&lt;/p&gt;
+&lt;p&gt;그렇게 서버 간 혹은 서버와 개인 PC간 네트워크 연결/통신이 중요해지면서 IOS 7 layer, TCP/IP 등 네트워크 계층 구조가 정의되고 발전하기 시작합니다.&lt;/p&gt;
+&lt;h2&gt;2. RPC의 등장&lt;/h2&gt;
+&lt;h3&gt;IPC와 Socket&lt;/h3&gt;
+&lt;p&gt;실행되고 있는 컴퓨터 프로그램을 말하는 프로세스는 기본적으로 상호독립적입니다. 즉, 메모리를 공유하지않고 서로 간섭을 하지 않습니다. 하지만 필요에 따라 프로세스간 정보를 교환해야하는 경우가 있습니다. 이때 별도 수단을 이용하여 프로세스 간 통신하는 방법론을 IPC(Iner Process Communication)이라고 합니다.&lt;/p&gt;
+&lt;p&gt;IPC기법에는 여러가지가 있지만 Socket에 대해서 살펴보겠습니다.
+Socket이란, 앞서 언급한 OSI 7 layer 구조의 L7계층(Application Layer)에서 L4계층(Transport Port)의 TCP 또는 UDP를 이용하기 위한 수단입니다. 일종의 창구라고 생각하면 됩니다. 우리는 온라인을 PC와 PC의 네트워크 통신이라고 알고 있지만, 조금 더 정확히 이야기하면 출발지 프로세스와 도착지 프로세스가 통신을 하는 IPC방법으로 통신한다고 이야기 하는게 정확합니다.&lt;/p&gt;
+&lt;p&gt;Socket을 통해서 무언가를 개발 해 본 분들은 알겠지만 언어에서 지원해주는 API가 있어서 쉬운 것처럼 보이지만 client-server 통신과정을 직접구현해야하는 어려움을 가지고 있습니다. 통신 장애와 같은 많은 부분들이 개발자의 능력과 직결됩니다. 서비스가 고도화 될 수록 많은 데이터가 돌아다니게 될텐데, 이에 따라 data formatting을 하는 것도 점점 어려워지게 됩니다.&lt;/p&gt;
+&lt;h3&gt;RPC&lt;/h3&gt;
+&lt;p&gt;socket의 어려움을 극복하기 위해 RPC(Remote Procedure Call)라는 기술이 등장합니다. 이름 그대로 네트워크로 연결된 서버 상의 프로시저(함수, 메서드 등)를 원격으로 호출할 수 있는 기능입니다.
+RPC의 목적은 통신에 신경쓰지 않고, 원격지의 자원을 사용하는데에 있습니다.&lt;/p&gt;
+&lt;h4&gt;RPC에서 사용되는 개념&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;IDL(Interface Definication Laguage)
+: 서로 다른 언어로 작성된 여러 서비스들 사이에서 공통된 인터페이스를 정의하기 위한 중간 인터페이스 정의 언어&lt;/li&gt;
+&lt;li&gt;stub
+: 서버와 클라이언트는 서로 다른 주소 공간을 사용하므로, 함수 호출에 사용된 매개 변수를 꼭 변화해주어야 합니다. 그렇지 않으면 메모리 매개변수에 대한 포인터가 다른 데이터를 가리키게 됩니다. 이러한 변환을 담당하는게 stub입니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;client stub의 역할&lt;/code&gt;
+함수 호출에 사용된 파라미터의 변환(Mashalling) 및 함수 실행 후 서버에서 전달 된 결과의 반환
+&lt;code class=&quot;language-text&quot;&gt;server stub의 역할&lt;/code&gt;
+클라이언트가 전달한 매개 변수의 역변환(Unmashalling) 및 함수 실행 결과 변환을 담당&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;RPC의 통신과정&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;IDL(Interface Definition Language)을 사용하여 호출 규약을 정의합니다.
+함수명, 인자, 반환값에 대한 데이터형이 정의된 IDL 파일을 rpcgen으로 컴파일하면 stub code가 자동으로 생성됩니다.&lt;/li&gt;
+&lt;li&gt;Stub Code에 명시된 함수는 원시코드의 형태로, 상세 기능은 server에서 구현됩니다.
+만들어진 stub 코드는 클라이언트/서버에 함께 빌드합니다.&lt;/li&gt;
+&lt;li&gt;client에서 stub 에 정의된 함수를 사용할 때,&lt;/li&gt;
+&lt;li&gt;client stub은 RPC runtime을 통해 함수 호출하고&lt;/li&gt;
+&lt;li&gt;server는 수신된 procedure 호출에 대한 처리 후 결과 값을 반환합니다.&lt;/li&gt;
+&lt;li&gt;최종적으로 Client는 Server의 결과 값을 반환받고, 함수를 Local에 있는 것 처럼 사용할 수 있습니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;생각보다 통신과정이 복잡합니다. 많은 이점이 있지만 결국 구현이 어렵고, 지원 기능의 한계 등으로 제대로 활용되지 못했습니다. 그러다 Web을 활용해보려는 시도가 이어졌고 &lt;code class=&quot;language-text&quot;&gt;REST&lt;/code&gt;가 등장하게 됩니다&lt;/p&gt;
+&lt;h2&gt;3. REST의 등장&lt;/h2&gt;
+&lt;p&gt;REST(REpresentational State Transfer)는 HTTP/1.1을 기반으로 URI를 통해 모든 자원(Resource)을 명시하고 HTTP Method를 통해 처리하는 아키텍처입니다.
+HTTP Method와 payload의 합은 매우 명시적이고 쉽게 사용할 수 있다는 장점이 있어서 보편화된 방식입니다.
+하지만 REST에도 한계는 존재합니다.REST는 일종의 스타일이지 표준이 아니기 때문에 parameter와 응답 값이 명시적이지 않습니다. 또한 HTTP 메소드의 형태가 제한적이기 때문에 세부 기능 구현에는 제약이 있습니다.
+덧붙여 웹 데이터 전달 format으로 json을 많이 사용합니다. 간결한 &lt;code class=&quot;language-text&quot;&gt;key-value&lt;/code&gt; 구조를 기반으로 동작하고 사람이 읽기 좋은 string이기 때문입니다. 하지만 제공되는 자료형의 한계로 파싱 후 추가 형변환을 하는 작업이 필요한 경우가 많다는 점, string의 형태이기 때문에 데이터 통신/처리를 위한 serialize과정이 빠질 수 없다는 단점이 있습니다.&lt;/p&gt;
+&lt;h1&gt;gRPC&lt;/h1&gt;
+&lt;p&gt;gRPC는 google사에서 개발한 오픈소스 RPC(Remote Procedure Call) 프레임워크입니다. 이전까지는 RPC 기능은 지원하지 않고, 메세지(JSON 등)을 Serialize할 수 있는 프레임워크인 PB(Protocol Buffer)만을 제공해왔는데, PB기반 Serializer에 HTTP/2를 결합하여 PRC 프레임워크를 탄생시켰습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(HTTP/2와 PB에 대한 설명은 다른 포스트에서 설명하도록 하겠습니다)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;여기까지가 gRPC가 탄생하게된 배경과 gRPC에 대한 소개입니다.
+다음 포스트에서는 gRPC에 대해 더 자세히 이야기하도록 하겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;참고: &lt;a href=&quot;https://blog.naver.com/n_cloudplatform/221751268831&quot;&gt;https://blog.naver.com/n_cloudplatform/221751268831&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[gRPC/gRPC가 등장하기까지(REST & RPC)]]></title><description><![CDATA[gRPC의 등장배경을 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/network/grpc-01/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/network/grpc-01/</guid><pubDate>Mon, 16 Nov 2020 13:04:35 GMT</pubDate><content:encoded>&lt;p&gt;gRPC를 공부하려고 많은 글들을 찾아보다가 네이버 클라우드 플랫폼 블로그에서 좋은 글을 찾아 하나씩 써내려가면서 정독해보겠습니다.좋은 글 감사합니다.&lt;/p&gt;
+&lt;h1&gt;gRPC의 등장배경&lt;/h1&gt;
+&lt;h2&gt;1. 아키텍처의 변화&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Monolithic &gt;&gt;&gt; Microservice&lt;/strong&gt;&lt;/em&gt;
+1970년대 IBM에서 개인용컴퓨터를 생산한 이후 PC라는 개념이 생겼고 하나의 메인 프레임 워크에서 동작하는 &lt;code class=&quot;language-text&quot;&gt;Monolithic구조&lt;/code&gt;로 설계되었습니다.
+시간이 흐르고 기술이 발전하면서 우리가 익히 알고있는 &lt;code class=&quot;language-text&quot;&gt;Server-Client&lt;/code&gt;의 구조를 가지게 되었고, 하나의 메인 프레임워크에서 프로그램이 동작하는 Monolithic 구조에서는 크게 중요하지 않았던 네트워크의 개념이 정리되기 시작합니다.&lt;/p&gt;
+&lt;p&gt;그렇게 서버 간 혹은 서버와 개인 PC간 네트워크 연결/통신이 중요해지면서 IOS 7 layer, TCP/IP 등 네트워크 계층 구조가 정의되고 발전하기 시작합니다.&lt;/p&gt;
+&lt;h2&gt;2. RPC의 등장&lt;/h2&gt;
+&lt;h3&gt;IPC와 Socket&lt;/h3&gt;
+&lt;p&gt;실행되고 있는 컴퓨터 프로그램을 말하는 프로세스는 기본적으로 상호독립적입니다. 즉, 메모리를 공유하지않고 서로 간섭을 하지 않습니다. 하지만 필요에 따라 프로세스간 정보를 교환해야하는 경우가 있습니다. 이때 별도 수단을 이용하여 프로세스 간 통신하는 방법론을 IPC(Iner Process Communication)이라고 합니다.&lt;/p&gt;
+&lt;p&gt;IPC기법에는 여러가지가 있지만 Socket에 대해서 살펴보겠습니다.
+Socket이란, 앞서 언급한 OSI 7 layer 구조의 L7계층(Application Layer)에서 L4계층(Transport Port)의 TCP 또는 UDP를 이용하기 위한 수단입니다. 일종의 창구라고 생각하면 됩니다. 우리는 온라인을 PC와 PC의 네트워크 통신이라고 알고 있지만, 조금 더 정확히 이야기하면 출발지 프로세스와 도착지 프로세스가 통신을 하는 IPC방법으로 통신한다고 이야기 하는게 정확합니다.&lt;/p&gt;
+&lt;p&gt;Socket을 통해서 무언가를 개발 해 본 분들은 알겠지만 언어에서 지원해주는 API가 있어서 쉬운 것처럼 보이지만 client-server 통신과정을 직접구현해야하는 어려움을 가지고 있습니다. 통신 장애와 같은 많은 부분들이 개발자의 능력과 직결됩니다. 서비스가 고도화 될 수록 많은 데이터가 돌아다니게 될텐데, 이에 따라 data formatting을 하는 것도 점점 어려워지게 됩니다.&lt;/p&gt;
+&lt;h3&gt;RPC&lt;/h3&gt;
+&lt;p&gt;socket의 어려움을 극복하기 위해 RPC(Remote Procedure Call)라는 기술이 등장합니다. 이름 그대로 네트워크로 연결된 서버 상의 프로시저(함수, 메서드 등)를 원격으로 호출할 수 있는 기능입니다.
+RPC의 목적은 통신에 신경쓰지 않고, 원격지의 자원을 사용하는데에 있습니다.&lt;/p&gt;
+&lt;h4&gt;RPC에서 사용되는 개념&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;IDL(Interface Definication Laguage)
+: 서로 다른 언어로 작성된 여러 서비스들 사이에서 공통된 인터페이스를 정의하기 위한 중간 인터페이스 정의 언어&lt;/li&gt;
+&lt;li&gt;stub
+: 서버와 클라이언트는 서로 다른 주소 공간을 사용하므로, 함수 호출에 사용된 매개 변수를 꼭 변화해주어야 합니다. 그렇지 않으면 메모리 매개변수에 대한 포인터가 다른 데이터를 가리키게 됩니다. 이러한 변환을 담당하는게 stub입니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;client stub의 역할&lt;/code&gt;
+함수 호출에 사용된 파라미터의 변환(Mashalling) 및 함수 실행 후 서버에서 전달 된 결과의 반환
+&lt;code class=&quot;language-text&quot;&gt;server stub의 역할&lt;/code&gt;
+클라이언트가 전달한 매개 변수의 역변환(Unmashalling) 및 함수 실행 결과 변환을 담당&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;RPC의 통신과정&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;IDL(Interface Definition Language)을 사용하여 호출 규약을 정의합니다.
+함수명, 인자, 반환값에 대한 데이터형이 정의된 IDL 파일을 rpcgen으로 컴파일하면 stub code가 자동으로 생성됩니다.&lt;/li&gt;
+&lt;li&gt;Stub Code에 명시된 함수는 원시코드의 형태로, 상세 기능은 server에서 구현됩니다.
+만들어진 stub 코드는 클라이언트/서버에 함께 빌드합니다.&lt;/li&gt;
+&lt;li&gt;client에서 stub 에 정의된 함수를 사용할 때,&lt;/li&gt;
+&lt;li&gt;client stub은 RPC runtime을 통해 함수 호출하고&lt;/li&gt;
+&lt;li&gt;server는 수신된 procedure 호출에 대한 처리 후 결과 값을 반환합니다.&lt;/li&gt;
+&lt;li&gt;최종적으로 Client는 Server의 결과 값을 반환받고, 함수를 Local에 있는 것 처럼 사용할 수 있습니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;생각보다 통신과정이 복잡합니다. 많은 이점이 있지만 결국 구현이 어렵고, 지원 기능의 한계 등으로 제대로 활용되지 못했습니다. 그러다 Web을 활용해보려는 시도가 이어졌고 &lt;code class=&quot;language-text&quot;&gt;REST&lt;/code&gt;가 등장하게 됩니다&lt;/p&gt;
+&lt;h2&gt;3. REST의 등장&lt;/h2&gt;
+&lt;p&gt;REST(REpresentational State Transfer)는 HTTP/1.1을 기반으로 URI를 통해 모든 자원(Resource)을 명시하고 HTTP Method를 통해 처리하는 아키텍처입니다.
+HTTP Method와 payload의 합은 매우 명시적이고 쉽게 사용할 수 있다는 장점이 있어서 보편화된 방식입니다.
+하지만 REST에도 한계는 존재합니다.REST는 일종의 스타일이지 표준이 아니기 때문에 parameter와 응답 값이 명시적이지 않습니다. 또한 HTTP 메소드의 형태가 제한적이기 때문에 세부 기능 구현에는 제약이 있습니다.
+덧붙여 웹 데이터 전달 format으로 json을 많이 사용합니다. 간결한 &lt;code class=&quot;language-text&quot;&gt;key-value&lt;/code&gt; 구조를 기반으로 동작하고 사람이 읽기 좋은 string이기 때문입니다. 하지만 제공되는 자료형의 한계로 파싱 후 추가 형변환을 하는 작업이 필요한 경우가 많다는 점, string의 형태이기 때문에 데이터 통신/처리를 위한 serialize과정이 빠질 수 없다는 단점이 있습니다.&lt;/p&gt;
+&lt;h1&gt;gRPC&lt;/h1&gt;
+&lt;p&gt;gRPC는 google사에서 개발한 오픈소스 RPC(Remote Procedure Call) 프레임워크입니다. 이전까지는 RPC 기능은 지원하지 않고, 메세지(JSON 등)을 Serialize할 수 있는 프레임워크인 PB(Protocol Buffer)만을 제공해왔는데, PB기반 Serializer에 HTTP/2를 결합하여 PRC 프레임워크를 탄생시켰습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(HTTP/2와 PB에 대한 설명은 다른 포스트에서 설명하도록 하겠습니다)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;여기까지가 gRPC가 탄생하게된 배경과 gRPC에 대한 소개입니다.
+다음 포스트에서는 gRPC에 대해 더 자세히 이야기하도록 하겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;참고: &lt;a href=&quot;https://blog.naver.com/n_cloudplatform/221751268831&quot;&gt;https://blog.naver.com/n_cloudplatform/221751268831&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[DRF/#01 DRF란 무엇인가?]]></title><description><![CDATA[DRF에 대해서 간략하게 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/drf-01/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/drf-01/</guid><pubDate>Wed, 18 Mar 2020 13:04:35 GMT</pubDate><content:encoded>&lt;p&gt;DRF에 대해서 간략하게 알아봅시다.&lt;/p&gt;
 &lt;h3&gt;DRF?&lt;/h3&gt;
 &lt;p&gt;공식문서에서 설명하는 DRF입니다.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -31,126 +135,7 @@ serializers는 모델을 전달하고, 그 모델들을 json 객체로 변환하
 DRF에서 그것을 담당하는 클래스가 바로 &lt;code class=&quot;language-text&quot;&gt;Serializer&lt;/code&gt;입니다. DRF에서 제공하는 Serializer는
 queryset, model instance 등의 복잡한 데이터를 JSON, XML 등의 컨텐트 타입으로 쉽게 변환 가능한
 python datatype으로 변환시켜줍니다.&lt;br&gt;&lt;/p&gt;
-&lt;h4&gt;RESTful API와 Serializer가 DRF를 사용하는 가장 큰 장점이 아닐까 생각합니다.&lt;/h4&gt;</content:encoded></item><item><title><![CDATA[Trie 트라이]]></title><description><![CDATA[코딩 테스트 연습을 하면서 알게 된 Trie (트라이) 라는 자료 구조에 대헤 정리 한다.]]></description><link>https://bmh8993.github.io//cs/data-structure/trie</link><guid isPermaLink="false">https://bmh8993.github.io//cs/data-structure/trie</guid><pubDate>Thu, 14 Nov 2019 05:06:35 GMT</pubDate><content:encoded>&lt;h1&gt;Trie 구조 (문자열 검색)&lt;/h1&gt;
-&lt;p&gt;Tags: tree, trie, 문자열&lt;/p&gt;
-&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/372cbeefae10ffcbb5505abd588e1f3e/0da74/Untitled.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 100.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAADcklEQVQ4y4WUWWzVRRTGz/nfUiNuQdBgiLtGRUOUSAxqJZIW8QHBCCqRujwgwcQlRhLceGExxhATW2NiwCUpS4K097YFalupVVkUsVRNjCY0McamohUj2tTbe+fnnJl72z/F5WEyZ87M+eY75zszoi0OsdEKZus4W80uj/F76XXpjJhDUodlV8pOg40/N249euakm7J/oU3DSHMBbS5Gf27Ez8XgM1vMb/u5fJilzK40y2jQXu98cD266Gn0Y7+xp8TgAz/v9nOnH93etnPbjyPXVqGv9SDmN+A0w8DIB+pjb6C169A1zWj9l2jjEPrkZnTrL+gLTcgdy9G6I+iqrb5Wgi5ZjfrLJFXvCJj19D/yizlLkWtuQaZehtSuRd/5IQYueBzJTECum4PMfxRduib6b18WSiOnpFwGvO1+5OrZyKUzkBV16I4TyGkT0ZX1yFU3xTRfzKENP0X/hq5QqlDbk1K2Alt9qu4NQclF00lqHkGeb4pMnmlAzbYLbb1hL1JRGcE7iIRaY+oSDFN3v5/n1pLcUI0srw+ByZRp6AWXk3iGdolOuRC5+R6SzX3oFTORlz4MAmobUf3IsBhV3DZIcvZk5MaFLPkOFu78Gnm7H9nyc+y5LYPIK/tJTITtvyHzfC03HfViZQP70A2mdijq+wRVk+qHkde/oecP6P4dMv7myb4tzm93XNwFZ3bFxj/3vUHOW/wEUteLXDkLmX5rBMwVSin73DPWd9459xAMF4oMDBVY+22B/qEiB391tA4UyPb7gMY8PSPwbN1byF2ryJxxDnL6Weirh5B2e3qpTk+avVrZIgc8wI5+x32HHeCoPuC481PHnyOOh45APp9nxiXTkOdyvuY1yPU1ofFjymW5PeAEn47sdHQcc2z63rHgM8exYUdFqzW/4/DxAgV/RdtXfUhSSbLxIDL77iCU7otqy9jj94EG2OgCw20/OhZ/7sgXXaihNMLKXoODZW19oQsqXu4O7GTmPPSTfwBMjGnOMd+nV7XPC9HpeOALx8TdEXBFrwsMJ2V9wz/1LknDALquA13fibbH1kmlHNMOoFkDtgPRjr3qeNOXYeNRF/Yy9klYu7XHIS3lPkwxHFU8sHWxDFa/lrhfuav0GZuQ9txKH0v4XNIv5b9GGSxmMHZ52X/K+f8DHANzJYB/B7PxNx4y97TvvRJNAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;Trie/Untitled.png&quot;
-        title=&quot;&quot;
-        src=&quot;/static/372cbeefae10ffcbb5505abd588e1f3e/d9199/Untitled.png&quot;
-        srcset=&quot;/static/372cbeefae10ffcbb5505abd588e1f3e/8ff5a/Untitled.png 240w,
-/static/372cbeefae10ffcbb5505abd588e1f3e/e85cb/Untitled.png 480w,
-/static/372cbeefae10ffcbb5505abd588e1f3e/d9199/Untitled.png 960w,
-/static/372cbeefae10ffcbb5505abd588e1f3e/07a9c/Untitled.png 1440w,
-/static/372cbeefae10ffcbb5505abd588e1f3e/29114/Untitled.png 1920w,
-/static/372cbeefae10ffcbb5505abd588e1f3e/0da74/Untitled.png 2115w&quot;
-        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
-&lt;h2&gt;TMI&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/60060&quot;&gt;코딩테스트 연습 - 가사 검색 | 프로그래머스&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;오늘도 여김 없이 TMI부터 시작한다. 코딩 테스트 연습을 하면서 알게 된 Trie (트라이) 라는 자료 구조에 대헤 정리 한다. &lt;/p&gt;
-&lt;h2&gt;Trie-트라이&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;문자열을 효율적으로 탐색하기 위한 자료 구조로 n 진 Tree(트리)형태로 구성되어 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;트라이?? 발음은 Try 랑 같다. 잘 모르겠지만 일단 Try 해보자!!&lt;/p&gt;
-&lt;p&gt;우리가 여러 개의 문자열을 가지고 있을 때, 어떤 문자열이 그 문자열 중 하나인지 알아내는 방법은 뭐가 있을까?단순하게 일일이 비교해보면 된다. 하지만 컴퓨터는 이러한 방법이 매우 비효율적이다. 예를 들어, 최대 길이가&lt;/p&gt;
-&lt;p&gt;m인 문자열 &lt;em&gt;n&lt;/em&gt;개의 집합에서 마찬가지로 최대 길이가&lt;em&gt;m&lt;/em&gt;인 임의의 문자열이 그 문자열들의 집합에 포함되는지를 일일이 확인하면 사전처리는 필요 없지만, 최악의 경우O(nm)의 비교 횟수가 필요하다.&lt;/p&gt;
-&lt;p&gt;이 문자열을 정렬시킨 뒤, &lt;a href=&quot;https://namu.wiki/w/%EC%9D%B4%EC%A7%84%20%ED%83%90%EC%83%89&quot;&gt;이진 탐색&lt;/a&gt; 이라는 강력한 알고리즘을 사용하면O(m log n)로 단축시킬 수 있지만, 정렬 과정 자체에 O(n m log n)의 시간이 걸리므로 사양이 안 좋은 컴퓨터라면 이것도 비효율적이다. 하지만 위의 시간 복잡도를 압도하는 알고리즘이 존재한다. 프레드킨이 이름 붙인 “Trie”라는 자료구조가 지금부터 설명할 가장 효율적인 문자열 검색법이다.&lt;/p&gt;
-&lt;h2&gt;구현 코드&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;public class TrieNode {
-    private final Map&amp;lt;Character, TrieNode&amp;gt; children = new HashMap&amp;lt;&amp;gt;();
-    private boolean endOfWord;
-    private int count;
-
-    Map&amp;lt;Character, TrieNode&amp;gt; getChildren() {
-        return children;
-    }
-
-    boolean isEndOfWord() {
-        return endOfWord;
-    }
-
-    void setEndOfWord(boolean endOfWord) {
-        this.endOfWord = endOfWord;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    void increaseCount() {
-        this.count++;
-    }
-}
-
-public class Trie {
-    private TrieNode root;
-
-    public Trie() {
-        root = new TrieNode();
-    }
-
-    public void insert(String word)1
-        TrieNode current = root;
-
-        current.increaseCount();
-        current = current.getChildren()
-                .computeIfAbsent((char) (word.length() + &amp;#39;0&amp;#39;), c -&amp;gt; new TrieNode());
-
-        for (char trieWord : word.toCharArray()) {
-            current.increaseCount();
-            current = current.getChildren()
-                    .computeIfAbsent(trieWord, c -&amp;gt; new TrieNode());
-        }
-
-        current.setEndOfWord(true);
-    }
-
-    public int countOfSearched(String word, int index) {
-        TrieNode current = root;
-
-        TrieNode wordLengthNode = current.getChildren().get((char) (word.length() + &amp;#39;0&amp;#39;));
-        if (wordLengthNode == null) {
-            return 0;
-        }
-        current = wordLengthNode;
-
-        for (int i = 0; i &amp;lt; index; i++) {
-            char ch = word.charAt(i);
-            TrieNode node = current.getChildren().get(ch);
-            if (node == null) {
-                return 0;
-            }
-            current = node;
-        }
-        return current.getCount();
-    }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;update 예정…&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[Django/장고는 무엇이고 어떻게 일하는가?]]></title><description><![CDATA[Django는 무엇이고 어떻게 동작하는지 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</guid><pubDate>Sun, 18 Aug 2019 02:02:15 GMT</pubDate><content:encoded>&lt;p&gt;Django는 무엇이고 어떻게 동작하는지 알아봅시다.&lt;/p&gt;
+&lt;h4&gt;RESTful API와 Serializer가 DRF를 사용하는 가장 큰 장점이 아닐까 생각합니다.&lt;/h4&gt;</content:encoded></item><item><title><![CDATA[Django/장고는 무엇이고 어떻게 일하는가?]]></title><description><![CDATA[Django는 무엇이고 어떻게 동작하는지 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</guid><pubDate>Sun, 18 Aug 2019 02:02:15 GMT</pubDate><content:encoded>&lt;p&gt;Django는 무엇이고 어떻게 동작하는지 알아봅시다.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
