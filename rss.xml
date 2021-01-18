@@ -1,69 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 18 Jan 2021 23:32:00 GMT</lastBuildDate><item><title><![CDATA[Django / ORM cheat sheet]]></title><description><![CDATA[Django orm cheat sheet]]></description><link>https://bmh8993.github.io//python/django/orm-cheat-sheet/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/orm-cheat-sheet/</guid><pubDate>Sat, 01 Jan 2777 10:12:08 GMT</pubDate><content:encoded>&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;#get_fields_list_of_model&quot;&gt;Get fields list of model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#update_use_django_model&quot;&gt;Update-use Django Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#orm_filter_get_tips&quot;&gt;ORM filter/get tips!&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;Get fields list of model&lt;a id=&quot;get_fields_list_of_model&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;모델의 필드 리스트를 얻는 방법&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;modelname&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_meta&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get_fields&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;example&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;Product&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_meta&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get_fields&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fields&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;AutoField&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
- &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fields&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IntegerField&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; status&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
- &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fields&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; product_name&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;advanced&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;fields_list &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-fields &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Product&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_meta&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get_fields&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; field &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; fields&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  fields_list&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;append&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;field&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
- &lt;span class=&quot;token string&quot;&gt;&apos;status&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
- &lt;span class=&quot;token string&quot;&gt;&apos;product_name&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;Update use Django model&lt;a id=&quot;update_use_django_model&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;h2&gt;ORM filter, get tips!&lt;a id=&quot;orm_filter_get_tips&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;filter&lt;/code&gt; 또는 &lt;code class=&quot;language-text&quot;&gt;get&lt;/code&gt;을 할 때에 팁!&lt;/li&gt;
-&lt;li&gt;꼭 인스턴스로만 접근 가능한 것이 아니라 인스턴스의 &lt;code class=&quot;language-text&quot;&gt;id&lt;/code&gt;값으로도 접근 가능하다.&lt;/li&gt;
-&lt;li&gt;단, 생성시에는 filter, get과 달리 &lt;code class=&quot;language-text&quot;&gt;인스턴스=인스턴스&lt;/code&gt;의 식으로 사용해야한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# models.py&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;House&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; primary_key&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ForeignKey&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;HouseType&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;HouseType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  type_name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;apt &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; HouseType&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
-    type_name&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;apt&quot;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-
-apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
-
-House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;create&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
-    name&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;mh_house&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    type_id&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# QuerySet&lt;/span&gt;
-mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type_id&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# QuerySet&lt;/span&gt;
-mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# QuerySet&lt;/span&gt;
-
-mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Instance&lt;/span&gt;
-mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type_id&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Instance&lt;/span&gt;
-mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Instance&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;DB에 컬럼 생성시 자동으로 &lt;code class=&quot;language-text&quot;&gt;_id&lt;/code&gt;가 붙는데 이것을 사용한 것.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Algorithm/버블 정렬(bubble sort with python)]]></title><description><![CDATA[버블정렬에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//etc/algorithm/bubble-sort</link><guid isPermaLink="false">https://bmh8993.github.io//etc/algorithm/bubble-sort</guid><pubDate>Sat, 16 Jan 2021 23:28:35 GMT</pubDate><content:encoded>&lt;p&gt;버블정렬에 대해서 알아봅시다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 18 Jan 2021 23:39:28 GMT</lastBuildDate><item><title><![CDATA[Algorithm/버블 정렬(bubble sort with python)]]></title><description><![CDATA[버블정렬에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//etc/algorithm/bubble-sort</link><guid isPermaLink="false">https://bmh8993.github.io//etc/algorithm/bubble-sort</guid><pubDate>Sat, 16 Jan 2021 23:28:35 GMT</pubDate><content:encoded>&lt;p&gt;버블정렬에 대해서 알아봅시다.&lt;/p&gt;
 &lt;h1&gt;버블정렬의 핵심 IDEA&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;전체 elements의 개수가 n 이라면, 두 개씩 비교하게 되므로 loop의 범위를 n-1로 합니다.&lt;/li&gt;
@@ -2709,7 +2644,221 @@ DB에 저장시 컬럼의 값이 NULL(데이터 없음)이 저장됩니다.&lt;/
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
     name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
     introduce &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;TextField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# 여기서 null=True는 넣으면 안된다.&lt;/span&gt;
-    birth_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# 둘 다 넣어도 괜찮다.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Django/장고는 무엇이고 어떻게 일하는가?]]></title><description><![CDATA[Django는 무엇이고 어떻게 동작하는지 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</guid><pubDate>Sun, 18 Aug 2019 02:02:15 GMT</pubDate><content:encoded>&lt;p&gt;Django는 무엇이고 어떻게 동작하는지 알아봅시다.&lt;/p&gt;
+    birth_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# 둘 다 넣어도 괜찮다.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[127.0.0.1 VS localhost 어떤 차이가 있을까?]]></title><description><![CDATA[127.0.0.1과 localhost의 차이에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/network/diff-127001-localhost/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/network/diff-127001-localhost/</guid><pubDate>Fri, 06 Dec 2019 23:12:21 GMT</pubDate><content:encoded>&lt;p&gt;사건은 이러하다.&lt;br&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;잘 되던 블로그에 댓글 기능을 추가하려고 플러그인을 설치했다.&lt;/li&gt;
+&lt;li&gt;생각보다 진행이 잘 안되서 플러그인 삭제&lt;/li&gt;
+&lt;li&gt;블로그가 실행이 안됨&lt;/li&gt;
+&lt;li&gt;node랑 react는 내가 아는 영역이 아니라 그냥 다시 설치하자는 마음으로 노드를 완벽삭제&lt;/li&gt;
+&lt;li&gt;재설치 후 &lt;code class=&quot;language-text&quot;&gt;yarn develop&lt;/code&gt;을 하면 &lt;code class=&quot;language-text&quot;&gt;localhost:8000&lt;/code&gt;으로 로컬서버를 띄우게 되는데 계속 refresh&lt;/li&gt;
+&lt;li&gt;역시 갓구글 검색. 검색어: &lt;code class=&quot;language-text&quot;&gt;run yarn develop in gatsby and constant refresh page&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;나와 동일한 &lt;a href=&quot;https://github.com/gatsbyjs/gatsby/issues/18226&quot;&gt;이슈&lt;/a&gt;를 만난 사람이 있었음.&lt;/li&gt;
+&lt;li&gt;그 중 어느 한 사람이 자신도 동일한 이슈를 겪었으며, 가상 윈도우에서 동일한 페이지를 열면 문제가 없다고 이야기함.&lt;/li&gt;
+&lt;li&gt;그래서 어떤 사람이 방법을 제시함&lt;/li&gt;
+&lt;li&gt;To use &lt;code class=&quot;language-text&quot;&gt;http://127.0.0.1:8000&lt;/code&gt; instead of &lt;code class=&quot;language-text&quot;&gt;http://localhost:8000&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;What is the difference between 127.0.0.1 and localhost?&lt;/h2&gt;
+&lt;h3&gt;1. Basic knowledge&lt;/h3&gt;
+&lt;p&gt;Even when every network device is disconnected, your computer can still
+communicate over a kind of network. Known as a “loopback,” a Unix machine
+can send and receive network communications from itself and to itself over a
+virtual network device. Your computer can send messages from itself to itself,
+permitting network-style communications without the need for a functioning network.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;모든 통신 장비가 분리되어도 컴퓨터는 여전히 네트워크를 통해서 통신할 수 있다.
+&lt;code class=&quot;language-text&quot;&gt;loopback&lt;/code&gt;이라고 불리는 유닉스 기계는 가상 네트워크 장비를 통해서 자신이 자신에게
+네트워크통신을 주고 받을 수 있다. 컴퓨터는 기능을 수행하는 네트워크 없이 &lt;code class=&quot;language-text&quot;&gt;network-
+style&lt;/code&gt; 통신을 허락한다면 메세지를 자기자신에게 보낼 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;2. What is 127.0.0.1?&lt;/h3&gt;
+&lt;p&gt;127.0.0.1 is the most commonly-used loopback IP address. It’s part of the
+reserved block of more than sixteen million IP addresses that are used
+specifically for loopback functionality. A loopback allows your computer to
+communicate with itself while using networking connection protocols.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;127.0.0.1은 일반적으로 사용되는 루프백 IP 주소이다. 그것은 루프백 기능에 특별히
+사용되는 1600만개의 IP 주소를 대신하는 블록의 일부분이다. 루프백은 컴퓨터가 네트워크
+통신 프로토콜을 사용하는 동안 자신과 통신할 수 있게 해준다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d64b860472abf16ff304902dd11a778e/41099/difference-localhost-127-0-0-1-ipconfig-lo.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 500px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 19.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAEDBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdiAvB//xAAXEAEAAwAAAAAAAAAAAAAAAAABEBEy/9oACAEBAAEFAnVsf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEABj8Cf//EABkQAQADAQEAAAAAAAAAAAAAAAEAESExYf/aAAgBAQABPyFogzIXdZXrP//aAAwDAQACAAMAAAAQg8//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAbEAEAAgIDAAAAAAAAAAAAAAABABEhMUFRgf/aAAgBAQABPxBkEZUQCMQnPcKmz2f/2Q==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;difference localhost 127 0 0 1 ipconfig lo&quot;
+        title=&quot;&quot;
+        src=&quot;/static/d64b860472abf16ff304902dd11a778e/41099/difference-localhost-127-0-0-1-ipconfig-lo.jpg&quot;
+        srcset=&quot;/static/d64b860472abf16ff304902dd11a778e/09b79/difference-localhost-127-0-0-1-ipconfig-lo.jpg 240w,
+/static/d64b860472abf16ff304902dd11a778e/7cc5e/difference-localhost-127-0-0-1-ipconfig-lo.jpg 480w,
+/static/d64b860472abf16ff304902dd11a778e/41099/difference-localhost-127-0-0-1-ipconfig-lo.jpg 500w&quot;
+        sizes=&quot;(max-width: 500px) 100vw, 500px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;In broad abstraction, a loopback is a virtual networking device that creates
+a network connection with only one endpoint, meaning that it begins and ends
+at the same device:your computer. In fact, the loopback device even shows up
+in ipconfig with the name lo, as seen above. The loopback addresses are
+primarily used for troubleshooting (it’s similar to looking in a mirror) or
+to access local resources over a network interface.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;넓은 추상화에서 루프백은 하나의 엔드포인트로만 네트워크 연결을 만드는 가상 네트워크
+장치로, 당신의 컴퓨터처럼 하나의 장비 안에서 시작하고 종료된다는 것을 의미한다.
+실제로 루프백 장치는 위에서 보여지는 것처럼 &lt;code class=&quot;language-text&quot;&gt;lo&lt;/code&gt;라는 이름을 가진 &lt;code class=&quot;language-text&quot;&gt;ipconfig&lt;/code&gt;안에서 나타나기도
+한다. 루프백 주소는 주로 문제해결(거을 안을 보는 것처럼)을 위해 사용되거나 로컬 리소스를
+네트워크에 띄워서 확인하는 데 사용된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;3. What is localhost?&lt;/h3&gt;
+&lt;p&gt;“localhost” describes a communication port that connects to the originating
+server. It allows a network connection to “loop back” on itself, permitting you
+to emulate network connections when no such network is present or available.
+In practice, localhost is treated as synonymous with 127.0.0.1 for usage and
+discussion. However, it’s important to remember that they are not strictly
+identical.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;localhost&lt;/code&gt;는 원래서버와 통신하는 통신 포트로 설명됩니다. 로컬호스트는 네트워크
+연결이 스스로 “loop back”을 할 수 있도록 하고, 네트워크가 없거나 사용 가능할 때 네트워크
+통신이 동작하는 것처럼 해줍니다. 실제로 &lt;code class=&quot;language-text&quot;&gt;localhost&lt;/code&gt;는 이야기 하거나 사용할 때에
+&lt;code class=&quot;language-text&quot;&gt;127.0.0.1&lt;/code&gt;과 동의어로 사용합니다. 그러나 그 둘은 엄격히 다르다는 것을
+기억해야 합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Before making a DNS request to translate the text string typed by the user into
+a navigable IP address, the operating system checks the HOSTS file for any
+aliases or redirect rules. On a system configured to standard defaults,
+“localhost” in a URI will resolve to 127.0.0.1 under IPv4 or ::1 for IPv6. There are
+far more loopback addresses than just those two, however. The block of IP
+addresses reserved for loopback addresses stretches from 127.0.0.0 to
+127.255.255.255.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;사용자가 입력한 문자열을 탐색가능한 IP주소로 변경하는 DNS 요청을 하기 전에는,
+운영체제가 HOSTS 파일에서 any aliases or redirect rules를 검사했다. 기본값으로 설계된
+시스템에서는 URL의 “localhost”는 IP4에서는 127.0.0.1로, IP6에서는 ::1로 해결된다.
+하지만 이 두개의 루프백 주소보다 더 많은 루프백 주소가 존재한다. 루브백을 위해 준비된 IP
+주소의 일부는 127.0.0.1부터 127.255.255.255로 확장된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In most all cases localhost will resolve to 127.0.0.1, thanks to a redirect rule in
+the HOSTS file, as mentioned above. But in some cases, localhost may be
+mapped to a different IP address. So, localhost could be pointed to any IP
+address in that block, and it would function identically.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;대부분의 경우에 로컬호스는 위에서 이야기한대로 HOSTS 파일의 redirect rules 덕분에
+127.0.0.1로 해결된다. 그러나 경우에 따라서는, localhost는 다른 IP주소와 매칭될 수
+있다. 그래서 localhost는 어떤 IP주소를 가리키기도 하고, 동일하게 동작할 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;4. Conclusion: What’s the Difference Between localhost and 127.0.0.1?&lt;/h3&gt;
+&lt;p&gt;On most machines localhost and 127.0.0.1 are functionally identical. But
+localhost is a label for the IP address and not the address itself. Localhost
+could be pointed at different IP addresses. In fact, it could be pointed at any IP
+address, even one outside the reserved address block. The HOSTS file doesn’t
+care and won’t stop you. However, it will break significant functionality on
+your system and crash any app that relies on a localhost connection.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;대부분의 시스템에서 localhost와 127.0.0.1은 기능적으로 동일하다. 그러나 localhost는
+IP 주소의 일부를 나타내는 정도이지 주소자체는 아니다. localhost는 다른 주소를 가리킬
+수 있다. 실제로, 그것은 준비된 주소 블록 밖에 있는 다른 주소를 가리킬 수 있다. HOSTS
+파일은 이런 현상들을 확인해주거나 멈추어주지 않는다. 그러나 잘못된 연결은 시스템의 중요한
+기능을 손상시키고 localhost 연결에 의존성이 있는 다른 모든 앱과 충돌이 발생할 것이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The 127 block of addresses was chosen for the loopback address block
+because it was the last block of Class A addresses, which run from the binary
+address value 00000001 to 01111111. In IPv6, the loopback address is the first
+address, 0:0:0:0:0:0:0:1, most frequently expressed in its truncated form as ::1.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;주소들이 뭉쳐진 127 블록은 2진수 주소 값 00000001에서 01111111까지 실행되는
+Class A 주소들이 뭉쳐진 마지막 블록이기때문에 loopback 주소 블록으로 선택되었다.
+IPv6에서 루프백 주소는 첫번째 주소인 0:0:0:0:0:0:0:1인데, 주로 ::1로 줄여서 표현된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;정리하자면 루프백은 자기자신과 통신할 수 있는 유닉스 장치입니다. 127.0.0.1은 그러한
+루프백의 IP주소입니다. 로컬호스트는 컴퓨터 스스로가 루프백을 할 수 있도록 도와줍니다.
+두 개는기능적으로는 동일하지만 localhost에서 DNS를 통한 request가 다른 블록을 가리게 되는 경우가 생깁니다.
+&lt;br&gt;
+제게 발생한 문제도 동일한 경우가 아닐까 싶습니다. 지금 해보니 또
+localhost:8000으로 문제 없이 동작하네요.&lt;/p&gt;
+&lt;p&gt;ref: &lt;a href=&quot;https://github.com/gatsbyjs/gatsby/issues/18226&quot;&gt;https://github.com/gatsbyjs/gatsby/issues/18226&lt;/a&gt;&lt;br&gt;
+ref: &lt;a href=&quot;https://www.maketecheasier.com/localhost-and-127-0-0-1/&quot;&gt;https://www.maketecheasier.com/localhost-and-127-0-0-1/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django / ORM cheat sheet]]></title><description><![CDATA[Django orm cheat sheet]]></description><link>https://bmh8993.github.io//python/django/orm-cheat-sheet/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/orm-cheat-sheet/</guid><pubDate>Fri, 01 Nov 2019 10:12:08 GMT</pubDate><content:encoded>&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#get_fields_list_of_model&quot;&gt;Get fields list of model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#update_use_django_model&quot;&gt;Update-use Django Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#orm_filter_get_tips&quot;&gt;ORM filter/get tips!&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Get fields list of model&lt;a id=&quot;get_fields_list_of_model&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;모델의 필드 리스트를 얻는 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;modelname&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_meta&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get_fields&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;example&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;Product&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_meta&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get_fields&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fields&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;AutoField&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fields&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IntegerField&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; status&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fields&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; product_name&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;advanced&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;fields_list &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+fields &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Product&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_meta&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get_fields&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; field &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; fields&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  fields_list&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;append&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;field&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+ &lt;span class=&quot;token string&quot;&gt;&apos;status&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+ &lt;span class=&quot;token string&quot;&gt;&apos;product_name&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Update use Django model&lt;a id=&quot;update_use_django_model&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;ORM filter, get tips!&lt;a id=&quot;orm_filter_get_tips&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;filter&lt;/code&gt; 또는 &lt;code class=&quot;language-text&quot;&gt;get&lt;/code&gt;을 할 때에 팁!&lt;/li&gt;
+&lt;li&gt;꼭 인스턴스로만 접근 가능한 것이 아니라 인스턴스의 &lt;code class=&quot;language-text&quot;&gt;id&lt;/code&gt;값으로도 접근 가능하다.&lt;/li&gt;
+&lt;li&gt;단, 생성시에는 filter, get과 달리 &lt;code class=&quot;language-text&quot;&gt;인스턴스=인스턴스&lt;/code&gt;의 식으로 사용해야한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# models.py&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;House&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; primary_key&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ForeignKey&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;HouseType&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;HouseType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  type_name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;apt &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; HouseType&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    type_name&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;apt&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+
+House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;create&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    name&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;mh_house&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    type_id&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# QuerySet&lt;/span&gt;
+mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type_id&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# QuerySet&lt;/span&gt;
+mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# QuerySet&lt;/span&gt;
+
+mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Instance&lt;/span&gt;
+mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type_id&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Instance&lt;/span&gt;
+mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Instance&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;DB에 컬럼 생성시 자동으로 &lt;code class=&quot;language-text&quot;&gt;_id&lt;/code&gt;가 붙는데 이것을 사용한 것.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Django/장고는 무엇이고 어떻게 일하는가?]]></title><description><![CDATA[Django는 무엇이고 어떻게 동작하는지 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</guid><pubDate>Sun, 18 Aug 2019 02:02:15 GMT</pubDate><content:encoded>&lt;p&gt;Django는 무엇이고 어떻게 동작하는지 알아봅시다.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
