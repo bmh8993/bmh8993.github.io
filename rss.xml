@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 18 Jan 2021 16:36:23 GMT</lastBuildDate><item><title><![CDATA[Algorithm/버블 정렬(bubble sort with python)]]></title><description><![CDATA[버블정렬에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//etc/algorithm/bubble-sort</link><guid isPermaLink="false">https://bmh8993.github.io//etc/algorithm/bubble-sort</guid><pubDate>Sat, 16 Jan 2021 23:28:35 GMT</pubDate><content:encoded>&lt;p&gt;버블정렬에 대해서 알아봅시다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 18 Jan 2021 17:11:15 GMT</lastBuildDate><item><title><![CDATA[Algorithm/버블 정렬(bubble sort with python)]]></title><description><![CDATA[버블정렬에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//etc/algorithm/bubble-sort</link><guid isPermaLink="false">https://bmh8993.github.io//etc/algorithm/bubble-sort</guid><pubDate>Sat, 16 Jan 2021 23:28:35 GMT</pubDate><content:encoded>&lt;p&gt;버블정렬에 대해서 알아봅시다.&lt;/p&gt;
 &lt;h1&gt;버블정렬의 핵심 IDEA&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;전체 elements의 개수가 n 이라면, 두 개씩 비교하게 되므로 loop의 범위를 n-1로 합니다.&lt;/li&gt;
@@ -676,7 +676,171 @@ serializer에 validate를 오버라이드 하면 됩니다.&lt;/li&gt;
         &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ValidationError&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;The title has to be at least 30 chars long!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; value&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[DRF/#01 DRF란 무엇인가?]]></title><description><![CDATA[DRF에 대해서 간략하게 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/drf-01/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/drf-01/</guid><pubDate>Wed, 18 Mar 2020 13:04:35 GMT</pubDate><content:encoded>&lt;p&gt;DRF에 대해서 간략하게 알아봅시다.&lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Django/DRF#02 Serializer]]></title><description><![CDATA[DRF의 serializer에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/drf-02-serializer/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/drf-02-serializer/</guid><pubDate>Sat, 04 Apr 2020 15:05:22 GMT</pubDate><content:encoded>&lt;p&gt;DRF의 serializer에 대해서 알아봅시다.&lt;/p&gt;
+&lt;p&gt;DRF의 Serializer는 queryset이나 모델의 instance와 같은 복잡한 데이터를 json처럼 쉽게 사용 가능한 python data type으로 변환 시켜줍니다. 또한 validation도 검증해줍니다.&lt;br&gt;
+&lt;br&gt;
+Serializer의 의미에 대해서는 아래 포스트를 읽어보길 바랍니다.&lt;br&gt;
+&lt;a href=&quot;https://bmh8993.github.io/cs/network/serialization/&quot;&gt;직렬화(serialisation)는 무엇인가&lt;/a&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h2&gt;1. Article object and serializer&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# news.models.py&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; models
+
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    author &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    title &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;120&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    description &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    body &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;TextField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    location &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;120&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    publication_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    active &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BooleanField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;default&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    created_at &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateTimeField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;auto_now_add&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    updated_at &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateTimeField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;auto_now&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# news.serializers.py&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; rest_framework &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; serializers
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;models &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Article
+
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ArticleSerializer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Serializer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IntegerField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;read_only&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    author &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    title &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    description &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    body &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    location &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    publication_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    active &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BooleanField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    created_at &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateTimeField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;read_only&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    updated_at &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateTimeField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;read_only&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;2. Serializing objects&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;위에서 만든 ArticleSerializer로 article을 serialize 할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;모델 인스턴스를 파이썬 내부 데이터 타입으로 출력한 결과&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;미리 인스턴스를 만들고 진행했습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; article_instance &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Article.objects.first&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; serializer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ArticleSerializer&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;article_instance&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; serializer
+ArticleSerializer&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Article: admin test_title&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
+&lt;span class=&quot;token function&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.IntegerField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;read_only&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;True&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+author &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+title &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+description &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+body &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+location &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+publication_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.DateField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+active &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.BooleanField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+created_at &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.DateTimeField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;read_only&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;True&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+updated_at &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; serializers.DateTimeField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;read_only&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;True&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; serializer.data
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&apos;author&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;admin&apos;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&apos;title&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test_title&apos;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&apos;description&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test_description&apos;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&apos;body&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test_body&apos;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&apos;location&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test_location&apos;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&apos;publication_date&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2020-04-02&apos;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&apos;active&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; True, &lt;span class=&quot;token string&quot;&gt;&apos;created_at&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2020-04-02T10:57:03.725817Z&apos;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&apos;updated_at&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2020-04-02T10:57:03.725844Z&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; type&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;serializer.data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+rest_framework.utils.serializer_helpers.ReturnDict&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;python datatype에서 JSON으로 출력하기 위해서 아래와 같이 렌더링을 거쳐야합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; from rest_framework.renderers &lt;span class=&quot;token function&quot;&gt;import&lt;/span&gt; JSONRenderer
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; json &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; JSONRenderer&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.render&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;serializer.data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; json
+b&lt;span class=&quot;token string&quot;&gt;&apos;{&quot;id&quot;:1,&quot;author&quot;:&quot;admin&quot;,&quot;title&quot;:&quot;test_title&quot;,&quot;description&quot;:&quot;test_description&quot;,&quot;body&quot;:&quot;test_body&quot;,&quot;location&quot;:&quot;test_location&quot;,&quot;publication_date&quot;:&quot;2020-04-02&quot;,&quot;active&quot;:true,&quot;created_at&quot;:&quot;2020-04-02T10:57:03.725817Z&quot;,&quot;updated_at&quot;:&quot;2020-04-02T10:57:03.725844Z&quot;}&apos;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; type&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;json&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+bytes&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. Deserializing objects&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;첫째로 파이썬 native datatype으로 변환합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;import&lt;/span&gt; io
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; from rest_framework.parsers &lt;span class=&quot;token function&quot;&gt;import&lt;/span&gt; JSONParser
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; stream &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; io.BytesIO&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;json&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; JSONParser&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.parse&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;stream&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; data
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&apos;author&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;admin&apos;&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&apos;title&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test_title&apos;&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&apos;description&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test_description&apos;&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&apos;body&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test_body&apos;&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&apos;location&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test_location&apos;&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&apos;publication_date&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2020-04-02&apos;&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&apos;active&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; True,
+&lt;span class=&quot;token string&quot;&gt;&apos;created_at&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2020-04-02T10:57:03.725817Z&apos;&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&apos;updated_at&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2020-04-02T10:57:03.725844Z&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;deserializing한 데이터를 사용하기 전에 항상 &lt;code class=&quot;language-text&quot;&gt;is_vaild()&lt;/code&gt;함수를 호출해야합니다.&lt;/li&gt;
+&lt;li&gt;DRF 코드를 보면 &lt;code class=&quot;language-text&quot;&gt;.is_vaild()&lt;/code&gt; before attempting, first, before accessing 등…기록되어져 있습니다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;특히, DRF 코드를 보면 &lt;code class=&quot;language-text&quot;&gt;save()&lt;/code&gt;하기 이전에 &lt;code class=&quot;language-text&quot;&gt;is_vaild()&lt;/code&gt;를 해야한다고 써있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BaseSerializer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Field&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;**&lt;/span&gt;kwargs&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;hasattr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;_errors&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;You must call `.is_valid()` before calling `.save()`.&apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;serializer에 instance를 전달하면 &lt;code class=&quot;language-text&quot;&gt;update&lt;/code&gt;를 실행하고, instance를 전달하지 않으면 &lt;code class=&quot;language-text&quot;&gt;create&lt;/code&gt;를 합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# .save() will create a new instance&lt;/span&gt;
+serializer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ArticleSerializer&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+serializer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# .save() will update the existing `article` instance&lt;/span&gt;
+serializer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ArticleSerializer&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;article_instance&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; data&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+serializer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;ref: &lt;a href=&quot;https://dean-kim.github.io/rest_framework/2017/05/08/Django-REST-Framework-Serializers.html&quot;&gt;Dean’s blog&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[직렬화(serialisation)는 무엇인가]]></title><description><![CDATA[데이터 직렬화에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/network/serialization/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/network/serialization/</guid><pubDate>Sun, 29 Mar 2020 15:03:14 GMT</pubDate><content:encoded>&lt;h3&gt;데이터 직렬화&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4c9e68f6980500e06dc4e446aeb210fe/b5cea/serialization.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 55.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAACPklEQVQoz31SS2sUQRDe3ydCFEEFD/orgmdvigjmqF4kFw0exEtEEHygEkNCTNTsJiHZzOzsa2Yf8+ju6Vd9Vk8WiYIW1HR1z1dffdXVLWttZqxT3XguJpmQ/UEpeknBnsvTfi5Gk0ocR1MZcxwPC3HSm8ujaCaScSmSUSl5L4ZpVTnnvLXmW8t7L8DWLyViIdGTCt1CIC4F8kqjlBaVB4RFs89LjUIYlOyVNJgVNaSygQLMddDyzpeOCMvVIV04+UBX9t/S5fgzXZ3tUARNcJb0lzdE8SFxzsLpXNy4D4Ssst3iTxV+p1ZTYhUG7H2nMfIGmkFymGB6+wbUozuojQlJjZqGiRO955qePJ0RdgJhCfzGLCJuQZXQtQptQGRTyGwCzwS1kjBizpoMzlmj0AaFXKbcGtd43p7Qz9zDMniwtozkyU247BhZrrG6/gOvPh5BsTjR3UK0cgmT9bsgVrs5FCHX7+eB0wdCX22nNV50prRfsEhVoPdsGfHjW8A8wjAr8HDlKVZXX4LnAB3toPNgCZPX91i9xdeRwFpn6tuBkP7Vcrg/UcBo3bT5PZniJC0aiFGKi1Z/wP8eShGSwsXyemaMDvXIGToc57R5PKCtKKVxoahymnatoF1d0F6d0zZ710gX+BtCvnSF/5hwhL1RgXZWNftdX2Gpv4FrB+9xvf0OF08/4b44xWIoRy2lVM8YM9Fap3Vdz8K6iOdhdcakojZzY21qjR7rcM5n/ITGSutZbXRqtBkxVjDXxi+fiTrvujn22QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;serialization&quot;
+        title=&quot;&quot;
+        src=&quot;/static/4c9e68f6980500e06dc4e446aeb210fe/d9199/serialization.png&quot;
+        srcset=&quot;/static/4c9e68f6980500e06dc4e446aeb210fe/8ff5a/serialization.png 240w,
+/static/4c9e68f6980500e06dc4e446aeb210fe/e85cb/serialization.png 480w,
+/static/4c9e68f6980500e06dc4e446aeb210fe/d9199/serialization.png 960w,
+/static/4c9e68f6980500e06dc4e446aeb210fe/b5cea/serialization.png 1140w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;위키에서 설명하는 직렬화는 아래와 같습니다.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;직렬화 또는 시리얼라이제이션(serialization)은 컴퓨터 과학의 데이터 스토리지 문맥에서 데이터 구조나 오브젝트 상태를 동일하거나 다른 컴퓨터 환경에 저장(이를테면 파일이나 메모리 버퍼에서, 또는 네트워크 연결 링크 간 전송)하고 나중에 재구성할 수 있는 포맷으로 변환하는 과정이다.&lt;br&gt;
+반대로, 일련의 바이트로부터 데이터 구조를 추출하는 일은 역직렬화 또는 디시리얼라이제이션(deserialization)이라고 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;PC-&lt;strong&gt;A&lt;/strong&gt;에서 구조체 데이터를 인터넷 너머에 있는 PC-&lt;strong&gt;B&lt;/strong&gt;로 보낸다고 가정해봅시다. 네트워크 데이터는 연속된 바이트의 흐름일 뿐입니다. 따라서 구조체를 바이트 배열로 만들어야하는데, 이를 직렬화라고 합니다. 직선으로 쭉 나열한다 라는 의미로 보면 됩니다. 직렬화된 데이터를 받는 측에서는 사용하기 위해서 다시 구조체를 만들어야합니다. 이를 역직렬화라고 합니다.&lt;br&gt;
+&lt;br&gt;
+데이터를 직렬화 하고 역직렬화 하려면, 데이터 포맷을 알고 있어야 합니다. JSON, XML, YAML과 같은 문서 포맷이 주로 직렬화의 대상이 됩니다.&lt;br&gt;
+&lt;br&gt;
+IP, TCP, UDP는 네트워크를 가로지르는 메세지들의 데이터 타입이나, 의미를 찾을 수가 없습니다. 그저 단순한 바이트의 흐름으로 볼 뿐입니다. 따라서 응용 프로그램들은 바이트 흐름을 판독에 적합한 데이터로 &lt;code class=&quot;language-text&quot;&gt;직렬화&lt;/code&gt;하고, 반대로 바이트의 흐름으로 만들어주는 &lt;code class=&quot;language-text&quot;&gt;비직렬화&lt;/code&gt; 작업을 수행해야합니다.&lt;br&gt;
+&lt;br&gt;
+직렬화 되는 방법과 비직렬화 되는 방법이 &lt;code class=&quot;language-text&quot;&gt;동일&lt;/code&gt;해야 다른 환경과 데이터를 주고 받을 수 있습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[DRF/#01 DRF란 무엇인가?]]></title><description><![CDATA[DRF에 대해서 간략하게 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/drf-01/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/drf-01/</guid><pubDate>Wed, 18 Mar 2020 13:04:35 GMT</pubDate><content:encoded>&lt;p&gt;DRF에 대해서 간략하게 알아봅시다.&lt;/p&gt;
 &lt;h3&gt;DRF?&lt;/h3&gt;
 &lt;p&gt;공식문서에서 설명하는 DRF입니다.&lt;/p&gt;
 &lt;blockquote&gt;
