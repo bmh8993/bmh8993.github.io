@@ -40,6 +40,10 @@ module.exports = {
             label: 'network',
             path: '/network/',
           },
+          {
+            label: 'DB&SQL',
+            path: '/db-sql/',
+          },
         ],
       },
       {
