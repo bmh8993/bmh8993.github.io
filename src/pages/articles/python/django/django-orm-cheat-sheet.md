@@ -1,6 +1,6 @@
 ---
 title: Django / ORM cheat sheet
-date: 2777-01-01 10:12:08
+date: 2019-11-01 10:12:08
 layout: post
 draft: false
 path: "/python/django/orm-cheat-sheet/"
