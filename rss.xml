@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 18 Jan 2021 16:12:30 GMT</lastBuildDate><item><title><![CDATA[Algorithm/버블 정렬(bubble sort with python)]]></title><description><![CDATA[버블정렬에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//etc/algorithm/bubble-sort</link><guid isPermaLink="false">https://bmh8993.github.io//etc/algorithm/bubble-sort</guid><pubDate>Sat, 16 Jan 2021 23:28:35 GMT</pubDate><content:encoded>&lt;p&gt;버블정렬에 대해서 알아봅시다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 18 Jan 2021 16:31:14 GMT</lastBuildDate><item><title><![CDATA[Algorithm/버블 정렬(bubble sort with python)]]></title><description><![CDATA[버블정렬에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//etc/algorithm/bubble-sort</link><guid isPermaLink="false">https://bmh8993.github.io//etc/algorithm/bubble-sort</guid><pubDate>Sat, 16 Jan 2021 23:28:35 GMT</pubDate><content:encoded>&lt;p&gt;버블정렬에 대해서 알아봅시다.&lt;/p&gt;
 &lt;h1&gt;버블정렬의 핵심 IDEA&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;전체 elements의 개수가 n 이라면, 두 개씩 비교하게 되므로 loop의 범위를 n-1로 합니다.&lt;/li&gt;
@@ -546,7 +546,109 @@ Finished in : 0.00s&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;ref: &lt;a href=&quot;https://blog.myungseokang.dev/posts/make-django-custom-command/&quot;&gt;Django 나만의 Management Command 만들어보기&lt;/a&gt;&lt;br&gt;
 ref: &lt;a href=&quot;https://cjh5414.github.io/wraps-with-decorator/&quot;&gt;Python decorator에 @wraps를 사용해야 하는 이유&lt;/a&gt;&lt;br&gt;
 ref: &lt;a href=&quot;https://medium.com/better-programming/django-select-related-and-prefetch-related-f23043fd635d&quot;&gt;Django select&lt;em&gt;related and prefetch&lt;/em&gt;related&lt;/a&gt;&lt;br&gt;
-ref: &lt;a href=&quot;https://medium.com/chrisjune-13837/%EB%8B%B9%EC%8B%A0%EC%9D%B4-%EB%AA%B0%EB%9E%90%EB%8D%98-django-prefetch-5d7dd0bd7e15&quot;&gt;당신이 몰랐던 Django Prefetch.&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[DRF/#01 DRF란 무엇인가?]]></title><description><![CDATA[DRF에 대해서 간략하게 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/drf-01/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/drf-01/</guid><pubDate>Wed, 18 Mar 2020 13:04:35 GMT</pubDate><content:encoded>&lt;p&gt;DRF에 대해서 간략하게 알아봅시다.&lt;/p&gt;
+ref: &lt;a href=&quot;https://medium.com/chrisjune-13837/%EB%8B%B9%EC%8B%A0%EC%9D%B4-%EB%AA%B0%EB%9E%90%EB%8D%98-django-prefetch-5d7dd0bd7e15&quot;&gt;당신이 몰랐던 Django Prefetch.&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django/비지니스 로직 관리하기]]></title><description><![CDATA[django를 사용할 때 비지니스 로직을 어떻게 관리하는지 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/manage-business-logic/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/manage-business-logic/</guid><pubDate>Fri, 03 Jul 2020 13:08:10 GMT</pubDate><content:encoded>&lt;p&gt;django를 사용할 때 비지니스 로직을 어떻게 관리하는지 알아봅시다.&lt;/p&gt;
+&lt;p&gt;Django를 사용하면서 고민되는 점이 생겼습니다. 비지니스 로직을 어떻게 관리하는게 좋을까 하는 부분입니다.
+(현재 진행하고 있는 프로젝트는 DRF를 사용하고 있습니다.)&lt;br&gt;
+&lt;br&gt;
+&lt;strong&gt;views.py&lt;/strong&gt;는 CBV를 사용하고 있어서 최대한 간결하게 작성하고,
+serializer의 메소드를 오버라이드 하여 작성하고 있습니다. 복잡한 비지니스로직을 작성하다보니
+리팩토링의 필요성을 느꼈고, &lt;strong&gt;models.py&lt;/strong&gt;에 모델메소드를 작성하고 있었습니다. 하지만 그마저도 너무 많아져서 fat model이 되버렸습니다.&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;“비지니스 로직을 어떻게 관리했을 때 프로젝트를 관리가 편해질까”&lt;/em&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;이런 질문에서부터 이 글이 시작되었습니다.&lt;br&gt;&lt;/p&gt;
+&lt;h2&gt;Fat models는 너무 많은 의존성을 만들어낸다.&lt;/h2&gt;
+&lt;p&gt;비지니스 로직은 어떤 하나의 큰 흐름입니다. 그래서 비지니스 로직을 작성하다보면 흐름을 시작한
+model 뿐만 아니라 다른 model에서의 메소드를 불러와서 호출하기도 합니다. 이런 방식은 불필요한 의존성을 만들어냅니다.&lt;br&gt;
+&lt;br&gt;
+의존성때문에 다른 모델에서의 변경이 발생하면 변경을 반영하기 위해서 흐름 안에 있는 코드를 수정해야 합니다.&lt;/p&gt;
+&lt;h2&gt;Fat models는 테스트를 어렵게 한다.&lt;/h2&gt;
+&lt;p&gt;만약 나의 모델이 큰 흐름을 가지고 있다면, 내 테스트 코드들은 크고 많은 더미 데이터를 필요로 할 것입니다.&lt;/p&gt;
+&lt;h2&gt;Fat models는 SRP를 위반한다.&lt;/h2&gt;
+&lt;p&gt;SRP(단일 책임 정책)은 클린 아키텍처의 5가지 원칙중의 하나로, 다음과 같은 원칙입니다. 자세한 내용은 다음에 &lt;code class=&quot;language-text&quot;&gt;클린 아키텍처&lt;/code&gt;라는
+책을 읽고 블로깅 할 예정입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;클래스는 단 하나의 책임을 해야한다.&lt;/li&gt;
+&lt;li&gt;클래스가 변경되는 이유는 단 한 개여야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Fat models를 작성하다보면 많은 책임을 갖게 만듭니다. 예를 들어 User 모델은 user의 DB를 관리하는데 목적이 있습니다.&lt;br&gt;
+User 모델에 메일을 보내거나 알림을 보내는 메소드를 작성하게 되면 어떤 알림이나 메일을 보내는 책임이 더해지는 것입니다.&lt;/p&gt;
+&lt;h2&gt;흐름과 관련된 것이 아니라 attr을 변경하는 메소드를 작성하자&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;상태(attr)을 변경하는 것은 늘 행동(메소드)를 통해서 하세요. 매우 중요합니다.
+직접 변경하게 되면 트랙킹하기가 어려울 것입니다. 사이즈가 커지면 커질수록 더욱 어렵습니다.&lt;/li&gt;
+&lt;li&gt;Django의 모델은 python 클래스의 일부입니다. OOP의 관점에서 객체의 상태는 행동(메소드)에 의해서 변경 되어야합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; models
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    active &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BooleanField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;default&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    work_email &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;EmailField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    personal_email &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;EmailField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;다음과 같이 active의 상태를 변경하는 코드를 통해서 상태가 혼잡해지는 사태를 막을 수 있게 되었습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; models
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    active &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BooleanField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;default&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    work_email &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;EmailField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    personal_email &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;EmailField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;deactivate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;active &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;False&lt;/span&gt;
+        self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;update_fields&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;active&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;어떤 상태를 저장하는 것과 더불어 validation 하고 싶다면 다음과 같이 적으면 됩니다. 물론 DRF에서 validateion은
+serializer에 validate를 오버라이드 하면 됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; models
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    active &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BooleanField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;default&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    work_email &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;EmailField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    personal_email &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;EmailField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;deactivate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;active &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;False&lt;/span&gt;
+        self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;update_fields&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;active&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+      &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;set_personal_email&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; email&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;work_email &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; email&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; ValueError&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+                  &lt;span class=&quot;token string&quot;&gt;&quot;Personal email and work email are equal&quot;&lt;/span&gt;
+              &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+          self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;personal_email &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; email
+          self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;update_fields&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;personal_email&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;의존성을 피하라&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;흐름 안에 있는 모델에서 다른 모델이나 클래스의 메소드를 호출하면 안됩니다.&lt;/li&gt;
+&lt;li&gt;특히나 서드파티를 이용할수록 더욱 그렇습니다. 예를들어 가입하게되었을 때에 환영 이메일을 보낸다고 가정합시다.
+객체를 생성하는 코드에서 메일을 보낼 때에 서버에 이상이 생긴다면 생성되지도 않은 유저에게 이메일을 보내는 경우가 생깁니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;model manager를 사용해라&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;모델 매니저를 사용하면 여기저기서 쿼리가 남발 되는 것을 막을 수 있습니다. 매니저를 사용하게 되면 테스트가 더욱 쉬워지고,
+한 곳에서만 변화를 만들 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;결론&lt;/h2&gt;
+&lt;p&gt;제가 진행하고 있는 프로젝트에서는 다음과 같이 관리하기로 했습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;models는 객체의 속성만 다루는 메소드를 작성한다.&lt;/li&gt;
+&lt;li&gt;orm을 사용하여 query가 발생하는 메소드는 manager를 오버라이드하여 작성한다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;utils(service layer) 디렉토리를 만들어 기능단위로 파일을 만들어 관리한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;그중에서도 공통적으로 사용 가능한 부분은 또 따로 떼어낼 예정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;br&gt;
+&lt;p&gt;더 참고할 포스트가 있다면 댓글로 남겨주시면 감사하겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;ref: &lt;a href=&quot;https://medium.com/@jairvercosa/django-model-guideline-d48a96c9b38c&quot;&gt;Django model Guideline&lt;/a&gt;&lt;br&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[DRF/#01 DRF란 무엇인가?]]></title><description><![CDATA[DRF에 대해서 간략하게 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/drf-01/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/drf-01/</guid><pubDate>Wed, 18 Mar 2020 13:04:35 GMT</pubDate><content:encoded>&lt;p&gt;DRF에 대해서 간략하게 알아봅시다.&lt;/p&gt;
 &lt;h3&gt;DRF?&lt;/h3&gt;
 &lt;p&gt;공식문서에서 설명하는 DRF입니다.&lt;/p&gt;
 &lt;blockquote&gt;
