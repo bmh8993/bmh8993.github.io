@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 18 Jan 2021 23:40:19 GMT</lastBuildDate><item><title><![CDATA[Algorithm/버블 정렬(bubble sort with python)]]></title><description><![CDATA[버블정렬에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//etc/algorithm/bubble-sort</link><guid isPermaLink="false">https://bmh8993.github.io//etc/algorithm/bubble-sort</guid><pubDate>Sat, 16 Jan 2021 23:28:35 GMT</pubDate><content:encoded>&lt;p&gt;버블정렬에 대해서 알아봅시다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by 인간지능]]></title><description><![CDATA[깔끔한 프로그래밍]]></description><link>https://bmh8993.github.io/</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 19 Jan 2021 05:23:27 GMT</lastBuildDate><item><title><![CDATA[Algorithm/버블 정렬(bubble sort with python)]]></title><description><![CDATA[버블정렬에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//etc/algorithm/bubble-sort</link><guid isPermaLink="false">https://bmh8993.github.io//etc/algorithm/bubble-sort</guid><pubDate>Sat, 16 Jan 2021 23:28:35 GMT</pubDate><content:encoded>&lt;p&gt;버블정렬에 대해서 알아봅시다.&lt;/p&gt;
 &lt;h1&gt;버블정렬의 핵심 IDEA&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;전체 elements의 개수가 n 이라면, 두 개씩 비교하게 되므로 loop의 범위를 n-1로 합니다.&lt;/li&gt;
@@ -93,7 +93,98 @@ HTTP Method와 payload의 합은 매우 명시적이고 쉽게 사용할 수 있
 &lt;p&gt;여기까지가 gRPC가 탄생하게된 배경과 gRPC에 대한 소개입니다.
 다음 포스트에서는 gRPC에 대해 더 자세히 이야기하도록 하겠습니다.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;참고: &lt;a href=&quot;https://blog.naver.com/n_cloudplatform/221751268831&quot;&gt;https://blog.naver.com/n_cloudplatform/221751268831&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django/select_related와 prefetch_related를 정복해보자]]></title><description><![CDATA[select_related와 prefetch_related를 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/select-related-and-prefetch_related/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/select-related-and-prefetch_related/</guid><pubDate>Mon, 06 Jul 2020 20:08:24 GMT</pubDate><content:encoded>&lt;p&gt;select&lt;em&gt;related와 prefetch&lt;/em&gt;related를 알아봅시다.&lt;/p&gt;
+&lt;p&gt;참고: &lt;a href=&quot;https://blog.naver.com/n_cloudplatform/221751268831&quot;&gt;https://blog.naver.com/n_cloudplatform/221751268831&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Postgresql DB backup / restore(+스케줄 작업)]]></title><description><![CDATA[postgresql에서 backup과 restore 작업을 하는 방법에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/db-sql/postgresql-backup-restore/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/db-sql/postgresql-backup-restore/</guid><pubDate>Tue, 08 Sep 2020 10:10:21 GMT</pubDate><content:encoded>&lt;p&gt;서버 배포 이후 매일 DB backup 파일일 만들어야 한다. CLI로 어떻게 진행이 가능한지 남기려한다.&lt;/p&gt;
+&lt;h1&gt;Backup&lt;/h1&gt;
+&lt;p&gt;PostgreSQL에서는 DB Backup을 위해 pg_dump와 pg_dumpall 프로그램을 제공한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;dg_dump는 단일 Database를 요청한 Format으로 Bakup을 만든다.&lt;/li&gt;
+&lt;li&gt;pg_dumpall는 전체 Database Cluster를 SQL script로 Backup 한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;해당 글에서는 pg_dump에 관해서만 다룰 예정이다. pg_dump의 사용 방법은 서버에서 &lt;code class=&quot;language-text&quot;&gt;db_dump --help&lt;/code&gt;를 입력하면 옵션에 대해 자세히 확인 가능하다.&lt;/p&gt;
+&lt;p&gt;아래 옵션 및 인자들이 자주 사용하는 것들이다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;-d, --dbname : Backup할 Database 명.
+-h, --host : Database 주소.
+-U, --username : Database 접속 시 User ID
+-F, --format : Backup Format. 필자는 주로 tar 파일로 backup하기 때문에 &amp;#39;t&amp;#39;를 사용한다.
+-f, --file : Backup File Name
+-t, --table : 특정 Table만 Backup하려할 때 대상이 되는 Table 명
+-j, --jobs : Backup 시 병렬 처리 여부와 그 정도.
+-v, --verbose : 진행 과정 표시.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;사용 예&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;holaplan&lt;/code&gt; DB를 &lt;code class=&quot;language-text&quot;&gt;tar&lt;/code&gt; 형식으로&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;/root/project/db_backup&lt;/code&gt; 아래에&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;특정이름&lt;/code&gt;으로 backup&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ pg_dump -d &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DB_이름&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; -h &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DB_주소&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; -U &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DB_유저&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; -F t &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;위치와 이름&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+$ pg_dump -d holaplan -h xx.xx.xxx.xxx -U postgres -F t &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /root/project/db_backup/test.tar&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이렇게 하면 패스워드를 요구한다. 그래서 그냥 패스워드도 커맨드에 넣어버려야지 생각하고 옵션을 사용했으나 너무 많은 옵션이 사용되었다는 메세지를
+받았다.&lt;br&gt;
+그래서 찾아본 것이 &lt;code class=&quot;language-text&quot;&gt;.pgpass&lt;/code&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;pgpass&lt;/h3&gt;
+&lt;p&gt;pg_hba.conf에서 DB에 접근을 제한하도록 설정하면(접근할 때 패스워드를 요구하는 방식으로) postgres를 command line으로 로그인을 하려면 다음과
+같은 명령어를 사용해야한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ psql -U &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;유저&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; -d &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;접근하려는 DB&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+$ psql -U postgres -d postgres&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;그리고 패스워드를 물어보면 패스워드를 입력하고 접근이 가능하다. 그러나 shell script를 사용하게 되면 위와 같은 문제를 비롯한 귀찮은 일들이
+발생한다. 이럴때 자동으로 로그인이 가능하도록 하는 것이 &lt;code class=&quot;language-text&quot;&gt;.pgpass&lt;/code&gt; 이다.&lt;/p&gt;
+&lt;h4&gt;생성&lt;/h4&gt;
+&lt;p&gt;생성하는 위치는 root 디렉토리이다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; ~/.pgpass&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;안에 들어가는 내용은 다음과 같다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;hostname:port:database_name:user_name:password
+*:*:*:user_name:password&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;앞의 세가지는 *(와일드카드)를 사용하여 입력할 수 있다. 하지만 주의 할 부분이 있는데 db_name에 *를 사용하면 서버와 연결된 모든 DB를 대상으로
+하게 된다.&lt;br&gt;
+그래서 나는 db_name은 특정 db를 지정하도록한다.&lt;/p&gt;
+&lt;p&gt;모두 작성하면 권한설정을 해준다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;600&lt;/span&gt; ~/.pgpass&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;소유자에게 읽기와 쓰기권한을 부여하고 그룹소유자와 일반 사용자에게는 어떠한 권한도 부여하지 않겠다는 의미이다.&lt;/p&gt;
+&lt;h1&gt;cronjob setting&lt;/h1&gt;
+&lt;p&gt;cronjob 리스트를 확인하고 &lt;code class=&quot;language-text&quot;&gt;크론잡으로 등록&lt;/code&gt;해주면된다.&lt;br&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;crontab&lt;/span&gt; -e  &lt;span class=&quot;token comment&quot;&gt;# 해당 옵션으로 등록된 크론탭리스트를 수정할 수 있다.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;해당 파일에 크론을 등록해주도록 한다.&lt;/p&gt;
+&lt;p&gt;기타 여러가지 방법이 있기다 pg_cron 이라는 extension도 존재한다. 하지만 하려는 작업에 적합하지 않은 것 같아서
+어느정도 읽어보고 넘어갔다.&lt;/p&gt;
+&lt;h1&gt;Restore&lt;/h1&gt;
+&lt;p&gt;pg_restore는 pg_dump를 이용해서 만들어진 DB backup file을 restore 할 때 사용한다.&lt;br&gt;
+단, pg_dumpall로 만들어진 backup file은 sql script라 pg_store를 사용할 수는 없다.&lt;br&gt;
+&lt;br&gt;
+pg_restore의 사용 방법은 서버에서 &lt;code class=&quot;language-text&quot;&gt;db_restore --help&lt;/code&gt;를 입력하면 옵션에 대해 자세히 확인 가능하다.&lt;/p&gt;
+&lt;p&gt;아래 옵션 및 인자들이 자주 사용하는 것들이다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;-d, --dbname : Restore하는 Database 명.
+-h, --host : Database 주소.
+-U, --username : Database 접속 시 User ID
+-F, --format : Restore File의 Format.
+-t, --table : 특정 Table만 Restore하려할 때 대상이 되는 Table 명
+-j, --jobs : Restore 시 병렬 처리 여부와 그 정도.
+-v, --verbose : 진행 과정 표시
+-C, --create : Target DB를 새로 만들면서 Restoration 진행.
+-c, --clean : Restoration 시에 같은 이름의 Database Object가 발견되면 Drop 후에 Create하게 함.
+-O, --no-owner : 원본 DB의 Owner가 복구할 위치에 존재하지 않을 경우 복구 시 다량의 에러가 발생한다. 이를 막기 위해  DB 복구시 OWNER를 명시하지 않고 진행하게 함.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;TAG&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;postgres&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;cronjob&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;linux-permission&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;pgpass&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;pg_hba&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;REF: &lt;a href=&quot;https://browndwarf.tistory.com/12&quot;&gt;PostgreSQL DB Backup 및 Restore&lt;/a&gt;&lt;br&gt;
+REF: &lt;a href=&quot;https://severalnines.com/database-blog/overview-job-scheduling-tools-postgresql&quot;&gt;An Overview of Job Scheduling Tools for PostgreSQL(cronjob 설정하기)&lt;/a&gt;&lt;br&gt;
+REF: &lt;a href=&quot;https://sqlbackupandftp.com/blog/postgresql-job-scheduler&quot;&gt;PostgreSQL Job Scheduler&lt;/a&gt;&lt;br&gt;
+REF: &lt;a href=&quot;https://securityspecialist.tistory.com/40&quot;&gt;리눅스 퍼미션 chmod 600&lt;/a&gt;&lt;br&gt;
+REF: &lt;a href=&quot;https://stackoverflow.com/questions/50404041/pg-dumpall-without-prompting-password&quot;&gt;pgpass stack-overflow&lt;/a&gt;&lt;br&gt;
+REF: &lt;a href=&quot;https://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/&quot;&gt;how to use cron&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4&gt;추가 사항&lt;/h4&gt;
+&lt;h3&gt;리눅스 tar.gz&lt;/h3&gt;
+&lt;p&gt;리눅스(Linux)에서의 파일 압축 개념은 윈도우즈(Windows)에서의 파일 압축 개념에 비해 세분화 되어있다.
+윈도우즈에서는 보통 압축을 한다하면, zip 등의 방식으로 선택된 파일이나 폴더들을 묶으면서 동시에 압축(compress)을 하는 것을 의미한다.
+&lt;code class=&quot;language-text&quot;&gt;반면&lt;/code&gt; 리눅스에서는 파일이나 폴더들을 묶는 것(archive)과 실제로 압축(compress)하는 기능이 나뉘어져있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;묶는다 = archive&lt;/li&gt;
+&lt;li&gt;압축한다 = compress&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;리눅스에서 여러 파일을 한 파일로 묶은 것을 아카이브(archive)라 하며 확장자는 &lt;code class=&quot;language-text&quot;&gt;.tar&lt;/code&gt; 이다.&lt;br&gt;
+일반적으로 tar로 묶인 아카이브를 gunzip을 사용해서 .tar.gz 의 확장자를 가지는 압축 아카이브로 많이 사용한다.&lt;/p&gt;
+&lt;p&gt;REF: &lt;a href=&quot;http://sarghis.com/blog/468/&quot;&gt;리눅스 tar.gz와 압축/해제 명령어&lt;/a&gt;&lt;br&gt;
+REF: &lt;a href=&quot;https://qastack.kr/unix/277793/why-would-i-tar-a-single-file&quot;&gt;왜 단일 파일을 tar합니까?&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django/select_related와 prefetch_related를 정복해보자]]></title><description><![CDATA[select_related와 prefetch_related를 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/select-related-and-prefetch_related/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/select-related-and-prefetch_related/</guid><pubDate>Mon, 06 Jul 2020 20:08:24 GMT</pubDate><content:encoded>&lt;p&gt;select&lt;em&gt;related와 prefetch&lt;/em&gt;related를 알아봅시다.&lt;/p&gt;
 &lt;p&gt;Django의 유저라면 select_related와 prefetch_related를 모를 수 없을 것입니다. 하지만 얼마나 잘
 사용하고 있는지는 의문점을 가져봐야 합니다. 저 또한 그런 의문이 들었기에 이번 포스트를 작성하게
 되었습니다.&lt;br&gt;
@@ -797,7 +888,48 @@ serializer에 validate를 오버라이드 하면 됩니다.&lt;/li&gt;
 &lt;br&gt;
 &lt;p&gt;더 참고할 포스트가 있다면 댓글로 남겨주시면 감사하겠습니다.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;ref: &lt;a href=&quot;https://medium.com/@jairvercosa/django-model-guideline-d48a96c9b38c&quot;&gt;Django model Guideline&lt;/a&gt;&lt;br&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django / CBV에서 View, APIView는 어떻게 동작하는가?]]></title><description><![CDATA[Django에서 CBV가 동작하는 방식에 대해서 알아봅시다]]></description><link>https://bmh8993.github.io//python/django/view-work-flow/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/view-work-flow/</guid><pubDate>Wed, 17 Jun 2020 02:02:15 GMT</pubDate><content:encoded>&lt;p&gt;DRF를 더욱 잘 오버라이드 하기 위해서 Django의 flow를 다시 파악하려한다.&lt;/p&gt;
+&lt;p&gt;ref: &lt;a href=&quot;https://medium.com/@jairvercosa/django-model-guideline-d48a96c9b38c&quot;&gt;Django model Guideline&lt;/a&gt;&lt;br&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[SQL 최적화의 기본 원리(옵티마이저와 실행계획/인덱스/조인수행원리)]]></title><description><![CDATA[SQL 최적화의 기본 원리에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/db-sql/optimization/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/db-sql/optimization/</guid><pubDate>Fri, 03 Jul 2020 12:07:16 GMT</pubDate><content:encoded>&lt;h2&gt;1. 옵티마이저와 실행계획&lt;/h2&gt;
+&lt;h3&gt;1-1. 옵티마이저&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;옵티마이저는 사용자가 질의한 SQL문에 대해 최적의 실행 방법을 결정하는 역할을 한다.&lt;/li&gt;
+&lt;li&gt;이를 통해 개발자가 SQL이 동작하는 과정을 직접 코딩 할 필요가 없어졌다.&lt;/li&gt;
+&lt;li&gt;이전에는 테이블을 기준 테이블을 select하고 fetch하고, 반대편 테이블에서 조인 레코드를
+seek하는 과정을 loop하는 이 과정을 직접 개발했어야했다.&lt;/li&gt;
+&lt;li&gt;DBMS의 핵심기능이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;옵티마이저의 최적화 수행 단계를 요약하면 아래와 같다.&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;사용자가 던진 쿼리 수행을 위해 후보군이 될만한 실행계획들을 찾아냄&lt;/li&gt;
+&lt;li&gt;데이터 딕셔너리에 미리 수집해 놓은 오브젝트 통계 및 시스템 통계정보를 이용해
+각 실행 단계의 예상비용을 산정&lt;/li&gt;
+&lt;li&gt;각 실행계획의 비용을 비교해서 최소비용을 갖는 하나를 선택&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;1-2. 실행 계획(Execution Plan)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;조인순서&lt;/strong&gt;: 논리적으로 가능한 순서는 n! 개&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;조인 기법&lt;/strong&gt;: NL Join / Hash Join / Sort Merge Join&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;액세스 기법&lt;/strong&gt;: 인덱스 스캔 / 전체 테이블 스캔&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;최적화 정보&lt;/strong&gt;: 비용기반최적화-Cost / Card / Bytes (통계정보를 바탕으로 한 예상치)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;연산&lt;/strong&gt; : 조인기법, 액세스기법, 필터, 정렬(order by), 집계, 뷰 등 다양함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2. 인덱스&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;목적&lt;/strong&gt;: 검색 성능의 최적화&lt;/li&gt;
+&lt;li&gt;인덱스는 테이블을 기반으로 선택적으로 생성할 수 있는 구조&lt;/li&gt;
+&lt;li&gt;인덱스는 데이블에 생성하지 않아도 되고 여러 개 생성해도 된다.&lt;/li&gt;
+&lt;li&gt;인덱스 칼럼 순서는 질의 성능에 중요한 영향을 미치는 요소이다.&lt;/li&gt;
+&lt;li&gt;트리기반 인덱스에는 B-트리 인덱스, 비트맵 인덱스, 리버스 키 인덱스. 함수기반 인덱스 등 존재한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. 조인수행원리&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;두 개 이상의 테이블을 하나의 집합으로 만드는 연산을 조인이라고 한다.&lt;/li&gt;
+&lt;li&gt;FROM절에 두 개 이상의 테이블이 나열된 경우 조인이 수행된다.&lt;/li&gt;
+&lt;li&gt;조인 단계별로 다른 조인 기법을 사용할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;ref: &lt;a href=&quot;https://m.blog.naver.com/0325han/221225506802&quot;&gt;SQL 최적화 기본원리 : 옵티마이저와 실행계획 / 인덱스 / 조인수행원리&lt;/a&gt;&lt;br&gt;
+ref: &lt;a href=&quot;https://cornswrold.tistory.com/120&quot;&gt;DBMS 아키텍처&lt;/a&gt;&lt;br&gt;
+ref: &lt;a href=&quot;https://jeong-pro.tistory.com/157&quot;&gt;SQL 파싱 처리 과정과 성능 향상 포인트 최적화!&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django / CBV에서 View, APIView는 어떻게 동작하는가?]]></title><description><![CDATA[Django에서 CBV가 동작하는 방식에 대해서 알아봅시다]]></description><link>https://bmh8993.github.io//python/django/view-work-flow/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/view-work-flow/</guid><pubDate>Wed, 17 Jun 2020 02:02:15 GMT</pubDate><content:encoded>&lt;p&gt;DRF를 더욱 잘 오버라이드 하기 위해서 Django의 flow를 다시 파악하려한다.&lt;/p&gt;
 &lt;p&gt;전체 적인 흐름은 &lt;a href=&quot;https://bmh8993.github.io/Django/what-is-django-and-how-to-it-works/&quot;&gt;다음 포스트&lt;/a&gt;를 확인하길 바란다.&lt;/p&gt;
 &lt;h1&gt;Django에서의 View&lt;/h1&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# app/urls.py&lt;/span&gt;
@@ -2433,7 +2565,257 @@ serializers는 모델을 전달하고, 그 모델들을 json 객체로 변환하
 DRF에서 그것을 담당하는 클래스가 바로 &lt;code class=&quot;language-text&quot;&gt;Serializer&lt;/code&gt;입니다. DRF에서 제공하는 Serializer는
 queryset, model instance 등의 복잡한 데이터를 JSON, XML 등의 컨텐트 타입으로 쉽게 변환 가능한
 python datatype으로 변환시켜줍니다.&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;RESTful API와 Serializer가 DRF를 사용하는 가장 큰 장점이 아닐까 생각합니다.&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django / Django에서 orm이 아닌 raw SQL queries 사용하기]]></title><description><![CDATA[Django에서 raw SQL queries를 사용하는 방법에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/raw=queries/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/raw=queries/</guid><pubDate>Thu, 06 Feb 2020 09:02:12 GMT</pubDate><content:encoded>&lt;p&gt;며칠 전에 Django에서 제공하는 &lt;code class=&quot;language-text&quot;&gt;multiple DB&lt;/code&gt;를 사용했습니다.
+&lt;p&gt;&lt;strong&gt;RESTful API와 Serializer가 DRF를 사용하는 가장 큰 장점이 아닐까 생각합니다.&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[SQL#03//sql 큰 그림에서 작은 그림으로]]></title><description><![CDATA[SQL을 짜는 전략에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/db-sql/sql-03/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/db-sql/sql-03/</guid><pubDate>Wed, 12 Feb 2020 23:02:56 GMT</pubDate><content:encoded>&lt;p&gt;지난 포스트에서 설명한 내용을 가져오겠습니다.&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;순위&lt;/code&gt;는 &lt;code class=&quot;language-text&quot;&gt;누적 대출액&lt;/code&gt;을 기준으로 내림차순 정렬할 예정입니다. 순위는 없는 컬럼이므로 만들어야 할 것 같습니다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;순위 변동&lt;/code&gt;이라는 데이터는 말 그대로 변동을 나타내기 때문에 &lt;strong&gt;오늘과 어제&lt;/strong&gt;처럼 차이가 필요합니다.&lt;br&gt;
+여기서 중요한 것은 &lt;code class=&quot;language-text&quot;&gt;어제와 오늘&lt;/code&gt; 테이블 &lt;code class=&quot;language-text&quot;&gt;두 개&lt;/code&gt;가 필요하고, 두 개의 테이블은 관계가 필요하다는 말이 됩니다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;회사이름&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;누적 대출액&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;누적 상환액&lt;/code&gt;은 Item 테이블에서 가져올 수 있는 데이터 입니다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;순수 대출액&lt;/code&gt;은 하나의 테이블, 예를 들면 오늘의 테이블 안에서 계산할 수 있는 데이터 입니다.&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;조건을 살펴보면 필터 조건이 있습니다. 그런데 문제가 있습니다.
+&lt;code class=&quot;language-text&quot;&gt;Header&lt;/code&gt;테이블과 &lt;code class=&quot;language-text&quot;&gt;Item&lt;/code&gt;테이블은 서로 전혀 다른 데이터를 가지고 있습니다.
+&lt;code class=&quot;language-text&quot;&gt;Header&lt;/code&gt;테이블은 조건을, &lt;code class=&quot;language-text&quot;&gt;Item&lt;/code&gt;테이블은 정보를 가지고 있습니다. 두 테이블의 연결고리는 &lt;code class=&quot;language-text&quot;&gt;company_no&lt;/code&gt;뿐입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;이해를 위해 &lt;code class=&quot;language-text&quot;&gt;단계&lt;/code&gt;라는 표현을 그림으로 표현했었는데 이제부터는 &lt;code class=&quot;language-text&quot;&gt;단계&lt;/code&gt;라고 표시하겠습니다.
+또한 &lt;code class=&quot;language-text&quot;&gt;약속&lt;/code&gt;을 하나 하자면 가장 상위 단계의 테이블을 &lt;code class=&quot;language-text&quot;&gt;A&lt;/code&gt;, 그 다음을 &lt;code class=&quot;language-text&quot;&gt;B&lt;/code&gt;, 그 다음을 &lt;code class=&quot;language-text&quot;&gt;C&lt;/code&gt;라고 표시하고
+같은 단계에서 존재하는 서로 다른 테이블은 &lt;code class=&quot;language-text&quot;&gt;1, 2, 3..&lt;/code&gt;과 같이 표시하겠습니다.&lt;br&gt;
+&lt;strong&gt;이렇게 표시하는 점이 생각보다 중요합니다.&lt;/strong&gt; 하지만 약속일 뿐 스스로 정해도 좋습니다.&lt;br&gt;
+(SQL의 기본적인 부분은 학습이 되어져 있다고 가정하겠습니다.)&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;A단계&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;순위&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ifnull&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;A2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;순위 &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;순위&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;new&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;회사 이름&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;누적 대출액&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;기타 데이터
+&lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; 오늘 A1
+&lt;span class=&quot;token keyword&quot;&gt;Left&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Outer&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Join&lt;/span&gt; 어제 A2
+&lt;span class=&quot;token keyword&quot;&gt;On&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; A2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이렇게 제일 큰 단계의 쿼리가 완성 되었습니다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;Inner Join&lt;/code&gt;이 아닌 &lt;code class=&quot;language-text&quot;&gt;Left Outer Join&lt;/code&gt;을 한 이유는 어제는 없던 회사가 오늘 생겼을 수가 있기 때문입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Inner Join&lt;/code&gt;은 &lt;code class=&quot;language-text&quot;&gt;매칭 조건(On)&lt;/code&gt;이 두 개의 테이블에 완전히 매칭되는 로우만 보여줍니다.&lt;/li&gt;
+&lt;li&gt;하지만 &lt;code class=&quot;language-text&quot;&gt;Left Outer Join&lt;/code&gt;은 &lt;code class=&quot;language-text&quot;&gt;매칭 조건(On)&lt;/code&gt;을 기본으로 매칭하지만, 매칭되지 않는 로우도 &lt;code class=&quot;language-text&quot;&gt;함께&lt;/code&gt; 보여줍니다. 그래서 &lt;code class=&quot;language-text&quot;&gt;ifnull&lt;/code&gt;을 사용했습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;나머지는 모두 오늘(A1)에서 가져올 수 있는 데이터 입니다. 다음 하위 단계(B)를 작성해보겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;B단계&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; B2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;@num1&lt;/span&gt;:&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;@num1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; 순위&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; B1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;회사 이름&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; B1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;누적 대출액&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; B1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;기타 데이터
+&lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; 순위를 제외한 데이터를 가지고 있는 테이블 B1
+&lt;span class=&quot;token keyword&quot;&gt;Inner&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Join&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;@num1&lt;/span&gt;:&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; B2
+&lt;span class=&quot;token keyword&quot;&gt;On&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;By&lt;/span&gt; 정렬 조건&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;조건 &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;번 &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;번&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;B&lt;/code&gt;단계의 쿼리로 &lt;code class=&quot;language-text&quot;&gt;오늘(A1)&lt;/code&gt;에 해당하는 쿼리입니다.&lt;br&gt;
+위에서 설명 했듯이 &lt;code class=&quot;language-text&quot;&gt;순위&lt;/code&gt;는 없는 컬럼입니다. 없는 컬럼은 &lt;code class=&quot;language-text&quot;&gt;Inner Join&lt;/code&gt;의 대상이 되는 테이블 안에서 변수를 통해 만들어줍니다.
+그리고 순위를 제외한 데이터를 가지고 있는 테이블과 &lt;code class=&quot;language-text&quot;&gt;Join&lt;/code&gt; 합니다. &lt;code class=&quot;language-text&quot;&gt;Outer Join&lt;/code&gt;도 무관해 보입니다. 어짜피 Join 조건은 없으니까요.&lt;br&gt;
+이후에 정렬을 진행합니다. 5번 조건에 해당하는 정렬은 Order By 뒤로 넣어줍니다.&lt;br&gt;
+&lt;br&gt;
+&lt;strong&gt;여기서 잠깐, 오늘과 어제의 차이는 무엇일까요?&lt;/strong&gt;&lt;br&gt;
+B1에서 날짜 조건을 통해 차이가 생깁니다. 즉, B1과 B2는 구조가 동일하다는 이야기가 됩니다.
+다음 하위 단계(C)를 작성해보겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;C단계&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; C1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;회사 이름&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; C2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;누적 대출액&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; C2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;기타 데이터
+&lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; Header C1
+&lt;span class=&quot;token keyword&quot;&gt;Inner&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Join&lt;/span&gt; Item C2
+&lt;span class=&quot;token keyword&quot;&gt;On&lt;/span&gt; C1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; C2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo
+&lt;span class=&quot;token keyword&quot;&gt;Where&lt;/span&gt; 데이터의 생성 날짜 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;D단계&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;조건 &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;번&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;And&lt;/span&gt; C1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;isUse &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;조건 &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;번&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;And&lt;/span&gt; 추가 필터 조건&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;조건 &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;번&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;By&lt;/span&gt; 정렬 조건&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;조건 &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;번 &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;번&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;오늘(A1)&lt;/code&gt;에 해당하는 C단계 입니다.&lt;br&gt;
+B단계에서 회사 이름을 가져오고 여러 조건들을 통해 필터를 진행하기 위해서 &lt;code class=&quot;language-text&quot;&gt;Inner Join&lt;/code&gt;이 필요합니다.&lt;br&gt;
+거의 마지막 단계에서 필터 조건이나 정렬 조건이 사용됩니다.&lt;br&gt;
+마지막 D단계 입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;D단계&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; stdDate
+&lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; Item
+&lt;span class=&quot;token keyword&quot;&gt;Where&lt;/span&gt; stdDate &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; DATE_FORMAT&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;%Y-%m-%d&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;By&lt;/span&gt; stdDate &lt;span class=&quot;token keyword&quot;&gt;Desc&lt;/span&gt;
+Limin &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;C단계의 Where에 들어갈 서브쿼리 입니다. 어제 날짜를 구하려면 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;=&lt;/code&gt;가 아닌 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;&lt;/code&gt;로 바꿔주시면 됩니다.&lt;br&gt;
+하나씩 차분히 하다보면 생각보다 어렵지 않습니다.&lt;br&gt;
+&lt;br&gt;
+전체 쿼리를 작성해보겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;순위&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ifnull&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;A2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;순위 &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;순위&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;new&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;회사 이름&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;누적 대출액&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;기타 데이터
+&lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; B2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;@num1&lt;/span&gt;:&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;@num1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; 순위&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; B1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;회사 이름&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; B1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;누적 대출액&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; B1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;기타 데이터
+    &lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; C1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;회사 이름&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; C2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;누적 대출액&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; C2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;기타 데이터
+      &lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; Header C1
+      &lt;span class=&quot;token keyword&quot;&gt;Inner&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Join&lt;/span&gt; Item C2
+      &lt;span class=&quot;token keyword&quot;&gt;On&lt;/span&gt; C1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; C2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo
+      &lt;span class=&quot;token keyword&quot;&gt;Where&lt;/span&gt; 데이터의 생성 날짜 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; stdDate
+        &lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; Item
+        &lt;span class=&quot;token keyword&quot;&gt;Where&lt;/span&gt; stdDate &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; DATE_FORMAT&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;%Y-%m-%d&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;By&lt;/span&gt; stdDate &lt;span class=&quot;token keyword&quot;&gt;Desc&lt;/span&gt;
+        Limin &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;And&lt;/span&gt; C1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;isUse &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;And&lt;/span&gt; 추가 필터 조건
+      &lt;span class=&quot;token keyword&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;By&lt;/span&gt; 정렬 조건
+      &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; B1
+    &lt;span class=&quot;token keyword&quot;&gt;Inner&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Join&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;@num1&lt;/span&gt;:&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; B2
+    &lt;span class=&quot;token keyword&quot;&gt;On&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;By&lt;/span&gt; 정렬 조건
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; A1
+&lt;span class=&quot;token keyword&quot;&gt;Left&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Outer&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Join&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; B2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;@num2&lt;/span&gt;:&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;@num2&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; 순위&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; B1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;회사 이름&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; B1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;누적 대출액&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; B1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;기타 데이터
+    &lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; C1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;회사 이름&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; C2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;누적 대출액&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; C2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;기타 데이터
+      &lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; Header C1
+      &lt;span class=&quot;token keyword&quot;&gt;Inner&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Join&lt;/span&gt; Item C2
+      &lt;span class=&quot;token keyword&quot;&gt;On&lt;/span&gt; C1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; C2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo
+      &lt;span class=&quot;token keyword&quot;&gt;Where&lt;/span&gt; 데이터의 생성 날짜 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; stdDate
+        &lt;span class=&quot;token keyword&quot;&gt;From&lt;/span&gt; Item
+        &lt;span class=&quot;token keyword&quot;&gt;Where&lt;/span&gt; stdDate &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; DATE_FORMAT&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;%Y-%m-%d&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;By&lt;/span&gt; stdDate &lt;span class=&quot;token keyword&quot;&gt;Desc&lt;/span&gt;
+        Limin &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;And&lt;/span&gt; C1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;isUse &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;And&lt;/span&gt; 추가 필터 조건
+      &lt;span class=&quot;token keyword&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;By&lt;/span&gt; 정렬 조건
+      &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; B1
+    &lt;span class=&quot;token keyword&quot;&gt;Inner&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Join&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;Select&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;@num2&lt;/span&gt;:&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; B2
+    &lt;span class=&quot;token keyword&quot;&gt;On&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;By&lt;/span&gt; 정렬 조건
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; A2
+&lt;span class=&quot;token keyword&quot;&gt;On&lt;/span&gt; A1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; A2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;companyNo&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;모두 합치기만 하면 됩니다.&lt;br&gt;
+이렇게 정리하고보니 생각보다 수월해보입니다. 여러 테이블을 가지고 연습하시면 좋을 것 같습니다.&lt;br&gt;
+기본서를 추천해 드리자면 &lt;code class=&quot;language-text&quot;&gt;SQL 첫걸음&lt;/code&gt;을 추천드립니다.&lt;br&gt;
+추천하는 이유는 일단 &lt;code class=&quot;language-text&quot;&gt;mysql&lt;/code&gt;을 베이스로 하고 있으며, 직접 다룰 수 있도록 예제 파일과 예제가 준비되어 있습니다.&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;지극히 주관적인 블로그를 읽어주셔서 감사합니다!&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[SQL#02//sql 큰 그림을 그려보자]]></title><description><![CDATA[SQL을 짜는 전략에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/db-sql/sql-02/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/db-sql/sql-02/</guid><pubDate>Tue, 11 Feb 2020 22:02:36 GMT</pubDate><content:encoded>&lt;p&gt;지난 포스트에서 설명한 것을 제목만 나열해 보겠습니다.&lt;/p&gt;
+&lt;h4&gt;1. 추출하고자 하는 데이터를 설정한다.&lt;/h4&gt;
+&lt;h4&gt;2. 조건이 있다면 조건을 정리하고, 계산을 해야하는 데이터를 구분한다.&lt;/h4&gt;
+&lt;h4&gt;3. 데이터 추출을 위해 테이블 간에 관계가 필요하다면 어떤 관게로 이루어 져야 할지 정리한다.&lt;/h4&gt;
+&lt;hr&gt;
+&lt;p&gt;큰 흐름은 이렇습니다. 1번과 2번은 &lt;a href=&quot;https://bmh8993.github.io/DATABASE&amp;#x26;SQL/sql-%EC%A7%9C%EA%B8%B0-%EC%A0%84%EC%97%90-%ED%9D%90%EB%A6%84%EC%9D%84-%ED%8C%8C%EC%95%85%ED%95%98%EC%9E%90./&quot;&gt;지난 포스트&lt;/a&gt;에서 예시로 정리를 했으니 넘어가도록 하겠습니다.&lt;br&gt;&lt;br&gt;
+먼저 추출하고자 하는 데이터와 조건들을 살펴보겠습니다.&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;가져오고자 하는 데이터&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;순위&lt;/li&gt;
+&lt;li&gt;순위 변동(기준일자와 기준일자의 하루 전데이터의 비교)&lt;/li&gt;
+&lt;li&gt;회사 이름&lt;/li&gt;
+&lt;li&gt;누적 대출액&lt;/li&gt;
+&lt;li&gt;기타 데이터&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;조건&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;is_use = True&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;누적 대출액&lt;/code&gt;을 기준으로 내림차순 정렬을 진행합니다.&lt;/li&gt;
+&lt;li&gt;is_association의 값이 &lt;code class=&quot;language-text&quot;&gt;True&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;False&lt;/code&gt; 혹은 &lt;code class=&quot;language-text&quot;&gt;True와 False 모두&lt;/code&gt; 이렇게 첫번째 필터 조건이 있습니다.&lt;/li&gt;
+&lt;li&gt;기준 일자를 설정합니다.&lt;/li&gt;
+&lt;li&gt;기타 컬럼들로 정렬이 가능해야합니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;정리한 내용을 가지고 하나씩 살펴보겠습니다.&lt;br&gt;
+5번 조건을 잠시 제외하고 생각하겠습니다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;순위&lt;/code&gt;는 &lt;code class=&quot;language-text&quot;&gt;누적 대출액&lt;/code&gt;을 기준으로 내림차순 정렬할 예정입니다. 순위는 없는 컬럼이므로 만들어야 할 것 같습니다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;순위 변동&lt;/code&gt;이라는 데이터는 말 그대로 변동을 나타내기 때문에 &lt;strong&gt;오늘과 어제&lt;/strong&gt;처럼 차이가 필요합니다.
+여기서 중요한 것은 &lt;code class=&quot;language-text&quot;&gt;어제와 오늘&lt;/code&gt; 테이블 &lt;code class=&quot;language-text&quot;&gt;두 개&lt;/code&gt;가 필요하고, 두 개의 테이블은 관계가 필요하다는 말이 됩니다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;회사이름&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;누적 대출액&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;기타 데이터&lt;/code&gt;는 Item 테이블에서 가져올 수 있는 데이터 입니다.&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;조건을 살펴보면 필터 조건이 있습니다. 그런데 문제가 있습니다.
+&lt;code class=&quot;language-text&quot;&gt;Header&lt;/code&gt;테이블과 &lt;code class=&quot;language-text&quot;&gt;Item&lt;/code&gt;테이블은 서로 전혀 다른 데이터를 가지고 있습니다.
+&lt;code class=&quot;language-text&quot;&gt;Header&lt;/code&gt;테이블은 조건을, &lt;code class=&quot;language-text&quot;&gt;Item&lt;/code&gt;테이블은 정보를 가지고 있습니다. 두 테이블의 연결고리는 &lt;code class=&quot;language-text&quot;&gt;company_no&lt;/code&gt;뿐입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;일단 이 이렇게 큰 그림을 그려보는 것이 중요합니다. 이 정리한 내용을 가지고 SQL을 작성해보겠습니다.
+&lt;a href=&quot;https://bmh8993.github.io/DATABASE&amp;#x26;SQL/sql-%ED%81%B0-%EA%B7%B8%EB%A6%BC%EC%97%90%EC%84%9C-%EC%9E%91%EC%9D%80-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C/&quot;&gt;다음 포스트&lt;/a&gt;로 이어집니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[SQL#01//sql 짜기 전에 흐름을 파악하자]]></title><description><![CDATA[SQL을 짜는 전략에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/db-sql/sql-01/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/db-sql/sql-01/</guid><pubDate>Mon, 10 Feb 2020 00:02:19 GMT</pubDate><content:encoded>&lt;p&gt;sql이 아닌 django의 orm으로 데이터를 추출하는 것에 익숙한 저는
+raw query를 사용해야하는 일이 생겼습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; django&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;db &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; models
+
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Header&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    company_no &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IntegerField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;companyNo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; primary_key&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    company_name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CharField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;companyName&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; max_length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    is_association &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IntegerField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;isAssociation&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    is_use &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IntegerField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;isUse&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Meta&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        managed &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;False&lt;/span&gt;
+        db_table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;header&apos;&lt;/span&gt;
+
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Model&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    std_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;stdDate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    company_no &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IntegerField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;companyNo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    loan &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BigIntegerField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    repay &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BigIntegerField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    balance &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BigIntegerField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    profit_rate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DecimalField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;profitRate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; max_digits&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; decimal_places&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    loss_rate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DecimalField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;lossRate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; max_digits&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; decimal_places&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    overdue_rate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DecimalField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;overdueRate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; max_digits&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; decimal_places&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    company_std_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;companyStdDate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; blank&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; null&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    create_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateTimeField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;createDate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    update_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; models&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DateTimeField&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db_column&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;updateDate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Meta&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        managed &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;False&lt;/span&gt;
+        db_table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;item&apos;&lt;/span&gt;
+        unique_together &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;std_date&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;company_no&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위의 데이터 구조는 &lt;code class=&quot;language-text&quot;&gt;inspectdb&lt;/code&gt;를 통해서 자동으로 작성된 &lt;code class=&quot;language-text&quot;&gt;models.py&lt;/code&gt;입니다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;Header&lt;/code&gt;테이블은 새로운 회사가 유입되지 않는 이상 변화가 없습니다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;Item&lt;/code&gt;테이블은 매일 새로운 데이터로 업데이트 됩니다.&lt;/p&gt;
+&lt;h4&gt;1편에서는 sql에 대한 설명은 아닙니다.&lt;/h4&gt;
+&lt;p&gt;저는 django의 orm을 통해서 데이터를 가져오는 것에 익숙했습니다.
+그런 상태로 sql을 접하니 알 것 같으면서 모르겠다고 느껴졌습니다.
+그 이유는 django의 &lt;code class=&quot;language-text&quot;&gt;직관적인 orm&lt;/code&gt; 때문이라고 생각됩니다.
+orm을 사용하면서 어디서 어떤 조건으로 데이터를 가져와야 하는지 흐름을 이해했습니다. 예를 들면 &lt;code class=&quot;language-text&quot;&gt;filter&lt;/code&gt;와 같은 것이 있습니다.&lt;br&gt;&lt;br&gt;
+하지만 sql은 where 조건을 사용하게 되는데 간단하게는 &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;나 &lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;로, 더 나아가서는 서브쿼리로 조건을 사용하게 됩니다.
+서브쿼리가 보여지는 방식은 orm보다는 다소 불편합니다. 그래서 더 어렵게 보여졌다봅니다.&lt;br&gt;&lt;br&gt;
+제가 이해하는 방식은 오로지 제 기준입니다. 나름 정리해 본 순서를 적어보겠습니다.&lt;/p&gt;
+&lt;h3&gt;1. 추출하고자 하는 데이터를 설정한다.&lt;/h3&gt;
+&lt;p&gt;이어질 포스트들을 한 가지 목표를 가지고 진행이 될 예정입니다.&lt;br&gt;
+제가 가져올 데이터들은 다음과 같습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;순위&lt;/li&gt;
+&lt;li&gt;순위 변동(기준일자와 기준일자의 하루 전데이터의 비교)&lt;/li&gt;
+&lt;li&gt;회사 이름&lt;/li&gt;
+&lt;li&gt;누적 대출액&lt;/li&gt;
+&lt;li&gt;기타 데이터&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;2. 조건이 있다면 조건을 정리하고, 계산을 해야하는 데이터를 구분한다.&lt;/h3&gt;
+&lt;p&gt;두 번째로 할 일은 정리하는 시간을 갖는 겁니다.&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;조건을 먼저 정리해보겠습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;is_use = True&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;누적 대출액&lt;/code&gt;을 기준으로 내림차순 정렬을 진행합니다.&lt;/li&gt;
+&lt;li&gt;is_association의 값이 &lt;code class=&quot;language-text&quot;&gt;True&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;False&lt;/code&gt; 혹은 &lt;code class=&quot;language-text&quot;&gt;True와 False 모두&lt;/code&gt; 이렇게 첫번째 필터 조건이 있습니다.&lt;/li&gt;
+&lt;li&gt;기준 일자를 설정합니다.&lt;/li&gt;
+&lt;li&gt;기타 컬럼들로 정렬이 가능해야합니다.
+&lt;br&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다음으로는 계산을 해야하는 데이터를 구분합니다. 구분 할 때에는 두 가지로 분류합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;새로운 컬럼을 만들어야하는 데이터&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;위의 예시에서 1번에 해당하는 것은 &lt;code class=&quot;language-text&quot;&gt;순위&lt;/code&gt;입니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;두개 이상의 테이블에서 계산이 이루어져서 만들어지는 데이터&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2번에 해당하는 것은 &lt;code class=&quot;language-text&quot;&gt;순위 변동&lt;/code&gt;입니다. 순위 변동은 오늘의 데이터 테이블과 어제의 데이터 테이블에서 순위를 각각 가져와 계산을 해야합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3. 데이터 추출을 위해 테이블 간에 관계가 필요하다면 어떤 관계로 이루어 져야 할지 정리한다.&lt;/h3&gt;
+&lt;p&gt;세 번째는 테이블 간의 관계를 정하는 일입니다.&lt;br&gt;
+관계를 정리하고 큰 그림의 sql문을 작성합니다.&lt;/p&gt;
+&lt;p&gt;orm을 사용하면서 데이터를 가져오는 흐름에 익숙하신 분들은 조금만 생각해보시면
+금방 sql을 사용할 수 있으실거라 생각합니다.
+&lt;a href=&quot;https://bmh8993.github.io/DATABASE&amp;#x26;SQL/sql-%ED%81%B0-%EA%B7%B8%EB%A6%BC%EC%9D%84-%EA%B7%B8%EB%A0%A4%EB%B3%B4%EC%9E%90/&quot;&gt;다음 포스트&lt;/a&gt; 로 이어집니다&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django / Django에서 orm이 아닌 raw SQL queries 사용하기]]></title><description><![CDATA[Django에서 raw SQL queries를 사용하는 방법에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/raw=queries/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/raw=queries/</guid><pubDate>Thu, 06 Feb 2020 09:02:12 GMT</pubDate><content:encoded>&lt;p&gt;며칠 전에 Django에서 제공하는 &lt;code class=&quot;language-text&quot;&gt;multiple DB&lt;/code&gt;를 사용했습니다.
 데이터를 가져오려고 하자 다음과 같은 에러가 발생했습니다.&lt;br&gt;
 &lt;code class=&quot;language-text&quot;&gt;ProgramingError: Unknown column &amp;#39;xxx.id&amp;#39; in &amp;#39;field list&amp;#39;&lt;/code&gt;&lt;br&gt;
 그 이유는 이렇습니다.&lt;/p&gt;
@@ -2858,7 +3240,93 @@ mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;sp
 mh_house &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; House&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;objects&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;apt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Instance&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;DB에 컬럼 생성시 자동으로 &lt;code class=&quot;language-text&quot;&gt;_id&lt;/code&gt;가 붙는데 이것을 사용한 것.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Django/장고는 무엇이고 어떻게 일하는가?]]></title><description><![CDATA[Django는 무엇이고 어떻게 동작하는지 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</guid><pubDate>Sun, 18 Aug 2019 02:02:15 GMT</pubDate><content:encoded>&lt;p&gt;Django는 무엇이고 어떻게 동작하는지 알아봅시다.&lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[About Http]]></title><description><![CDATA[HTTP에 대해서 알아봅시다.]]></description><link>https://bmh8993.github.io//cs/network/about-http/</link><guid isPermaLink="false">https://bmh8993.github.io//cs/network/about-http/</guid><pubDate>Tue, 20 Aug 2019 20:27:37 GMT</pubDate><content:encoded>&lt;h2&gt;HTTP&lt;/h2&gt;
+&lt;p&gt;HyperText Transfer Protocol&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;하이퍼텍스트(HTML) 문서를 교환하기 위해 만들어진 protocol(통신 규약).&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;즉, HTML 문서를 주고 받을 때 원활한 소통을 위한 약속이다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;즉 웹상에서 네트워크로 서버끼리 통신을 할때 어떠한 형식으로 서로 통신을 하자고 규정해 놓은 “통신 형식” 혹은 “통신 구조” 라고 보면 된다.&lt;/li&gt;
+&lt;li&gt;프론트앤드 서버와 클라이언트간의 통신에 사용된다.&lt;/li&gt;
+&lt;li&gt;또한 백앤드와 프론트앤드 서버간에의 통신에도 사용된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;HTTP는 TCP/IP 기반으로 되어있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;HTTP 핵심요소&lt;/h1&gt;
+&lt;h2&gt;1. 통신 방식&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;- 기본적으로 request/respose 구조로 이루어져 있다.
+    - 클라이언트와 서버의 모든 통신이 요청과 응답으로 이루어 진다.
+- HTTP는 Stateless 이다.
+    - 말그대로 상태를 저장하지 않는다.
+    - 예를 들어, 클라이언트가 요청을 보내고 응답을 받은 후, 조금 있다가 다시 요청을 보낼 때, 전에 보낸 요청/응답에 대해 알지 못한다.
+    - 그래서 만일 여러 요청과 응답의 진행 과정이나 데이터가 필요할 때는 쿠키나 세션 등등을 사용하게 된다.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;2. HTTP request 구조&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;1. 메쏘드 URI HTTPversion
+2. Request Headers
+3.
+4.body&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위와 같이 구조인데,&lt;br&gt;
+&lt;strong&gt;첫째줄은 Start Line&lt;/strong&gt;&lt;br&gt;
+해당 request가 의도한 action/해당 request가 전송되는 목표 uri/사용되는 HTTP 버젼&lt;br&gt;
+&lt;strong&gt;둘째줄은 headers&lt;/strong&gt;&lt;br&gt;
+해당 request에 대한 추가 정보를 담는부분이다.&lt;br&gt;
+Key:Value값으로 되어져 있다.&lt;br&gt;
+HOST: google.com =&gt; key = HOST, value = google.com&lt;br&gt;
+&lt;strong&gt;셋째줄은 headers와 body를 구분&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;넷째줄은 body&lt;/strong&gt;&lt;br&gt;
+해당 request의 실제 메세지/내용&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;1.GET /index.html HTTP/1.1
+2.Host: bmh.kr
+3.Connection: keep-alive
+4.
+5.name=min&amp;amp;age=27&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위의 request를 읽어보면,&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;HTTP/1.1 버전&lt;/code&gt;의 프로토콜로 &lt;code class=&quot;language-text&quot;&gt;GET방식&lt;/code&gt;으로 호스트가 &lt;code class=&quot;language-text&quot;&gt;min.kr&lt;/code&gt;인 곳의 /&lt;code class=&quot;language-text&quot;&gt;index.html&lt;/code&gt;을 가져와라.&lt;br&gt;
+가져오는데 &lt;code class=&quot;language-text&quot;&gt;연결(connection)&lt;/code&gt;은 &lt;code class=&quot;language-text&quot;&gt;지속적(keep-alive)&lt;/code&gt;인 방식으로 하며 &lt;code class=&quot;language-text&quot;&gt;name&lt;/code&gt;과 &lt;code class=&quot;language-text&quot;&gt;age&lt;/code&gt;라는 파라미터를 만들어서 각각 &lt;code class=&quot;language-text&quot;&gt;min&lt;/code&gt;과 27을 값으로 담아 같이 보내자.&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;자주 사용되는 header 정보&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&quot;./img/headers_info.png&quot; alt=&quot;headers_info&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Request Action&lt;/strong&gt;
+&lt;img src=&quot;./img/http_request_method.png&quot; alt=&quot;request_method&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;3. HTTP request 구조&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;1. HTTP 버전 상태코드 설명
+2. Response Headers
+3.
+4.body&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위와 같이 구조인데,&lt;br&gt;
+&lt;strong&gt;첫째줄은 Status Line&lt;/strong&gt;&lt;br&gt;
+해당 response의 상태를 나타내주는데,&lt;br&gt;
+HHTP 버전/status code/status text&lt;br&gt;
+&lt;strong&gt;둘째줄은 headers&lt;/strong&gt;&lt;br&gt;
+request의 header와 동일하다.&lt;br&gt;
+다만, response에서만 사용되는 header값들이 있다.&lt;br&gt;
+예를들어, &lt;code class=&quot;language-text&quot;&gt;User-Agent&lt;/code&gt;대신에 &lt;code class=&quot;language-text&quot;&gt;Server&lt;/code&gt;헤더가 사용된다.&lt;br&gt;
+&lt;strong&gt;셋째줄은 headers와 body를 구분&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;넷째줄은 body&lt;/strong&gt;&lt;br&gt;
+request의 header와 동일하다.&lt;br&gt;
+request와 마찬가지로 모든 response가 body를 가지고 있지는 않다. 데이터를 전송할 필요가 없을 경우에는 body가 비어있게 된다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;1. HTTP/1.1 200 OK
+2. Date: Tue, 10 Jul 2012 06:50:15 GMT
+3. Content-Length:362
+4. Content-type:text/html
+5.
+6. &amp;lt;html&amp;gt;
+7. ...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위의 response를 읽어보면,&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;HTTP/1.1 버전&lt;/code&gt;의 프로토콜로 request에 대한 처리 결과는&lt;code class=&quot;language-text&quot;&gt;200&lt;/code&gt;이다. 다시말해 &lt;code class=&quot;language-text&quot;&gt;OK&lt;/code&gt;이다.&lt;br&gt;
+내가 전달할 메시지는 &lt;code class=&quot;language-text&quot;&gt;2012년 7월 10일 화요일 6분 50분 15초&lt;/code&gt;에 만들어 졌으며,&lt;br&gt;
+내용의 길이는 &lt;code class=&quot;language-text&quot;&gt;362&lt;/code&gt;이고 내용은 &lt;code class=&quot;language-text&quot;&gt;text/html&lt;/code&gt;타입이다.보낼 내용은 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;html&amp;gt;&lt;/code&gt;…이다.
+&lt;br&gt;
+&lt;strong&gt;자주 쓰이는 HTTP Status Code&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&quot;./img/http_status_code.png&quot; alt=&quot;http_status_code&quot;&gt;&lt;/p&gt;
+&lt;h1&gt;그래서 왜 배우는데???&lt;/h1&gt;
+&lt;h2&gt;HTTP 메세지&lt;/h2&gt;
+&lt;p&gt;HHTP 메세지는 서버와 클라이언트 간에 데이터가 교환되는 방식이다.&lt;br&gt;
+&lt;strong&gt;교환되는 방식이면서, 정보가 담겨있다. 우리는 이 정보를 처리해야하므로 HTTP가 중요하다.&lt;/strong&gt;&lt;br&gt;
+장고를 하면서 HTTP를 아는 것이 왜 중요한지 알게되었다.&lt;br&gt;
+공부할 것이 많다! REST API도 알아야한다!!!!!&lt;br&gt;
+이건 다음시간에&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django/장고는 무엇이고 어떻게 일하는가?]]></title><description><![CDATA[Django는 무엇이고 어떻게 동작하는지 알아봅시다.]]></description><link>https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</link><guid isPermaLink="false">https://bmh8993.github.io//python/django/what-is-django-and-how-to-work-it/</guid><pubDate>Sun, 18 Aug 2019 02:02:15 GMT</pubDate><content:encoded>&lt;p&gt;Django는 무엇이고 어떻게 동작하는지 알아봅시다.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
